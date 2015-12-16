@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &156130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 427578}
+  - 114: {fileID: 11442382}
+  m_Layer: 0
+  m_Name: AdventureManagerModule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &427578
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156130}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .131243005, y: .303365499, z: 3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11442382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498b585ce953ff54889d8a0a487ee519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  katsInfo: []
+  eggs: []
+  katPrefabs:
+  - {fileID: 134154, guid: 233db83903d81de439eab3591345356c, type: 2}
+  - {fileID: 182270, guid: 9b0f3f67c418502468d554e6fdc7d8c1, type: 2}
+  - {fileID: 177234, guid: b6d3094b59f9ad44eb41b41468a8c655, type: 2}
+  - {fileID: 145998, guid: 290f9b57c6e24b24e8620311f6dc2507, type: 2}
+  - {fileID: 178186, guid: 15cd21c516af74a41b602a297469fc2f, type: 2}
+  - {fileID: 112906, guid: 9247b5e8d6a350a4991669d0ac5d3644, type: 2}
+  - {fileID: 157028, guid: 5d1fda3b3561acc499e1c5cb98d19517, type: 2}
+  - {fileID: 110622, guid: 88228974e5ce4bb4b93143f79b37c60a, type: 2}
+  - {fileID: 105992, guid: cd90f506d9c4ab64b94a90ade9cc8df0, type: 2}
+  - {fileID: 196366, guid: 456028a1164776441a2e0bc31f36baff, type: 2}
+  - {fileID: 179940, guid: 33a60bd9da7604445acb2f8e923b834d, type: 2}
+  - {fileID: 126874, guid: a82e8f9947ae5fb4ba62f42ec071a32b, type: 2}
+  battleManagerPrefab: {fileID: 110086, guid: d1863bfaf94c0204495fa2686ae99291, type: 2}
+  battleInfoModulePrefab: {fileID: 148648, guid: 8fda4e81e0052684ea5c77c69b60d961,
+    type: 2}
+  battleSceneName: BattleSceneNew
+  eggPrefab: {fileID: 153272, guid: 4cf85bfbcb948034094f4418fa5eb4d7, type: 2}
+  eggTrayPrefab: {fileID: 109432, guid: b07db0dc946310d41b9d8b661d827652, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 156130}
+  m_IsPrefabParent: 1

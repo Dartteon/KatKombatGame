@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &110086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 482462}
+  - 114: {fileID: 11408482}
+  m_Layer: 0
+  m_Name: BattleManagerPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &482462
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110086}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11408482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf59be3ae6741754797aa2141a2fb7fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerPrefab: {fileID: 152048, guid: d145a6fc49d593648a66d720003cf4d8, type: 2}
+  mapPrefabs:
+  - {fileID: 158652, guid: be4a82b733fade743b28627f9a5b3c53, type: 2}
+  - {fileID: 161942, guid: 7f7210125f10b774db3e5caefa8b06a5, type: 2}
+  - {fileID: 153666, guid: d851f300684288f409904d63556da0f7, type: 2}
+  gamestateBattleManagerModulePrefab: {fileID: 130798, guid: cfcfbe8701c03da4ea5eb7f98035330b,
+    type: 2}
+  katAttackVesselPrefab: {fileID: 190522, guid: bf25ce4ee8869614084271a81d41dada,
+    type: 2}
+  targetRingPrefab: {fileID: 130850, guid: fcc9725acc18ee44daf1025a106e4b2c, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 110086}
+  m_IsPrefabParent: 1

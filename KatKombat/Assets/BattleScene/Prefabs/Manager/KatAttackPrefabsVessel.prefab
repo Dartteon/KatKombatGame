@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &190522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 444634}
+  - 114: {fileID: 11424352}
+  m_Layer: 0
+  m_Name: KatAttackPrefabsVessel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &444634
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190522}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.220180139, y: -.115764603, z: 3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11424352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467426398fbb77e41b15479b3bd71b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  katAttackPrefabs:
+  - {fileID: 165106, guid: c6e8b533d646aba4f943514f4807779f, type: 2}
+  - {fileID: 180572, guid: ace7ff223de0a554c92042bfd2e2e1f9, type: 2}
+  - {fileID: 123092, guid: 7b41a51b175dfdc4093033c543dd8664, type: 2}
+  - {fileID: 112394, guid: b461c61a41c596049a8445115a2bfe6c, type: 2}
+  - {fileID: 140454, guid: 99a4d28ceebfdc74fa2c9dd39c011274, type: 2}
+  - {fileID: 169272, guid: ca2df73d6fbf4fa45b2a6bd97e20d012, type: 2}
+  - {fileID: 124810, guid: e068c4f7d9ce2e04bb0b5e6d8220d375, type: 2}
+  - {fileID: 195000, guid: 4cb7735d943c6c448a168e95f753047d, type: 2}
+  - {fileID: 129708, guid: eb71928c87b6ad34392c9a7a7c6a6447, type: 2}
+  - {fileID: 189702, guid: bc3b1c29670063641a96adc6d34b0f52, type: 2}
+  - {fileID: 177460, guid: eea89a3a93d0dfe43956d3716621749a, type: 2}
+  - {fileID: 132178, guid: 7594998f9c111a844842a6463184f75f, type: 2}
+  - {fileID: 151594, guid: 331e2cfd288029849869dd128a652f80, type: 2}
+  - {fileID: 188824, guid: f5e7d8367265deb4fb90ecd48c9c91d4, type: 2}
+  - {fileID: 194866, guid: 86a2433b81c9b1f4db382c28f4231721, type: 2}
+  attackIconPrefabs:
+  - {fileID: 165740, guid: f558760ec9bf94f49a4fe80c459db2c5, type: 2}
+  - {fileID: 180072, guid: 1313582a50947814990f291634b64ce3, type: 2}
+  - {fileID: 124032, guid: b0dee2d5d358480499872ce127b9dc0c, type: 2}
+  - {fileID: 170788, guid: ae19b64bc4d720741975298007391118, type: 2}
+  - {fileID: 140424, guid: a78e73673ff61b446b88e1755bb0a99e, type: 2}
+  - {fileID: 107802, guid: 65e21b25ce67b4441ab0ca18704f7b9f, type: 2}
+  - {fileID: 108126, guid: daceb03f827dc26498e4910e6a31d26e, type: 2}
+  - {fileID: 122452, guid: da05b39ca9924ee4386420b1dfcdc03a, type: 2}
+  - {fileID: 169262, guid: 076641309ac111540a1bd4b90ce10fd6, type: 2}
+  - {fileID: 116804, guid: 1c1c0a645b12ab242a9d47d333169896, type: 2}
+  - {fileID: 180548, guid: 322d8a37b8902094fa8a9699ddd6ff56, type: 2}
+  - {fileID: 171354, guid: 627b402bdf2671f4bae01423f58b04fb, type: 2}
+  - {fileID: 171494, guid: 69992a99fa0ee864892b6b1527111de7, type: 2}
+  - {fileID: 139668, guid: 5c2582f2ad7c1cd4aae7a60da946eb30, type: 2}
+  - {fileID: 129410, guid: 2b6241338ec35704b812303639086397, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 190522}
+  m_IsPrefabParent: 1

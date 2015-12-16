@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &118034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 487752}
+  - 114: {fileID: 11440378}
+  m_Layer: 0
+  m_Name: KatSelectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &487752
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118034}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11440378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897b11eb5f0fe4746990ea02c6081105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  katPrefabs:
+  - {fileID: 177234, guid: b6d3094b59f9ad44eb41b41468a8c655, type: 2}
+  - {fileID: 178186, guid: 15cd21c516af74a41b602a297469fc2f, type: 2}
+  - {fileID: 134154, guid: 233db83903d81de439eab3591345356c, type: 2}
+  - {fileID: 145998, guid: 290f9b57c6e24b24e8620311f6dc2507, type: 2}
+  - {fileID: 126874, guid: a82e8f9947ae5fb4ba62f42ec071a32b, type: 2}
+  - {fileID: 157028, guid: 5d1fda3b3561acc499e1c5cb98d19517, type: 2}
+  - {fileID: 110622, guid: 88228974e5ce4bb4b93143f79b37c60a, type: 2}
+  - {fileID: 179940, guid: 33a60bd9da7604445acb2f8e923b834d, type: 2}
+  - {fileID: 182270, guid: 9b0f3f67c418502468d554e6fdc7d8c1, type: 2}
+  - {fileID: 105992, guid: cd90f506d9c4ab64b94a90ade9cc8df0, type: 2}
+  - {fileID: 112906, guid: 9247b5e8d6a350a4991669d0ac5d3644, type: 2}
+  - {fileID: 196366, guid: 456028a1164776441a2e0bc31f36baff, type: 2}
+  commandPrefabs:
+  - {fileID: 180572, guid: ace7ff223de0a554c92042bfd2e2e1f9, type: 2}
+  - {fileID: 140454, guid: 99a4d28ceebfdc74fa2c9dd39c011274, type: 2}
+  - {fileID: 169272, guid: ca2df73d6fbf4fa45b2a6bd97e20d012, type: 2}
+  - {fileID: 124810, guid: e068c4f7d9ce2e04bb0b5e6d8220d375, type: 2}
+  - {fileID: 189702, guid: bc3b1c29670063641a96adc6d34b0f52, type: 2}
+  - {fileID: 177460, guid: eea89a3a93d0dfe43956d3716621749a, type: 2}
+  - {fileID: 132178, guid: 7594998f9c111a844842a6463184f75f, type: 2}
+  - {fileID: 195000, guid: 4cb7735d943c6c448a168e95f753047d, type: 2}
+  - {fileID: 194866, guid: 86a2433b81c9b1f4db382c28f4231721, type: 2}
+  - {fileID: 123092, guid: 7b41a51b175dfdc4093033c543dd8664, type: 2}
+  - {fileID: 165106, guid: c6e8b533d646aba4f943514f4807779f, type: 2}
+  - {fileID: 151594, guid: 331e2cfd288029849869dd128a652f80, type: 2}
+  - {fileID: 129708, guid: eb71928c87b6ad34392c9a7a7c6a6447, type: 2}
+  - {fileID: 112394, guid: b461c61a41c596049a8445115a2bfe6c, type: 2}
+  - {fileID: 188824, guid: f5e7d8367265deb4fb90ecd48c9c91d4, type: 2}
+  commandIcons:
+  - {fileID: 163772, guid: d0049d916a8908c4197996ea0c8830d5, type: 2}
+  - {fileID: 116804, guid: 1c1c0a645b12ab242a9d47d333169896, type: 2}
+  - {fileID: 129410, guid: 2b6241338ec35704b812303639086397, type: 2}
+  - {fileID: 140424, guid: a78e73673ff61b446b88e1755bb0a99e, type: 2}
+  - {fileID: 170788, guid: ae19b64bc4d720741975298007391118, type: 2}
+  - {fileID: 180548, guid: 322d8a37b8902094fa8a9699ddd6ff56, type: 2}
+  - {fileID: 169262, guid: 076641309ac111540a1bd4b90ce10fd6, type: 2}
+  - {fileID: 171354, guid: 627b402bdf2671f4bae01423f58b04fb, type: 2}
+  - {fileID: 180072, guid: 1313582a50947814990f291634b64ce3, type: 2}
+  - {fileID: 107802, guid: 65e21b25ce67b4441ab0ca18704f7b9f, type: 2}
+  - {fileID: 108126, guid: daceb03f827dc26498e4910e6a31d26e, type: 2}
+  - {fileID: 165740, guid: f558760ec9bf94f49a4fe80c459db2c5, type: 2}
+  - {fileID: 139668, guid: 5c2582f2ad7c1cd4aae7a60da946eb30, type: 2}
+  - {fileID: 122452, guid: da05b39ca9924ee4386420b1dfcdc03a, type: 2}
+  - {fileID: 124032, guid: b0dee2d5d358480499872ce127b9dc0c, type: 2}
+  - {fileID: 171494, guid: 69992a99fa0ee864892b6b1527111de7, type: 2}
+  katButtonPrefab: {fileID: 144154, guid: 25c559ee56025e54b95a7d7eda26ea9d, type: 2}
+  commandButtonPrefab: {fileID: 161302, guid: a19f8f4232d9fa84b9ea24b5d694f114, type: 2}
+  buttonCentreKat: {fileID: 0}
+  buttonCentreCommand: {fileID: 0}
+  mainKatFace: {fileID: 0}
+  mainKatType: {fileID: 0}
+  command1Button: {fileID: 0}
+  command2Button: {fileID: 0}
+  command3Button: {fileID: 0}
+  katTrails:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  battleMode: 0
+  numEnemyKats: 1
+  MAXCOLSKAT: 4
+  MAXCOLSCOMMAND: 6
+  currentSelectedCommand: 1
+  command1: 
+  command2: 
+  command3: 
+  katName: 
+  selectionCooldown: 2
+  katButtonWidthSpacing: 1
+  katButtonHeightSpacing: 1
+  currentLevel: 0
+  highScore: 0
+  streakButton: {fileID: 0}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: commandButtonPrefab
+      value: 
+      objectReference: {fileID: 118034}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 118034}
+  m_IsPrefabParent: 1
