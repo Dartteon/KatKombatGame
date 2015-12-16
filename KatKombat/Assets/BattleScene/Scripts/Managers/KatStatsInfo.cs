@@ -5,22 +5,25 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using Kommand = Kommands.KommandCode;
+using Breed = KatBreed.Breed;
 
 [Serializable]
 public class KatStatsInfo {
 	//This class is the main information carrier for Kats the player owns.
 
 	//STRICTLY PERMANENT variables. Not changeable once the Kat is born.
+	private Breed breed;
 	private string katBreed;
 	private string katName;
 	private int breedStr, breedDex, breedInt;
+
 	//Birth stats are random stats that Kats gain from birth. (i.e IV in Pokemon)
 	private int birthStr = 0;
 	private int birthDex = 0;
 	private int birthInt = 0;
 
 	//LOOSE variables. To be changed easily.
-	private int currentHP = 1;
+	public int currentHP { get; private set; }
 	private int currentExp = 0;
 	private int closeness = 0;
 	//Extra stats are effort stats that Kats gain from training. (i.e EV in Pokemon)
@@ -60,6 +63,7 @@ public class KatStatsInfo {
 	*/
 	public KatStatsInfo(string breed, GameObject[] katPrefabs, string name){
 		katName = name;
+		currentHP = 1;
 		currentExp = 0;
 		randomizeBirthStats ();
 		katBreed = breed;
@@ -206,10 +210,6 @@ public class KatStatsInfo {
 		currentHP = hp;
 	}
 
-	public int getCurrentHP(int hp){
-		return currentHP;
-	}
-
 	public int addExtraStats(int amount, int statType){
 		int currentExtraStatsSum = extraStr + extraDex + extraInt;
 
@@ -231,6 +231,10 @@ public class KatStatsInfo {
 
 		//return amount of stat points succesfully added
 		return amount;
+	}
+
+	public int getMaxHP() {
+		return getTotalStr () + getLevel () + 10;
 	}
 
 	public string toString(){

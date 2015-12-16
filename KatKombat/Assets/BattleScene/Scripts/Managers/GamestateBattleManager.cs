@@ -112,6 +112,7 @@ public class GamestateBattleManager : MonoBehaviour {
 				attachAttackToKat(playerKat, playerKatInfo);
 				playerKat.tag = "Player1";
 				Camera.main.GetComponent<BattleCameraFollowScript>().attachKat(playerKat);
+				Camera.main.GetComponent<BattleCameraFollowScript>().initialize();
 //				StatsScript katStats = playerKat.GetComponent<StatsScript>();
 //				katStats.setStats(playerKat);
 
@@ -162,22 +163,26 @@ public class GamestateBattleManager : MonoBehaviour {
 	}
 
 	public void displayVictory(){
-		controller.SetActive (false);
+		if (hasGameStarted) {
+			hasGameStarted = false;
+			controller.SetActive (false);
 //		Time.timeScale = 0;
 //		Debug.Log ("Won");
-		//PlayerInformation currentPlayerInfo = 
-	//	int currentKatIndex = adventureManager.transform.GetComponent<AdventureManager> ().getCurrentFightingKatIndex;
-		int currentKatIndex = 0;
-		Debug.Log (playerInfo.ToString ());
-		Debug.Log (currentKatIndex);
-		Debug.Log (enemyKatLevel);
+			//PlayerInformation currentPlayerInfo = 
+			//	int currentKatIndex = adventureManager.transform.GetComponent<AdventureManager> ().getCurrentFightingKatIndex;
+			int currentKatIndex = 0;
+			Debug.Log (playerInfo.ToString ());
+			Debug.Log (currentKatIndex);
+			Debug.Log (enemyKatLevel);
 
 //		Instantiate (victoryButtonPrefab);
-		BattleCameraFollowScript camScript = Camera.main.GetComponent<BattleCameraFollowScript> ();
-		camScript.showPlayerVictory ();
+			BattleCameraFollowScript camScript = Camera.main.GetComponent<BattleCameraFollowScript> ();
+			camScript.showPlayerVictory ();
 
-		if (ExperienceHandlerScript.addExperienceToKat (playerInfo, currentKatIndex, enemyKatLevel, 1.0f)) {
-			camScript.showLevelUp();
+			if (ExperienceHandlerScript.addExperienceToKat (playerInfo, currentKatIndex, enemyKatLevel, 1.0f)) {
+				Debug.Log("level up detected");
+				camScript.showLevelUp ();
+			}
 		}
 	}
 	public void displayLoss(){

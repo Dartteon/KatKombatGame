@@ -5,7 +5,10 @@ public class KatBreed : MonoBehaviour {
 	public enum Breed
 	{
 		None,
-		AzureGreye,
+		Greye,
+		Wildling,
+		Magi,
+		Rai,
 	};
 
 	public enum EggType

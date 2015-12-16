@@ -15,6 +15,7 @@ public class StatsScript : MonoBehaviour {
 	public int level = 100;
 	public string defaultCommands = "Furball MightyPaw TwinFang";
 	private List<Kommand> kommands;
+	public KatStatsInfo katStatInfo { get; private set; }
 
 
 	public char statusEffect = 'n';
@@ -27,6 +28,10 @@ public class StatsScript : MonoBehaviour {
 		transform.FindChild ("TargetRing").gameObject.GetComponent<SpriteRenderer> ().color = col;
 		defaultCommands = "Furball MightyPaw TwinFang";
 	//	setStatsToLevel (level);
+	}
+
+	public void setKatStatsInfo(KatStatsInfo info){
+		katStatInfo = info;
 	}
 
 	public void setKatCommands(List<Kommand> koms){

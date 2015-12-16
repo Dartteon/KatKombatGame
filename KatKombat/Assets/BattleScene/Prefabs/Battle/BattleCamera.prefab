@@ -102,7 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e4d947d7cc47941a46799154fb8ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victorySignPrefab: {fileID: 0}
+  victorySignPrefab: {fileID: 141972, guid: 792886cfc3d50ac488e7afd37a2dd4be, type: 2}
+  levelUpSignPrefab: {fileID: 128902, guid: 51a5352bf806f28489049767badb64d3, type: 2}
 --- !u!124 &12495742
 Behaviour:
   m_ObjectHideFlags: 1

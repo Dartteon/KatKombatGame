@@ -136,55 +136,55 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - m_Icon: {fileID: 2800000, guid: 3c6a4485270271b45b131ed747c80b66, type: 3}
-      m_Size: 128
+      m_Size: 0
   - m_BuildTarget: iPhone
     m_Icons:
     - m_Icon: {fileID: 2800000, guid: 3c6a4485270271b45b131ed747c80b66, type: 3}
-      m_Size: 180
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 152
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 144
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 120
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 114
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 76
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 72
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 57
+      m_Size: 0
   - m_BuildTarget: Standalone
     m_Icons:
     - m_Icon: {fileID: 2800000, guid: 3c6a4485270271b45b131ed747c80b66, type: 3}
-      m_Size: 1024
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 512
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 256
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 128
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 48
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 32
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 16
+      m_Size: 0
   - m_BuildTarget: Android
     m_Icons:
     - m_Icon: {fileID: 2800000, guid: 3c6a4485270271b45b131ed747c80b66, type: 3}
-      m_Size: 192
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 144
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 96
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 72
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 48
+      m_Size: 0
     - m_Icon: {fileID: 0}
-      m_Size: 36
+      m_Size: 0
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   webPlayerTemplate: APPLICATION:Default
@@ -436,21 +436,27 @@ PlayerSettings:
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
   intPropertyNames:
+  - Android::ScriptingBackend
   - Metro::ScriptingBackend
+  - Standalone::ScriptingBackend
   - WP8::ScriptingBackend
   - WebGL::ScriptingBackend
   - WebGL::audioCompressionFormat
   - WebGL::exceptionSupport
   - WebGL::memorySize
   - iOS::Architecture
+  - iOS::EnableIncrementalBuildSupportForIl2cpp
   - iOS::ScriptingBackend
+  Android::ScriptingBackend: 0
   Metro::ScriptingBackend: 2
+  Standalone::ScriptingBackend: 0
   WP8::ScriptingBackend: 2
   WebGL::ScriptingBackend: 1
   WebGL::audioCompressionFormat: 4
   WebGL::exceptionSupport: 1
   WebGL::memorySize: 256
   iOS::Architecture: 2
+  iOS::EnableIncrementalBuildSupportForIl2cpp: 1
   iOS::ScriptingBackend: 1
   boolPropertyNames:
   - WebGL::analyzeBuildSize

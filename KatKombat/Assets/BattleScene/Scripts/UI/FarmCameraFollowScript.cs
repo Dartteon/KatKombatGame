@@ -36,6 +36,7 @@ public class FarmCameraFollowScript : MonoBehaviour {
 //		tgtCircle = Instantiate (targetCirclePrefab) as GameObject;
 //		tgtCircle.transform.parent = this.transform;
 		katCard = this.transform.Find ("KatDataCard").GetComponent<KatDataCard> ();
+		katCard.initiate ();
 
 		cam = this.GetComponent<Camera> ();
 //		nameText = tgtCircle.transform.Find ("NameCanvas").GetComponentInChildren<Text> ();

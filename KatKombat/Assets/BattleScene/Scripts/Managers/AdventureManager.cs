@@ -10,47 +10,21 @@ using EggType = KatBreed.EggType;
 public class AdventureManager : MonoBehaviour {
 	public List<KatStatsInfo> katsInfo = new List<KatStatsInfo> ();
 	public List<EggInfo> eggs = new List<EggInfo> ();
-	public GameObject[] katPrefabs;
 	public GameObject battleManagerPrefab;
 	public GameObject battleInfoModulePrefab;
 	public string battleSceneName;
-	public GameObject eggPrefab;
-	public GameObject eggTrayPrefab;
-	private GameObject eggTray;
 
 	private int currentFightingKatIndex = 0;
 	private GameObject spawnedBattleInfoModule;
 	private string lastLoadedSceneName;
+	public GameObject[] katPrefabs;
 
-	private List<GameObject> spawnedKats = new List<GameObject> ();
 
 	private PlayerInformation playerDataScript;
 
-	private bool madeNewGame = false;
-
-	private int currentlySelectedKat = 0;
 
 	public void initialize(){
-		eggTray = Camera.main.transform.Find ("EggTray").gameObject;
 		loadPlayerFile ();
-		spawnPlayerKats ();
-	}
-
-	void initiateBattle(){
-		if (spawnedBattleInfoModule == null) {
-			katsInfo.Add (getNewEnemy ());
-			Debug.Log ("Adv.Manager: Created enemy info: " + katsInfo [currentlySelectedKat].toString ());
-			GameObject battleInfo = Instantiate (battleInfoModulePrefab) as GameObject;
-			BattleInformation battleInfoScript = battleInfo.GetComponent<BattleInformation> ();
-			Debug.Log ("[AdventureManager Player Kat] " + katsInfo [currentlySelectedKat].toString ());
-			KatStatsInfo enemy = new KatStatsInfo("SkyRai", katPrefabs, "EnemyDude");
-			Debug.Log ("[AdventureManager Spawned Enemy] " + enemy.toString ());
-			battleInfoScript.setKats (katsInfo [0], enemy);
-			battleInfoScript.setMap (getCurrentMap ());
-			battleInfoScript.setKatPrefabs(katPrefabs);
-			spawnedBattleInfoModule = battleInfo;
-			Application.LoadLevel (battleSceneName);
-		}
 	}
 
 	public void initiateBattleWithKat(KatStatsInfo enemy){
@@ -156,52 +130,7 @@ public class AdventureManager : MonoBehaviour {
 		DontDestroyOnLoad (this);
 	}
 
-	void spawnPlayerKats(){
-		for (int i = 0; i<katsInfo.Count; i++) {
-			spawnKatInScene(katsInfo [i]);
-		}
-	}
 
-	public void spawnKatInScene(KatStatsInfo info){
-		GameObject spawnedKat = Instantiate (findKatWithName (info.getBreed ()), transform.position, transform.rotation) as GameObject; 
-		spawnedKats.Add (spawnedKat);
-//		Debug.Log(spawnedKat.ToString());
-		StatsScript katStats = spawnedKat.GetComponent<StatsScript> ();
-		katStats.setToLevel (info.getLevel ());
-		katStats.setStats (info.getTotalStr (), info.getTotalDex (), info.getTotalInt ());
-		katStats.setKatCommands (info.getActiveKommands ());
-		disableKatCombatComponents (spawnedKat);
-		spawnedKat.AddComponent <NonCombatBehavior> ();
-		spawnedKat.tag = "Player1";
-	}
-	
-/*
-	void spawnEnemyKat(){
-		//replace this chunk by extracting enemy data
-		int index = 1;
-		katsInfo.Add (new KatStatsInfo (enemyKatBreed, katPrefabs));
-		katsInfo [index].increaseExp (10000);
-//		katsInfo [index].attachKatPrefabsArray (katPrefabs);
-		katsInfo [index].initializeStats (enemyKatBreed, katPrefabs);
-		
-		GameObject spawnedKat = Instantiate(findKatWithName(enemyKatBreed), transform.position, transform.rotation) as GameObject; 
-		spawnedKats [1] = spawnedKat;
-		StatsScript katStats = spawnedKat.GetComponent<StatsScript> ();
-		katStats.setToLevel (katsInfo [index].getLevel());
-		katStats.setStats (katsInfo [index].getTotalStr (), katsInfo [index].getTotalDex (), katsInfo [index].getTotalInt ());
-		katStats.setKatCommands (katsInfo [index].getCommands ());
-	}
-*/
-	GameObject findKatWithName(string katName){
-		for (int i=0; i<katPrefabs.Length; i++){
-			if (katPrefabs[i].name.Equals(katName)){
-				return katPrefabs[i];
-			}
-		}
-		return katPrefabs [0];
-	}
-
-	// Update is called once per frame
 	void Update () {
 		if (GameVariables.DEBUG_MODE == true) {
 			if (Input.GetKeyDown (KeyCode.F2)) {
@@ -209,16 +138,14 @@ public class AdventureManager : MonoBehaviour {
 				savePlayerFile ();
 			}
 
-			if (Input.GetKey (KeyCode.F3)) {
+			if (Input.GetKeyDown (KeyCode.F3)) {
 				Camera.main.GetComponent<FarmCameraFollowScript>().goToCameraMode(2);
 			}
 
-			if (Input.GetKey (KeyCode.F4)) {
-				if (!madeNewGame) {
-					madeNewGame = true;
-					Debug.Log ("Handling new game");
-					handleNewGame ();
-				}
+			if (Input.GetKeyDown (KeyCode.F4)) {
+				Debug.Log ("Handling new game");
+				handleNewGame ();
+
 			}
 
 			if (Input.GetKeyDown (KeyCode.F5)) {
@@ -238,6 +165,7 @@ public class AdventureManager : MonoBehaviour {
 				Debug.Log ("Adding new random Egg to inventory");
 				summonNewEgg ();
 			}
+			/*
 			if (Input.GetKeyDown (KeyCode.F8)) {
 				Debug.Log("Attemping to hatch and spawn an egg");
 				if (eggs[0] != null){
@@ -245,6 +173,7 @@ public class AdventureManager : MonoBehaviour {
 					spawnKatInScene(baby);
 				}
 			}
+			*/
 
 /*
 			if (Input.GetKeyDown (KeyCode.F7)) {
@@ -263,45 +192,12 @@ public class AdventureManager : MonoBehaviour {
 			}
 */
 
-			if (Input.GetKeyDown (KeyCode.F11)) {
-				followNextKat ();
-			}
-			if (Input.GetKeyDown (KeyCode.F12)) {
-				Camera.main.GetComponent<FarmCameraFollowScript>().stopFollowingKat();
-			}
 
 		}
 	}
 
-	public void followThisKat(GameObject kat){
-		int katIndex;
-
-		for (int i=0; i<katsInfo.Count; i++) {
-			if (kat == spawnedKats[i]){
-				GameObject.Find ("Main Camera").GetComponent<FarmCameraFollowScript> ().followKat (spawnedKats[i], katsInfo[i]);
-				break;
-			}
-		}
-	}
-
-	void followNextKat(){
-		int numKats = katsInfo.Count;
-		if (currentlySelectedKat == numKats-1) {
-			currentlySelectedKat = 0;
-		} else {
-			currentlySelectedKat++;
-		}
-//		Debug.Log (currentlySelectedKat + " " +  katsInfo.Count);
-//		Debug.Log (spawnedKats [currentlySelectedKat].ToString ());
-//		Debug.Log (katsInfo [currentlySelectedKat].toString ());
-		Camera.main.GetComponent<FarmCameraFollowScript> ().followKat (spawnedKats[currentlySelectedKat], katsInfo[currentlySelectedKat]);
-	}
 
 
-	private void disableKatCombatComponents(GameObject kat){
-		kat.transform.Find ("CanvasManaBar").gameObject.SetActive (false);
-		kat.transform.Find ("CanvasHealthBar").gameObject.SetActive (false);
-	}
 
 	//To be called externally by Incubator
 	public KatStatsInfo setEggToHatched(EggInfo egg){
