@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Kommands {
 	public enum KommandCode {
+		None,
 		ArcanePulse,
 		Charge,
 		Earthquake,

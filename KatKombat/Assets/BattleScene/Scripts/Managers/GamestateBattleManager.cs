@@ -81,10 +81,13 @@ public class GamestateBattleManager : MonoBehaviour {
 		int currentKatStr = playerKatInfo.getTotalStr ();
 		int currentKatDex = playerKatInfo.getTotalDex ();
 		int currentKatInt = playerKatInfo.getTotalInt ();
-		if (adventureManager.rewardKatWithExp (enemyKatLevel)) {
-			//display celebrations and shit
-		} else {
-			//just display generic win
+
+		BattleCameraFollowScript camScript = Camera.main.GetComponent<BattleCameraFollowScript> ();
+
+		camScript.showPlayerVictory ();
+
+		if (adventureManager.rewardKatWithExp (ExperienceHandlerScript.calculateExpGain(enemyKatLevel))) {
+			camScript.showLevelUp();
 		}
 	}
 
@@ -166,23 +169,10 @@ public class GamestateBattleManager : MonoBehaviour {
 		if (hasGameStarted) {
 			hasGameStarted = false;
 			controller.SetActive (false);
-//		Time.timeScale = 0;
-//		Debug.Log ("Won");
-			//PlayerInformation currentPlayerInfo = 
-			//	int currentKatIndex = adventureManager.transform.GetComponent<AdventureManager> ().getCurrentFightingKatIndex;
+
 			int currentKatIndex = 0;
-			Debug.Log (playerInfo.ToString ());
-			Debug.Log (currentKatIndex);
-			Debug.Log (enemyKatLevel);
 
-//		Instantiate (victoryButtonPrefab);
-			BattleCameraFollowScript camScript = Camera.main.GetComponent<BattleCameraFollowScript> ();
-			camScript.showPlayerVictory ();
-
-			if (ExperienceHandlerScript.addExperienceToKat (playerInfo, currentKatIndex, enemyKatLevel, 1.0f)) {
-				Debug.Log("level up detected");
-				camScript.showLevelUp ();
-			}
+			handleVictoryEffects();
 		}
 	}
 	public void displayLoss(){
@@ -196,30 +186,24 @@ public class GamestateBattleManager : MonoBehaviour {
 	void attachAttackToKat(GameObject kat, KatStatsInfo katInfo){
 		List<Kommand> komList = katInfo.getActiveKommands ();
 		//string[] katAttacks = katInfo.getCommands ();
-
-		string[] katAttacks = new string[3];
-		for (int i=0; i<3; i++) {
-			if (i < komList.Count){
-				katAttacks[i] = Kommands.getStringRepOfKommand(komList[i]);
-			} else {
-				katAttacks[i] = "nil";
-			}
-		}
-
+		
 		KatAttacksVessel attackPrefabsScript = katAttackVesselPrefab.GetComponent<KatAttacksVessel>();
-		//KatProjectileLauncherScript[] projectileLauncherScripts = kat.GetComponentsInChildren<KatProjectileLauncherScript> ();
 		KatProjectileLauncherScript[] projectileLauncherScripts = new KatProjectileLauncherScript[3];
 		projectileLauncherScripts[0] = kat.transform.Find ("BasicAttack").GetComponent<KatProjectileLauncherScript> ();
 		projectileLauncherScripts[1] = kat.transform.Find ("SecondAttack").GetComponent<KatProjectileLauncherScript> ();
 		projectileLauncherScripts[2] = kat.transform.Find ("ThirdAttack").GetComponent<KatProjectileLauncherScript> ();
 
-		for (int i=0; i<katAttacks.Length; i++){
-			if (!katAttacks.Equals("nil")){
-				GameObject attackPrefab = attackPrefabsScript.findAttackWithName(katAttacks[i]);
-//				Debug.Log(attackPrefab.ToString());
-				projectileLauncherScripts[i].SetPrefab(attackPrefab);
-				projectileLauncherScripts[i].transform.gameObject.SetActive(true);
+		for (int i=0; i<3; i++) {
+			if (!komList[i].Equals(Kommand.None)) {
+				GameObject atkPrefab = attackPrefabsScript.findKommand(komList[i]);
+				projectileLauncherScripts[i].SetPrefab(atkPrefab);
+//				Debug.Log("Launcher set: " + atkPrefab.ToString());
+				projectileLauncherScripts[i].gameObject.SetActive(true);
+//				Debug.Log("Kommand found: " + komList[i].ToString());
+			} else {
+				Debug.LogError("Kommand not found! " + komList[i]);
+				projectileLauncherScripts[i].SetInactive();
 			}
-		}
+		} 
 	}
 }

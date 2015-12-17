@@ -2,22 +2,13 @@
 using System.Collections;
 
 public class ExperienceHandlerScript : MonoBehaviour {
-	private readonly float expLevelMultiplier = 2;
-
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	private static readonly float expLevelMultiplier = 2;
+	public static readonly int BASE_EXP = 5;
 
 
 	public static int calculateExpGain(int level){
-		return (int)(level * 2);
+		return 100;
+		//return (int)(level * 2);
 	}
 
 	//returns true if Kat levelled up, false otherwise
@@ -31,5 +22,36 @@ public class ExperienceHandlerScript : MonoBehaviour {
 			return true;
 		else
 			return false;
+	}
+
+	public static int getLevel(int currentExp) {
+
+		int level = 1;
+		int expSum = BASE_EXP;
+		
+		for (int i=1; i<100; i++) {
+			if (currentExp >= expSum){
+				//Debug.Log("Level " + i + " :" + ((int)expSum));
+				level++;
+				expSum = (int)(expSum*1.2f);
+			}
+		}
+		return level;
+	}
+
+	public static int getExpAtLevel(int lvl) {
+		int currLevel = 1;
+		int exp = 0;
+		while (currLevel < lvl) {
+			exp++;
+			currLevel = getLevel(exp);
+		}
+		return exp;
+	}
+
+	public static int getExpNeededToLevelUp(int currExp) {
+		int currLvl = getLevel (currExp);
+		int nextLvlExp = getExpAtLevel(currLvl + 1);
+		return (nextLvlExp - currExp);
 	}
 }

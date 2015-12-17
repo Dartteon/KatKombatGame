@@ -116,7 +116,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   adventureModulePrefab: {fileID: 156130, guid: 1a6b3844adaeed84ebf79a6a6be4aa6e,
     type: 2}
-  farmManagerModule: {fileID: 120428, guid: 5f44c5e71de03444d887cb4d9fc2b15e, type: 2}
+  farmManagerModulePrefab: {fileID: 120428, guid: 5f44c5e71de03444d887cb4d9fc2b15e,
+    type: 2}
 --- !u!4 &65104457
 Transform:
   m_ObjectHideFlags: 0
@@ -167,6 +168,10 @@ Prefab:
     - target: {fileID: 456528, guid: be4a82b733fade743b28627f9a5b3c53, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 158652, guid: be4a82b733fade743b28627f9a5b3c53, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be4a82b733fade743b28627f9a5b3c53, type: 2}
@@ -226,6 +231,10 @@ Prefab:
       propertyPath: m_Name
       value: Bar
       objectReference: {fileID: 0}
+    - target: {fileID: 198656, guid: c9c5e9d67eac53d48aef9e826530c847, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c9c5e9d67eac53d48aef9e826530c847, type: 2}
   m_IsPrefabParent: 0
@@ -267,6 +276,10 @@ Prefab:
     - target: {fileID: 445786, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 130818, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}

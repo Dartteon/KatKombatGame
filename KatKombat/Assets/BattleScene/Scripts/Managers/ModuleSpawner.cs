@@ -4,14 +4,18 @@ using System.Collections;
 public class ModuleSpawner : MonoBehaviour {
 	[SerializeField]
 	private GameObject adventureModulePrefab;
-	private GameObject adventureModule;
 	[SerializeField]
+	private GameObject farmManagerModulePrefab;
+
+	private GameObject adventureModule;
 	private GameObject farmManagerModule;
 
 	// Use this for initialization
 	void Start () {
 		createAdventureManagerModule ();
 		createFarmModule ();
+		adventureModule.GetComponent<AdventureManager>().setFarmManager (farmManagerModule.GetComponent<FarmManager> ());
+		Debug.Log ("farM set in advM");
 		searchAndDestroyBattleInfoModule ();
 	}
 
@@ -26,8 +30,9 @@ public class ModuleSpawner : MonoBehaviour {
 	}
 
 	void createFarmModule() {
-		GameObject farmModule = Instantiate (farmManagerModule) as GameObject;
-		farmModule.name = "FarmManagerModule";
+		farmManagerModule = Instantiate (farmManagerModulePrefab) as GameObject;
+		farmManagerModule.GetComponent<FarmManager> ().initialize (adventureModule.GetComponent<AdventureManager>());
+		farmManagerModule.name = "FarmManagerModule";
 	}
 
 	void searchAndDestroyBattleInfoModule() {

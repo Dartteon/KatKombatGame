@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49093f3d409a9a14daf07d239626c0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kommand: 7
   commandDescription: Charges a huge laz0r, blasting all enemies hit. (0.55*INT Damage)\n(1.3s
     Cast)\n (10s Cooldown)
   lingerTime: .25
@@ -340,6 +341,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: kommand
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

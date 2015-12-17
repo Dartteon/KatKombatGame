@@ -13,7 +13,7 @@ public class CameraDragPannerScript : MonoBehaviour, Tappable {
 
 	// Use this for initialization
 	void Start () {
-		cam = GameObject.Find ("Main Camera");
+		cam = Camera.main.gameObject;
 	}
 	
 	// Update is called once per frame

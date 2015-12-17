@@ -318,6 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf7f534fe8991744954b0ce260d3d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kommand: 2
   commandDescription: Charges in a direction, dealing damage to the first enemy hit.
     (0.4*STR Damage) (0.3s Cast) (10s Cooldown)
   lingerTime: .400000006
@@ -528,6 +529,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: isPiercing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: kommand
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

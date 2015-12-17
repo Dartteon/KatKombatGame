@@ -524,6 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f464599de7365184ca80e558146ec076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kommand: 14
   commandDescription: Default Text
   lingerTime: 2
   statType: 1
@@ -643,6 +644,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: kommand
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

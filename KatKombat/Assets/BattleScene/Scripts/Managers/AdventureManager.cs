@@ -19,6 +19,7 @@ public class AdventureManager : MonoBehaviour {
 	private string lastLoadedSceneName;
 	public GameObject[] katPrefabs;
 
+	private FarmManager farmMngr;
 
 	private PlayerInformation playerDataScript;
 
@@ -38,6 +39,8 @@ public class AdventureManager : MonoBehaviour {
 		battleInfoScript.setKatPrefabs(katPrefabs);
 		spawnedBattleInfoModule = battleInfo;
 		Application.LoadLevel (battleSceneName);
+
+		farmMngr = GameObject.Find ("FarmManagerModule").GetComponent<FarmManager> ();
 	}
 
 	public PlayerInformation getPlayerInfoScript(){
@@ -86,7 +89,7 @@ public class AdventureManager : MonoBehaviour {
 		playerDataScript = new PlayerInformation ("Baron");
 		playerDataScript.addCurrency (50);
 		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
-		KatStatsInfo newKat = new KatStatsInfo (newKatBreed, katPrefabs, "Jeff");
+		KatStatsInfo newKat = new KatStatsInfo (newKatBreed, katPrefabs, GameVariables.getRandomName());
 	//	newKat.initializeStats (newKatName, katPrefabs);
 	//	newKat.increaseExp (1000);
 		Debug.Log (newKat.toString ());
@@ -95,7 +98,7 @@ public class AdventureManager : MonoBehaviour {
 	}
 
 	void summonNewKat(){
-		String newKatName = "Spawn" + katsInfo.Count;
+		String newKatName = GameVariables.getRandomName();
 		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
 		KatStatsInfo newKat = new KatStatsInfo (newKatBreed, katPrefabs, newKatName);
 		playerDataScript.addKatToInventory (newKat);
@@ -103,7 +106,7 @@ public class AdventureManager : MonoBehaviour {
 	}
 
 	void summonNewEgg(){
-		String newEggName = "Eggling" + eggs.Count;
+		String newEggName = GameVariables.getRandomName();
 		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
 		KatStatsInfo newKat = new KatStatsInfo (newKatBreed, katPrefabs, newEggName);
 		EggInfo newEgg = EggInfo.getNewEgg (newKat, EggType.BlueYellowStripe);
@@ -161,19 +164,18 @@ public class AdventureManager : MonoBehaviour {
 			}
 
 			if (Input.GetKeyDown (KeyCode.F7)) {
-				Debug.Log(Kommands.KommandCode.ArcanePulse.ToString());
 				Debug.Log ("Adding new random Egg to inventory");
 				summonNewEgg ();
 			}
-			/*
+
 			if (Input.GetKeyDown (KeyCode.F8)) {
 				Debug.Log("Attemping to hatch and spawn an egg");
 				if (eggs[0] != null){
 					KatStatsInfo baby = setEggToHatched(eggs[0]);
-					spawnKatInScene(baby);
+					farmMngr.spawnKatInScene(baby);
 				}
 			}
-			*/
+
 
 /*
 			if (Input.GetKeyDown (KeyCode.F7)) {
@@ -197,7 +199,10 @@ public class AdventureManager : MonoBehaviour {
 	}
 
 
-
+	public void setFarmManager(FarmManager farmM) {
+		Debug.Log (farmM.ToString ());
+		farmMngr = farmM;
+	}
 
 	//To be called externally by Incubator
 	public KatStatsInfo setEggToHatched(EggInfo egg){

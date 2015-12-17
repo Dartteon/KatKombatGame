@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df37eac7317da2342af297f4fac59339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kommand: 13
   commandDescription: Ejects spiky hairs forward, dealing damage to all enemies hit.
     (0.1xDEXx10) (0.3s Cast) (3s Cooldown)
   lingerTime: 1
@@ -355,6 +356,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: cooldown
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: kommand
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

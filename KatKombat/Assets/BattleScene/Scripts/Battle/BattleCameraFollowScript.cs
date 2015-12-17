@@ -43,7 +43,8 @@ public class BattleCameraFollowScript : MonoBehaviour {
 
 	public void showLevelUp() {
 		Vector3 spawnPos = new Vector3 (this.transform.position.x, this.transform.position.y, 0);
-		Instantiate (levelUpSignPrefab, spawnPos, this.transform.rotation);
+		GameObject lvlUp = Instantiate (levelUpSignPrefab, spawnPos, this.transform.rotation) as GameObject;
+		lvlUp.transform.parent = this.transform;
 	}
 
 	public void showEnemyVictory(GameObject enemy){
@@ -53,7 +54,8 @@ public class BattleCameraFollowScript : MonoBehaviour {
 
 	public void showPlayerVictory() {
 		Vector3 spawnPos = new Vector3 (this.transform.position.x, this.transform.position.y, 0);
-		Instantiate (victorySignPrefab, spawnPos, this.transform.rotation);
+		GameObject vic = Instantiate (victorySignPrefab, spawnPos, this.transform.rotation) as GameObject;
+		vic.transform.parent = this.transform;
 		targetZoomSize = 3f;
 	}
 }

@@ -909,6 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49093f3d409a9a14daf07d239626c0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kommand: 8
   commandDescription: Spits two lightning bolts forward, dealing damage to all enemies
     hit (0.3xINTx2) (0.3s Cast) (10s Cooldown)
   lingerTime: .5
@@ -1061,6 +1062,10 @@ Prefab:
       propertyPath: commandDescription
       value: Spits two lightning bolts forward, dealing damage to all enemies hit
         (0.3xINTx2) (0.3s Cast) (10s Cooldown)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: kommand
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

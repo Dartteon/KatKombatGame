@@ -14,14 +14,10 @@ public class FarmManager : MonoBehaviour {
 	private GameObject[] katPrefabs;
 	private List<KatStatsInfo> katsInfo ;
 
-	void Start() {
-		initialize ();
-	}
-
-	void initialize() {
+	public void initialize(AdventureManager mngr) {
+		advMngr = mngr;
 		katPrefabs = katPrefabVessel.GetComponent<KatPrefabsVesselScript> ().katPrefabs;
 
-		advMngr = GameObject.Find ("AdventureModule").GetComponent<AdventureManager> ();
 		katsInfo = advMngr.katsInfo;
 
 		spawnPlayerKats ();
@@ -46,8 +42,10 @@ public class FarmManager : MonoBehaviour {
 	}
 	
 	void followNextKat() {
-		if (currentlySelectedKat >= spawnedKats.Count - 1)
+		if (currentlySelectedKat >= spawnedKats.Count) {
+			Debug.Log("Array over" + currentlySelectedKat);
 			currentlySelectedKat = 0;
+		}
 		else
 			currentlySelectedKat ++;
 
@@ -66,14 +64,18 @@ public class FarmManager : MonoBehaviour {
 		spawnedKat.AddComponent <NonCombatBehavior> ();
 		spawnedKat.GetComponent<StatsScript> ().setKatStatsInfo (info);
 		spawnedKat.tag = "Player1";
+		Debug.Log (spawnedKats[1].ToString());
+		Debug.Log ("new kat added to scene, total kats : " + spawnedKats.Count);
 	}
 	
 	GameObject findKatWithName(string katName){
+		katPrefabs = katPrefabVessel.GetComponent<KatPrefabsVesselScript> ().katPrefabs;
 		for (int i=0; i<katPrefabs.Length; i++){
 			if (katPrefabs[i].name.Equals(katName)){
 				return katPrefabs[i];
 			}
 		}
+		Debug.Log (katPrefabs.Length);
 		return katPrefabs [0];
 	}
 	
@@ -84,7 +86,9 @@ public class FarmManager : MonoBehaviour {
 
 	
 	void spawnPlayerKats(){
+		Debug.Log (katsInfo.Count);
 		for (int i = 0; i<katsInfo.Count; i++) {
+			Debug.Log("attempting to spawn " + i);
 			spawnKatInScene(katsInfo [i]);
 		}
 	}

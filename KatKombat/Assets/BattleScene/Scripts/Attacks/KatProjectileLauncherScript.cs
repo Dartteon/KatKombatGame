@@ -165,6 +165,10 @@ public class KatProjectileLauncherScript : MonoBehaviour {
 		}
 	}
 
+	public void SetInactive() {
+		this.gameObject.SetActive (false);
+	}
+
 	void Attack(){ //Actual attack command, launches projectile immediately
 		if (projectilesArray [currentprojectile] != null) {
 			projectilesArray [currentprojectile].gameObject.SetActive (true);

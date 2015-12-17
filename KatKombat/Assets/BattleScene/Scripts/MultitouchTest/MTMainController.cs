@@ -25,7 +25,7 @@ public class MTMainController : MonoBehaviour {
 	}
 
 	public void AttachKat(GameObject kat){
-		Debug.Log ("Attaching Kat " + kat.ToString ());
+//		Debug.Log ("Attaching Kat " + kat.ToString ());
 		attachedKat = kat;
 		GameObject fourCmdButtons = transform.Find ("FourCommandButtons").gameObject;
 
@@ -50,16 +50,17 @@ public class MTMainController : MonoBehaviour {
 	}
 
 	void Update(){
-		if (Input.GetKey(KeyCode.JoystickButton0)){
+		if (Input.GetKeyDown(KeyCode.JoystickButton0)){
+//			Debug.Log("JS 0 button detected " + commandControllersArray[1].ToString());
 			commandControllersArray[1].handleTap(zeroVector, zeroVector);
 		}
-		else if (Input.GetKey(KeyCode.JoystickButton1)){
+		else if (Input.GetKeyDown(KeyCode.JoystickButton1)){
 			commandControllersArray[0].handleTap(zeroVector, zeroVector);
 		}
-		else if (Input.GetKey(KeyCode.JoystickButton2)){
+		else if (Input.GetKeyDown(KeyCode.JoystickButton2)){
 			commandControllersArray[2].handleTap(zeroVector, zeroVector);
 		}
-		else if (Input.GetKey(KeyCode.JoystickButton3)){
+		else if (Input.GetKeyDown(KeyCode.JoystickButton3)){
 			jumpController.handleTap(zeroVector, zeroVector);
 		}
 

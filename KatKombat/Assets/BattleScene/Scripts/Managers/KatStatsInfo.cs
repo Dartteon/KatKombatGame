@@ -16,6 +16,7 @@ public class KatStatsInfo {
 	private string katBreed;
 	private string katName;
 	private int breedStr, breedDex, breedInt;
+	private readonly int BASE_EXP = ExperienceHandlerScript.BASE_EXP;
 
 	//Birth stats are random stats that Kats gain from birth. (i.e IV in Pokemon)
 	private int birthStr = 0;
@@ -34,7 +35,6 @@ public class KatStatsInfo {
 
 	//Static variables for referencing
 	private readonly int EXTRA_STATS_THRESHOLD = 128;
-	private readonly int BASE_EXP = 5;
 	private readonly int MAX_LEVEL = 60;
 	private readonly int STAT_OFFSET = 7;
 	private int levelStatOffset = 40;
@@ -47,6 +47,10 @@ public class KatStatsInfo {
 
 	private List<Kommand> knownKommandList = new List<Kommand>();
 	private List<Kommand> activeKommandList = new List<Kommand>();
+
+	private List<AncestorPair> ancestors = new List<AncestorPair>();
+
+	public bool isFertile{ get; private set; }
 	/*
 	//constructor
 	public KatStatsInfo(string breed, GameObject[] katPrefabs){
@@ -68,6 +72,7 @@ public class KatStatsInfo {
 		randomizeBirthStats ();
 		katBreed = breed;
 		hasHatched = true;
+		isFertile = true;
 		if (initializeStats (katBreed, katPrefabs)) {
 			Debug.Log("[Kat successfully initialized] " + this.toString());
 		} else {
@@ -161,16 +166,7 @@ public class KatStatsInfo {
 	}
 
 	public int getLevel(){
-		int level = 1;
-		int expSum = BASE_EXP;
-
-		for (int i=1; i<100; i++) {
-			if (currentExp >= expSum){
-				//Debug.Log("Level " + i + " :" + ((int)expSum));
-				level++;
-				expSum = (int)(expSum*1.2f);
-			}
-		}
+		int level = ExperienceHandlerScript.getLevel (currentExp);
 
 		return level;
 	}
@@ -193,6 +189,8 @@ public class KatStatsInfo {
 		int oldExp = currentExp;
 		currentExp += exp;
 		Debug.Log ("Increasing EXP for " + katBreed + " : " + exp);
+		Debug.Log ("Kat is level " + getLevel ());
+		Debug.Log("EXP needed for next level: " + ExperienceHandlerScript.getExpNeededToLevelUp(currentExp));
 
 	}
 

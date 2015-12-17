@@ -29,24 +29,31 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	public float zoomSpeed = 1.0f;
 	private float targetZoomSize;
 
+	private bool hasInit = false;
 	private Vector3 targetPosition;
 
 	// Use this for initialization
 	void Start () {
-//		tgtCircle = Instantiate (targetCirclePrefab) as GameObject;
-//		tgtCircle.transform.parent = this.transform;
+		initiate ();
+	}
+
+	void initiate() {
+		//		tgtCircle = Instantiate (targetCirclePrefab) as GameObject;
+		//		tgtCircle.transform.parent = this.transform;
 		katCard = this.transform.Find ("KatDataCard").GetComponent<KatDataCard> ();
 		katCard.initiate ();
-
+		
 		cam = this.GetComponent<Camera> ();
-//		nameText = tgtCircle.transform.Find ("NameCanvas").GetComponentInChildren<Text> ();
-//		infoText = tgtCircle.transform.Find ("InfoCanvas").GetComponentInChildren<Text> ();
-//		tgtCircle.SetActive (false);
+		//		nameText = tgtCircle.transform.Find ("NameCanvas").GetComponentInChildren<Text> ();
+		//		infoText = tgtCircle.transform.Find ("InfoCanvas").GetComponentInChildren<Text> ();
+		//		tgtCircle.SetActive (false);
 		katCard.gameObject.SetActive (false);
 		katOptions = this.transform.Find ("KatOptions").gameObject;
 		targetZoomSize = startSize;
 		panner = this.transform.Find ("CameraPanner").gameObject;
 		eggTray = this.transform.Find ("EggTray").gameObject;
+
+		hasInit = true;
 	}
 
 	public bool getIsFollowingKat(){
@@ -55,22 +62,31 @@ public class FarmCameraFollowScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (isFollowingKat) {
-			Vector2 katPos = katBeingFollowed.transform.position;
-			katPos += new Vector2(-1.5f, 0.7f);
-			targetPosition = new Vector3 (katPos.x, katPos.y, -10f);
-		//	this.transform.position = new Vector3 (katPos.x, katPos.y, -10f);
-			currentPanSpeed = Mathf.Lerp(currentPanSpeed, 30.0f, Time.deltaTime);
-			this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, Time.deltaTime*currentPanSpeed);
+		if (hasInit) {
+			if (isFollowingKat) {
+				repositionCameraToKat();
+			}
+			handleZoom();
 		}
+		
+	}
 
-//		Debug.Log (cam.ToString ());
+	void repositionCameraToKat() {
+		Vector2 katFacing = katBeingFollowed.transform.up.normalized * 0.2f;
+		Vector2 katPos = katBeingFollowed.transform.position;
+		katPos += new Vector2 (-1.5f, 0.7f) + katFacing;
+
+		targetPosition = new Vector3 (katPos.x, katPos.y, -10f);
+		//	this.transform.position = new Vector3 (katPos.x, katPos.y, -10f);
+		currentPanSpeed = Mathf.Lerp (currentPanSpeed, 30.0f, Time.deltaTime);
+		this.transform.position = Vector3.Lerp (this.transform.position, targetPosition, Time.deltaTime * currentPanSpeed);
+	}
+
+	void handleZoom() {
 		float currentZoomSize = cam.orthographicSize;
 		if (targetZoomSize != currentZoomSize) {
-			cam.orthographicSize = Mathf.Lerp(currentZoomSize, targetZoomSize, Time.deltaTime*zoomSpeed);
+			cam.orthographicSize = Mathf.Lerp (currentZoomSize, targetZoomSize, Time.deltaTime * zoomSpeed);
 		}
-
-		
 	}
 	/*
 

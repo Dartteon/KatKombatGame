@@ -13,6 +13,7 @@ public class KatDataCard : MonoBehaviour {
 
 	public void initiate() {
 		katName = this.transform.Find ("KatName").transform.Find("Text").GetComponent<Text> ();
+//		Debug.Log ("init: " + this.transform.Find ("KatName").ToString ());
 		katBreed = this.transform.Find ("KatBreed").transform.Find("Text").GetComponent<Text> ();
 		katSTR = this.transform.Find ("KatStr").transform.Find("Text").GetComponent<Text> ();
 		katDEX = this.transform.Find ("KatDex").transform.Find("Text").GetComponent<Text> ();
@@ -35,6 +36,7 @@ public class KatDataCard : MonoBehaviour {
 	}
 
 	void reflectNameAndBreedOfKat() {
+//		Debug.Log (katName.ToString ());
 		katName.text = stats.getName ();
 		katBreed.text = "Lv." + stats.getLevel() + "   " + stats.getBreed ();
 	}

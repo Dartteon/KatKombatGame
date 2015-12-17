@@ -392,6 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed70aa3a49b41de4eb0971fbaa15bc30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kommand: 4
   commandDescription: Kat provokes itself, increasing STR by 35% if uninterrupted.
   lingerTime: 25
   statType: 0
@@ -580,6 +581,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: commandDescription
       value: Kat provokes itself, increasing STR by 35% if uninterrupted.
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: kommand
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

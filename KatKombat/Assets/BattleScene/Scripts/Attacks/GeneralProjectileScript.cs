@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Kommand = Kommands.KommandCode;
 
 public class GeneralProjectileScript : MonoBehaviour {
+	public Kommand kommand;
+
 	public string commandDescription = "Default Text";
 	public float lingerTime = 1.0f;
 	public int statType; //str(0), dex(1), int(2)
