@@ -15,7 +15,7 @@ public class ModuleSpawner : MonoBehaviour {
 		createAdventureManagerModule ();
 		createFarmModule ();
 		adventureModule.GetComponent<AdventureManager>().setFarmManager (farmManagerModule.GetComponent<FarmManager> ());
-		Debug.Log ("farM set in advM");
+//		Debug.Log ("farM set in advM");
 		searchAndDestroyBattleInfoModule ();
 	}
 

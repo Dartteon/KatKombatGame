@@ -7,6 +7,7 @@ public class CameraDragPannerScript : MonoBehaviour, Tappable {
 	public float mult = .01f;
 
 	private GameObject cam;
+	private FarmCameraFollowScript camScript;
 
 	private float lastTapTime;
 	private bool isPanning = false;
@@ -14,6 +15,7 @@ public class CameraDragPannerScript : MonoBehaviour, Tappable {
 	// Use this for initialization
 	void Start () {
 		cam = Camera.main.gameObject;
+		camScript = cam.GetComponent<FarmCameraFollowScript> ();
 	}
 	
 	// Update is called once per frame
@@ -25,7 +27,8 @@ public class CameraDragPannerScript : MonoBehaviour, Tappable {
 
 	public void handleTap(Vector2 pos2, Vector2 pos1){
 		if (lastPos != null && isPanning) {
-			Debug.Log("notnull");
+			camScript.goToCameraMode(1);
+//			Debug.Log("notnull");
 			Vector2 diff = lastPos - pos2;
 			diff = new Vector2(diff.x*mult, diff.y*mult);
 		//	diff *= mult;
@@ -40,7 +43,7 @@ public class CameraDragPannerScript : MonoBehaviour, Tappable {
 			lastTapTime = Time.time;
 			isPanning = true;
 		} else {
-			Debug.Log("null");
+//			Debug.Log("null");
 			lastPos = pos2;
 			lastTapTime = Time.time;
 			isPanning = true;

@@ -7,6 +7,9 @@ public class FarmManager : MonoBehaviour {
 	private GameObject eggPrefab;
 	[SerializeField]
 	private GameObject katPrefabVessel;
+//	[SerializeField]
+//	private GameObject katClickableEnablerObjectPrefab;
+
 	private List<GameObject> spawnedKats = new List<GameObject> ();
 
 	private AdventureManager advMngr;
@@ -21,6 +24,16 @@ public class FarmManager : MonoBehaviour {
 		katsInfo = advMngr.katsInfo;
 
 		spawnPlayerKats ();
+
+		setKatButtons ();
+	}
+
+	void setKatButtons(){
+		string[] katNames = new string[6];
+		for (int i=0; i<katsInfo.Count; i++) {
+			katNames[i] = katsInfo[i].getName();
+		}
+		Camera.main.GetComponent<FarmCameraFollowScript> ().enableKatButtons (spawnedKats, this, advMngr, katNames);
 	}
 
 
@@ -42,8 +55,8 @@ public class FarmManager : MonoBehaviour {
 	}
 	
 	void followNextKat() {
-		if (currentlySelectedKat >= spawnedKats.Count) {
-			Debug.Log("Array over" + currentlySelectedKat);
+		if (currentlySelectedKat >= spawnedKats.Count - 1) {
+//			Debug.Log("Array over" + currentlySelectedKat);
 			currentlySelectedKat = 0;
 		}
 		else
@@ -62,10 +75,11 @@ public class FarmManager : MonoBehaviour {
 		katStats.setKatCommands (info.getActiveKommands ());
 		disableKatCombatComponents (spawnedKat);
 		spawnedKat.AddComponent <NonCombatBehavior> ();
+//		GameObject clickEnabler = Instantiate (katClickableEnablerObjectPrefab, spawnedKat.transform.position, spawnedKat.transform.rotation) as GameObject;
+//		clickEnabler.transform.parent = spawnedKat.transform;
 		spawnedKat.GetComponent<StatsScript> ().setKatStatsInfo (info);
 		spawnedKat.tag = "Player1";
-		Debug.Log (spawnedKats[1].ToString());
-		Debug.Log ("new kat added to scene, total kats : " + spawnedKats.Count);
+//		Debug.Log ("new kat added to scene, total kats : " + katsInfo.Count);
 	}
 	
 	GameObject findKatWithName(string katName){
@@ -86,9 +100,9 @@ public class FarmManager : MonoBehaviour {
 
 	
 	void spawnPlayerKats(){
-		Debug.Log (katsInfo.Count);
+//		Debug.Log (katsInfo.Count);
 		for (int i = 0; i<katsInfo.Count; i++) {
-			Debug.Log("attempting to spawn " + i);
+//			Debug.Log("attempting to spawn " + i);
 			spawnKatInScene(katsInfo [i]);
 		}
 	}
@@ -100,7 +114,7 @@ public class FarmManager : MonoBehaviour {
 		for (int i=0; i<spawnedKats.Count; i++) {
 			if (kat == spawnedKats[i]){
 				KatStatsInfo info = spawnedKats[i].GetComponent<StatsScript>().katStatInfo;
-				GameObject.Find ("Main Camera").GetComponent<FarmCameraFollowScript> ().followKat (spawnedKats[i], info);
+				Camera.main.GetComponent<FarmCameraFollowScript> ().followKat (spawnedKats[i], info);
 				break;
 			}
 		}

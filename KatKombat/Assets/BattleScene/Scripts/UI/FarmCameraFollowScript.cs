@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class FarmCameraFollowScript : MonoBehaviour {
@@ -20,17 +21,19 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	private Text infoText;
 
 
-
 	private bool isFollowingKat = false;
 	private GameObject katBeingFollowed;
 
 //	public float panSpeed = 1.0f;
+	private bool isPanning = false;
 	private float currentPanSpeed = 0;
 	public float zoomSpeed = 1.0f;
 	private float targetZoomSize;
 
 	private bool hasInit = false;
 	private Vector3 targetPosition;
+
+	private FarmSelectKatButton[] katButtonScripts = new FarmSelectKatButton[6];
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +43,7 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	void initiate() {
 		//		tgtCircle = Instantiate (targetCirclePrefab) as GameObject;
 		//		tgtCircle.transform.parent = this.transform;
+		isPanning = false;
 		katCard = this.transform.Find ("KatDataCard").GetComponent<KatDataCard> ();
 		katCard.initiate ();
 		
@@ -53,7 +57,22 @@ public class FarmCameraFollowScript : MonoBehaviour {
 		panner = this.transform.Find ("CameraPanner").gameObject;
 		eggTray = this.transform.Find ("EggTray").gameObject;
 
+		locateKatButtons ();
+
 		hasInit = true;
+	}
+
+	void locateKatButtons() {
+		for (int i=0; i<6; i++) {
+			string btnName = "Button" + i;
+			katButtonScripts[i] = this.transform.Find("KatButtons").transform.Find(btnName).GetComponent<FarmSelectKatButton>();
+		}
+	}
+
+	public void enableKatButtons(List<GameObject> kats, FarmManager fManager, AdventureManager aManager, string[] katNames) {
+		for (int i=0; i<kats.Count; i++) {
+			katButtonScripts[i].initialize(aManager, fManager, kats[i], katNames[i]);
+		}
 	}
 
 	public bool getIsFollowingKat(){
@@ -61,14 +80,22 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (hasInit) {
 			if (isFollowingKat) {
 				repositionCameraToKat();
+			} else if (!isPanning) {
+				repositionToCentre();
 			}
 			handleZoom();
 		}
 		
+	}
+
+	void repositionToCentre() {
+		currentPanSpeed = Mathf.Lerp (currentPanSpeed, 30.0f, Time.deltaTime);
+		Vector3 newPos = BaronVec.vector2ToVector3 (BaronVec.zeroVector, -10f);
+		this.transform.position = Vector3.Lerp (this.transform.position, newPos, Time.deltaTime * currentPanSpeed);
 	}
 
 	void repositionCameraToKat() {
@@ -127,6 +154,7 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	}
 
 	public void stopFollowingKat(){
+		isPanning = false;
 		isFollowingKat = false;
 		katBeingFollowed = null;
 		//cam.orthographicSize = startSize;
@@ -142,8 +170,9 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	
 	public void goToCameraMode(int mode){
 		//0 = basic
+		//1 = basic + panning
 		//1 = zoomedIntoKat
-		//
+		//2 = egghatching
 		panner.SetActive (false);
 		katOptions.SetActive (false);
 		eggTray.SetActive(false);
@@ -151,9 +180,14 @@ public class FarmCameraFollowScript : MonoBehaviour {
 		switch (mode) {
 		case 0: panner.SetActive(true);
 			break;
-		case 1: katOptions.SetActive(true);
+		case 1: panner.SetActive(true);
+			isPanning = true;
 			break;
-		case 2: eggTray.SetActive(true);
+		case 2: katOptions.SetActive(true);
+			isPanning = false;
+			break;
+		case 3: eggTray.SetActive(true);
+			isPanning = false;
 			break;
 		}
 	}

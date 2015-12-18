@@ -76,7 +76,7 @@ public class AdventureManager : MonoBehaviour {
 				this.katsInfo = playerDataScript.ownedKats;
 				this.eggs = playerDataScript.ownedEggs;
 				Debug.Log ("Loaded SaveFile: " + playerDataScript.playerToString ());
-				Debug.Log (katsInfo [0].toString ());
+//				Debug.Log (katsInfo [0].toString ());
 
 //			Debug.Log("Owned Kats : " + playerDataScript.ownedKats.ToString());
 			} else {
@@ -200,7 +200,7 @@ public class AdventureManager : MonoBehaviour {
 
 
 	public void setFarmManager(FarmManager farmM) {
-		Debug.Log (farmM.ToString ());
+//		Debug.Log (farmM.ToString ());
 		farmMngr = farmM;
 	}
 

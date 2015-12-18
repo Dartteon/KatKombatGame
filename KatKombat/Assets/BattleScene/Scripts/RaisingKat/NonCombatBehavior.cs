@@ -32,7 +32,7 @@ public class NonCombatBehavior : MonoBehaviour {
 		jumpCooldown = Random.Range(minJumpCooldown, maxJumpCooldown);
 	}
 
-	void Update () {
+	void FixedUpdate () {
 		if (attachedObject == null && !isBusy) {
 			Vector2 facingDirection = this.transform.up;
 
@@ -93,7 +93,15 @@ public class NonCombatBehavior : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collidingObj){
 //		Debug.Log ("Collided");
-		if (!collidingObj.transform.tag.ToLower ().Equals ("interactableradius") 
+		string collidingTag = collidingObj.transform.tag.ToLower ();
+		if (collidingTag.Equals("terrain")) {
+			Vector2 currentFacingDirection = this.transform.up;
+			Vector2 reflectedDirection = (new Vector2(0,0)) - currentFacingDirection;
+			Vector2 newDirection = new Vector2 (reflectedDirection.x + Random.Range(-0.5f,0.5f), reflectedDirection.y + Random.Range(-0.5f,0.5f));
+			katMovementScript.FaceFoward(newDirection);
+
+		}
+		else if (!collidingTag.Equals ("interactableradius") 
 		    && Time.time - lastTurnedTime >= 0.5f
 		    && !isBusy) {
 			lastCollidedTime = Time.time;
