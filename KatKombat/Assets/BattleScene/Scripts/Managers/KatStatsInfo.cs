@@ -27,6 +27,8 @@ public class KatStatsInfo {
 	public int currentHP { get; private set; }
 	private int currentExp = 0;
 	private int closeness = 0;
+	private int battlesWon = 0;
+	private int battlesLost = 0;
 	//Extra stats are effort stats that Kats gain from training. (i.e EV in Pokemon)
 	private int extraStr = 0;
 	private int extraDex = 0;

@@ -14,6 +14,8 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	private GameObject katOptions;
 	private GameObject eggTray;
 	private GameObject tgtCircle;
+	private GameObject katButtons;
+
 	private Camera cam;
 	private string katName;
 	private string information;
@@ -32,8 +34,10 @@ public class FarmCameraFollowScript : MonoBehaviour {
 
 	private bool hasInit = false;
 	private Vector3 targetPosition;
-
+	
 	private FarmSelectKatButton[] katButtonScripts = new FarmSelectKatButton[6];
+
+	private enum CameraMode { Panning, ZoomedIntoKat, EggTray, }
 
 	// Use this for initialization
 	void Start () {
@@ -43,7 +47,7 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	void initiate() {
 		//		tgtCircle = Instantiate (targetCirclePrefab) as GameObject;
 		//		tgtCircle.transform.parent = this.transform;
-		isPanning = false;
+		isPanning = true;
 		katCard = this.transform.Find ("KatDataCard").GetComponent<KatDataCard> ();
 		katCard.initiate ();
 		
@@ -56,6 +60,7 @@ public class FarmCameraFollowScript : MonoBehaviour {
 		targetZoomSize = startSize;
 		panner = this.transform.Find ("CameraPanner").gameObject;
 		eggTray = this.transform.Find ("EggTray").gameObject;
+		katButtons = this.transform.Find ("KatButtons").gameObject;
 
 		locateKatButtons ();
 
@@ -154,6 +159,7 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	}
 
 	public void stopFollowingKat(){
+		currentPanSpeed = 2;
 		isPanning = false;
 		isFollowingKat = false;
 		katBeingFollowed = null;
@@ -176,17 +182,24 @@ public class FarmCameraFollowScript : MonoBehaviour {
 		panner.SetActive (false);
 		katOptions.SetActive (false);
 		eggTray.SetActive(false);
+		katButtons.SetActive (false);
 		
 		switch (mode) {
-		case 0: panner.SetActive(true);
+		case 0:
+			panner.SetActive(true);
+			katButtons.SetActive(true);
 			break;
-		case 1: panner.SetActive(true);
+		case 1:
+			panner.SetActive(true);
+			katButtons.SetActive(true);
 			isPanning = true;
 			break;
-		case 2: katOptions.SetActive(true);
+		case 2:
+			katOptions.SetActive(true);
 			isPanning = false;
 			break;
-		case 3: eggTray.SetActive(true);
+		case 3:
+			eggTray.SetActive(true);
 			isPanning = false;
 			break;
 		}

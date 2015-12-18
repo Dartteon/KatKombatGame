@@ -12,6 +12,8 @@ public class ModuleSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
+//		Debug.Log (Screen.orientation.ToString ());
 		createAdventureManagerModule ();
 		createFarmModule ();
 		adventureModule.GetComponent<AdventureManager>().setFarmManager (farmManagerModule.GetComponent<FarmManager> ());

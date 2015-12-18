@@ -15,7 +15,7 @@ public class BasicBallGame : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		for (int i=0; i<playingKats.Count; i++){
 			if (playingKats[i].isClicked){
 				playingKats.RemoveAt(i);

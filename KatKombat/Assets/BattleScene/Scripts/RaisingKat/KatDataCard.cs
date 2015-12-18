@@ -58,7 +58,7 @@ public class KatDataCard : MonoBehaviour {
 		float currHP = (float)stats.currentHP;
 		float maxHP = (float) stats.getMaxHP ();
 		
-		Debug.Log (currHP + " over " + maxHP);
+//		Debug.Log (currHP + " over " + maxHP);
 		float hpRatio = currHP / maxHP;
 		currHealth.fillAmount = hpRatio;
 	}

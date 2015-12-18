@@ -3,14 +3,17 @@ using System.Collections;
 
 public class CameraDragPannerScript : MonoBehaviour, Tappable {
 	private Vector2 lastPos;
-
-	public float mult = .01f;
+	
+	private float mult = .03f;
 
 	private GameObject cam;
 	private FarmCameraFollowScript camScript;
 
 	private float lastTapTime;
 	private bool isPanning = false;
+
+	[SerializeField]
+	private float maxDistance = 8.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -37,8 +40,10 @@ public class CameraDragPannerScript : MonoBehaviour, Tappable {
 			Vector2 currCamPos = cam.transform.position;
 			Vector2 newCamPos = currCamPos + diff;
 
+			if (newCamPos.x < 8.0f && newCamPos.x > -8.0f && newCamPos.y < 8.0f && newCamPos.y > -8.0f){
 			cam.transform.position = new Vector3 (newCamPos.x, newCamPos.y, -100f);
 			lastPos = pos2;
+			}
 
 			lastTapTime = Time.time;
 			isPanning = true;
