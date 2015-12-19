@@ -15,6 +15,7 @@ public class PlayerInformation{
 	public List<EggInfo> ownedEggs = new List<EggInfo>();
 
 	public int arcadeHighscore;
+	public int playerLevel { get; private set; }
 
 	//Constructor
 	public PlayerInformation(string username){

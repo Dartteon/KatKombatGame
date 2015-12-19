@@ -4,6 +4,13 @@ using System.Collections;
 public class ButtonTray : MonoBehaviour, Tappable {
 	Vector3 startPos;
 	Vector3 activatedPos;
+	private enum ActivationDirection { Horizontal, Vertical };
+
+	[SerializeField]
+	private ActivationDirection activationDirection;
+	[SerializeField]
+	private float activatedCentreOffset = 0.5f;
+
 	
 	private bool isActivated = false;
 	
@@ -12,7 +19,12 @@ public class ButtonTray : MonoBehaviour, Tappable {
 	
 	void Start() {
 		startPos = this.transform.localPosition;
-		activatedPos = new Vector3 (startPos.x, 0.5f, startPos.z);
+
+		if (activationDirection == ActivationDirection.Vertical) {
+			activatedPos = new Vector3 (startPos.x, activatedCentreOffset, startPos.z-0.1f);
+		} else {
+			activatedPos = new Vector3 (activatedCentreOffset, startPos.y, startPos.z-0.1f);
+		}
 	}
 	
 	void OnMouseDown() {

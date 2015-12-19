@@ -41,6 +41,8 @@ public class FarmCameraFollowScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log ("Locating KatButtons");
+		locateKatButtons ();
 		initiate ();
 	}
 
@@ -62,7 +64,6 @@ public class FarmCameraFollowScript : MonoBehaviour {
 		eggTray = this.transform.Find ("EggTray").gameObject;
 		katButtons = this.transform.Find ("KatButtons").gameObject;
 
-		locateKatButtons ();
 
 		hasInit = true;
 	}
@@ -70,12 +71,15 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	void locateKatButtons() {
 		for (int i=0; i<6; i++) {
 			string btnName = "Button" + i;
+			Debug.Log (btnName);
 			katButtonScripts[i] = this.transform.Find("KatButtons").transform.Find(btnName).GetComponent<FarmSelectKatButton>();
+			Debug.Log (katButtonScripts[i].ToString());
 		}
 	}
 
 	public void enableKatButtons(List<GameObject> kats, FarmManager fManager, AdventureManager aManager, string[] katNames) {
 		for (int i=0; i<kats.Count; i++) {
+			Debug.Log (katButtonScripts[i].ToString());
 			katButtonScripts[i].initialize(aManager, fManager, kats[i], katNames[i]);
 		}
 	}
@@ -94,7 +98,6 @@ public class FarmCameraFollowScript : MonoBehaviour {
 			}
 			handleZoom();
 		}
-		
 	}
 
 	void repositionToCentre() {
@@ -106,7 +109,7 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	void repositionCameraToKat() {
 		Vector2 katFacing = katBeingFollowed.transform.up.normalized * 0.2f;
 		Vector2 katPos = katBeingFollowed.transform.position;
-		katPos += new Vector2 (-1.5f, 0.7f) + katFacing;
+		katPos += new Vector2 (-1.2f, 0.7f) + katFacing;
 
 		targetPosition = new Vector3 (katPos.x, katPos.y, -10f);
 		//	this.transform.position = new Vector3 (katPos.x, katPos.y, -10f);
