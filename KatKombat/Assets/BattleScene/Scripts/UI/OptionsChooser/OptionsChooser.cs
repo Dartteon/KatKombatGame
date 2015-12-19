@@ -29,6 +29,7 @@ public class OptionsChooser : MonoBehaviour {
 	}
 
 	public void shiftRight() {
+//		Debug.Log (currentOption + " " + numOptions);
 		if (currentOption < numOptions - 1 && notifiable.shiftRight(optionBarNumber)) {
 			currentOption++;
 //			optionsBarTargetPos = new Vector3(-currentOption*optionsWidthApart, this.transform.parent.position.y, optionsBarStartingZPos);

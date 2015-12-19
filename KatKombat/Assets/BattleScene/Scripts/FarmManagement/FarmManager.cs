@@ -15,7 +15,7 @@ public class FarmManager : MonoBehaviour {
 	private AdventureManager advMngr;
 	private int currentlySelectedKat = 0;
 	private GameObject[] katPrefabs;
-	private List<KatStatsInfo> katsInfo ;
+	public List<KatStatsInfo> katsInfo { get; private set; }
 
 	public void initialize(AdventureManager mngr) {
 		advMngr = mngr;
@@ -26,6 +26,8 @@ public class FarmManager : MonoBehaviour {
 		spawnPlayerKats ();
 
 		setKatButtons ();
+
+		setTournamentScreen ();
 	}
 
 	void setKatButtons(){
@@ -118,6 +120,21 @@ public class FarmManager : MonoBehaviour {
 				break;
 			}
 		}
+	}
+
+	void setTournamentScreen() {
+//		Sprite[] faceSprites = new Sprite[spawnedKats.Count];
+		GameObject katFaceOptionsBar = Camera.main.transform.Find ("TournamentButton").transform.Find ("KatChooser").transform.Find ("OptionsBar").gameObject;
+		for (int i = 0; i < spawnedKats.Count; i++) {
+//			faceSprites[i] = spawnedKats[i].transform.Find("Sprite").transform.Find("Head").GetComponent<SpriteRenderer>().sprite;
+			Sprite sprite = spawnedKats[i].transform.Find("Sprite").transform.Find("Head").GetComponent<SpriteRenderer>().sprite;
+			string katFaceObjName = "Kat" + i;
+			katFaceOptionsBar.transform.Find(katFaceObjName).transform.Find("FaceSprite").GetComponent<SpriteRenderer>().sprite = sprite;
+			katFaceOptionsBar.transform.Find(katFaceObjName).gameObject.SetActive(true);
+		}
+
+		Camera.main.transform.Find ("TournamentButton").GetComponent<TournamentCreaterScreen> ().initiate (this);
+//		this.transform.Find("TournamentButton").GetComponent<TournamentCreaterScreen>().
 	}
 
 }

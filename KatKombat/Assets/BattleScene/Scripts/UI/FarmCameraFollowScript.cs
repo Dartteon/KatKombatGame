@@ -39,13 +39,6 @@ public class FarmCameraFollowScript : MonoBehaviour {
 
 	private enum CameraMode { Panning, ZoomedIntoKat, EggTray, }
 
-	// Use this for initialization
-	void Start () {
-		Debug.Log ("Locating KatButtons");
-		locateKatButtons ();
-		initiate ();
-	}
-
 	void initiate() {
 		//		tgtCircle = Instantiate (targetCirclePrefab) as GameObject;
 		//		tgtCircle.transform.parent = this.transform;
@@ -62,24 +55,24 @@ public class FarmCameraFollowScript : MonoBehaviour {
 		targetZoomSize = startSize;
 		panner = this.transform.Find ("CameraPanner").gameObject;
 		eggTray = this.transform.Find ("EggTray").gameObject;
-		katButtons = this.transform.Find ("KatButtons").gameObject;
-
+		locateKatButtons ();
 
 		hasInit = true;
 	}
 
 	void locateKatButtons() {
+		katButtons = this.transform.Find ("KatButtons").gameObject;
 		for (int i=0; i<6; i++) {
 			string btnName = "Button" + i;
-			Debug.Log (btnName);
 			katButtonScripts[i] = this.transform.Find("KatButtons").transform.Find(btnName).GetComponent<FarmSelectKatButton>();
-			Debug.Log (katButtonScripts[i].ToString());
+//			Debug.Log (katButtonScripts[i].ToString());
 		}
 	}
 
 	public void enableKatButtons(List<GameObject> kats, FarmManager fManager, AdventureManager aManager, string[] katNames) {
+		initiate ();
 		for (int i=0; i<kats.Count; i++) {
-			Debug.Log (katButtonScripts[i].ToString());
+//			Debug.Log (katButtonScripts[i].ToString());
 			katButtonScripts[i].initialize(aManager, fManager, kats[i], katNames[i]);
 		}
 	}
@@ -175,7 +168,13 @@ public class FarmCameraFollowScript : MonoBehaviour {
 		goToCameraMode (0);
 	}
 
-	
+	public void setTournamentKatFaces(Sprite[] sprites) {
+		for (int i = 0; i < sprites.Length; i++) {
+			string btnName = "Kat" + i;
+			SpriteRenderer faceSprite = this.transform.Find("TournamentButton").transform.Find("KatChooser").transform.Find("OptionsBar").transform.Find(btnName).transform.Find("FaceSprite").GetComponent<SpriteRenderer>();
+			faceSprite.sprite = sprites[i];
+		}
+	}
 	
 	public void goToCameraMode(int mode){
 		//0 = basic

@@ -55,6 +55,7 @@ public class KatDataCard : MonoBehaviour {
 	}
 
 	void reflectHealthAndXP() {
+		stats.setCurrentHP (35);
 		float currHP = (float)stats.currentHP;
 		float maxHP = (float) stats.getMaxHP ();
 		

@@ -83,6 +83,7 @@ public class KatStatsInfo {
 		}
 	}
 
+
 	public static KatStatsInfo getEgg(string breed, GameObject[] katPrefabs, string name){
 		KatStatsInfo newEgg = new KatStatsInfo (breed, katPrefabs, name);
 		newEgg.setKatAsEgg ();
@@ -244,5 +245,12 @@ public class KatStatsInfo {
 		return (katName + " : " + katBreed + " [Level: " + getLevel() + "] [STR: " + getTotalStr () + "]" + " [DEX: " + getTotalDex () + "]" + " [INT: " + getTotalInt () + "]" + " [EXP:" + currentExp + "]");
 	}
 
+	public void setHealth (int hp) {
+		if (hp <= getMaxHP ()) {
+			currentHP = hp;
+		} else {
+			currentHP = getMaxHP();
+		}
+	}
 
 }

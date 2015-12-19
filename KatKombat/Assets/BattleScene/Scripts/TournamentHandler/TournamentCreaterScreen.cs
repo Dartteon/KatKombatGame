@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TournamentCreaterScreen : MonoBehaviour, OptionsChooserEmployer {
 	private int tournamentDifficulty = 0;
@@ -7,13 +8,20 @@ public class TournamentCreaterScreen : MonoBehaviour, OptionsChooserEmployer {
 	private OptionsChooser difficultyChooser;
 	private OptionsChooser tournamentTypeChooser;
 	private OptionsChooser katChooser;
-	private KatStatsInfo[] playerKats;
+	private List<KatStatsInfo> playerKats;
+	private int numPlayerKats;
+	private int currentKat = 0;
 
 	[SerializeField]
 	private int maxDifficulty;
 	
 	[SerializeField]
 	private int numTournamentTypes;
+
+	public void initiate(FarmManager farmMngr) {
+		playerKats = farmMngr.katsInfo;
+		numPlayerKats = playerKats.Count;
+	}
 
 	public bool shiftLeft(int optionsBarNumber) {
 		switch (optionsBarNumber) {
@@ -26,11 +34,12 @@ public class TournamentCreaterScreen : MonoBehaviour, OptionsChooserEmployer {
 			else return false;
 			break;
 		default:
-			return false;
+			if (shiftKatLeft()) return true;
+			else return false;
+			break;
 		}
 	}
 
-	
 	public bool shiftRight(int optionsBarNumber) {
 		switch (optionsBarNumber) {
 		case 0:
@@ -42,7 +51,9 @@ public class TournamentCreaterScreen : MonoBehaviour, OptionsChooserEmployer {
 			else return false;
 			break;
 		default:
-			return false;
+			if (shiftKatRight()) return true;
+			else return false;
+			break;
 		}
 	}
 
@@ -76,8 +87,23 @@ public class TournamentCreaterScreen : MonoBehaviour, OptionsChooserEmployer {
 			return false;
 	}
 
+	bool shiftKatRight() {
+		if (currentKat + 1 < numPlayerKats) {
+			currentKat++;
+			return true;
+		} else
+			return false;
+	}
+	bool shiftKatLeft() {
+		if (currentKat - 1 >= 0) {
+			currentKat--;
+			return true;
+		} else
+			return false;
+	}
+
 	public void executeTournament() {
-		Debug.Log ("Executing tournament [Difficulty " + tournamentDifficulty + "] [Type " + tournamentType + "]");
+		Debug.Log ("Executing tournament [Difficulty " + tournamentDifficulty + "] [Type " + tournamentType + "] [" + playerKats[currentKat].toString() + "]");
 	}
 
 	void Update() {
