@@ -28,7 +28,28 @@ public class AdventureManager : MonoBehaviour {
 		loadPlayerFile ();
 	}
 
+	public void initiateBattleWithKat(KatStatsInfo playrKat, KatStatsInfo enemy){
+		currentFightingKatIndex = katsInfo.IndexOf (playrKat);
+
+		//find past battle remnant and destroy
+		Destroy (GameObject.Find ("BattleInformationModule"));
+
+		GameObject battleInfo = Instantiate (battleInfoModulePrefab) as GameObject;
+		BattleInformation battleInfoScript = battleInfo.GetComponent<BattleInformation> ();
+		Debug.Log ("[AdventureManager Player Kat] " + playrKat.toString ());
+		Debug.Log ("[AdventureManager Spawned Enemy] " + enemy.toString ());
+		battleInfoScript.setKats (playrKat, enemy);
+		battleInfoScript.setMap (getCurrentMap ());
+		battleInfoScript.setKatPrefabs(katPrefabs);
+		spawnedBattleInfoModule = battleInfo;
+		Application.LoadLevel (battleSceneName);
+
+//		farmMngr = GameObject.Find ("FarmManagerModule").GetComponent<FarmManager> ();
+	}
 	public void initiateBattleWithKat(KatStatsInfo enemy){
+		//find past battle remnant and destroy
+		Destroy (GameObject.Find ("BattleInformationModule"));
+
 		currentFightingKatIndex = 0;
 		GameObject battleInfo = Instantiate (battleInfoModulePrefab) as GameObject;
 		BattleInformation battleInfoScript = battleInfo.GetComponent<BattleInformation> ();
@@ -39,7 +60,7 @@ public class AdventureManager : MonoBehaviour {
 		battleInfoScript.setKatPrefabs(katPrefabs);
 		spawnedBattleInfoModule = battleInfo;
 		Application.LoadLevel (battleSceneName);
-
+		
 		farmMngr = GameObject.Find ("FarmManagerModule").GetComponent<FarmManager> ();
 	}
 
@@ -169,10 +190,9 @@ public class AdventureManager : MonoBehaviour {
 			}
 
 			if (Input.GetKeyDown (KeyCode.F8)) {
-				Debug.Log("Attemping to hatch and spawn an egg");
+				Debug.Log("Attemping to hatch and spawn first egg in stack");
 				if (eggs[0] != null){
-					KatStatsInfo baby = setEggToHatched(eggs[0]);
-					farmMngr.spawnKatInScene(baby);
+					setEggToHatched(eggs[0]);
 				}
 			}
 
@@ -198,7 +218,6 @@ public class AdventureManager : MonoBehaviour {
 		}
 	}
 
-
 	public void setFarmManager(FarmManager farmM) {
 //		Debug.Log (farmM.ToString ());
 		farmMngr = farmM;
@@ -209,6 +228,7 @@ public class AdventureManager : MonoBehaviour {
 		KatStatsInfo baby = egg.getKat ();
 		eggs.Remove (egg);
 		katsInfo.Add (baby);
+		farmMngr.spawnKatInScene(baby);
 		return baby;
 	}
 

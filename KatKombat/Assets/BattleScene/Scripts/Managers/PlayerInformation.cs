@@ -9,30 +9,37 @@ using System.Reflection;
 
 [Serializable]
 public class PlayerInformation{
-	public string playerUsername;
-	public int playerCurrency;
-	public List<KatStatsInfo> ownedKats = new List<KatStatsInfo>();
-	public List<EggInfo> ownedEggs = new List<EggInfo>();
+	public string playerUsername { get; private set; }
+	public int playerCurrency { get; private set; }
+	public int playerGems  { get; private set; }
+	public List<KatStatsInfo> ownedKats { get; private set; }
+	public List<EggInfo> ownedEggs { get; private set; }
+	public List<Item> ownedItems { get; private set; }
 
-	public int arcadeHighscore;
-	public int playerLevel { get; private set; }
+	public int arcadeHighscore { get; private set; }
+	public int playerExp { get; private set; }
+	public int playerPveWins { get; private set; }
+	public int playerPveLosses { get; private set; }
+	public int playerPvpWins { get; private set; }
+	public int playerPvpLosses { get; private set; }
 
 	//Constructor
 	public PlayerInformation(string username){
 //		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER","yes");
+		ownedKats = new List<KatStatsInfo>();
+		ownedEggs = new List<EggInfo>();
+		ownedItems = new List<Item>();
 		playerUsername = username;
 		playerCurrency = 0;
-		ownedKats = new List<KatStatsInfo> ();
 		arcadeHighscore = 0;
+		playerExp = 0;
+		playerPvpWins = 0;
+		playerPvpLosses = 0;
+		playerPveWins = 0;
+		playerPveLosses = 0;
 	}
 
 	public void addKatToInventory(KatStatsInfo newKat){
-//		Debug.Log (newKat.toString ());
-		//KatStatsInfo clonedKat = newKat.clone ();
-		//KatStatsInfo kat = new KatStatsInfo ("AzureGreye");
-		//ownedKats.Add (newKat);
-
-		//KatStatsInfo kat = new KatStatsInfo ("AzureGreye");
 		ownedKats.Add (newKat);
 		Debug.Log ("Added to Kat Inventory: [" + ownedKats.Count + "]");
 	}
@@ -47,7 +54,7 @@ public class PlayerInformation{
 	}
 
 	void Awake(){
-		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER","yes");
+//		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER","yes");
 	}
 
 	public void extractDataFrom(PlayerInformation clone){

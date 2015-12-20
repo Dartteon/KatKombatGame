@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 427578}
   - 114: {fileID: 11442382}
   m_Layer: 0
-  m_Name: AdventureManagerModule
+  m_Name: AdventureModule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,6 +41,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   katsInfo: []
   eggs: []
+  battleManagerPrefab: {fileID: 110086, guid: d1863bfaf94c0204495fa2686ae99291, type: 2}
+  battleInfoModulePrefab: {fileID: 148648, guid: 8fda4e81e0052684ea5c77c69b60d961,
+    type: 2}
+  battleSceneName: BattleSceneNew
   katPrefabs:
   - {fileID: 134154, guid: 233db83903d81de439eab3591345356c, type: 2}
   - {fileID: 182270, guid: 9b0f3f67c418502468d554e6fdc7d8c1, type: 2}
@@ -54,12 +58,6 @@ MonoBehaviour:
   - {fileID: 196366, guid: 456028a1164776441a2e0bc31f36baff, type: 2}
   - {fileID: 179940, guid: 33a60bd9da7604445acb2f8e923b834d, type: 2}
   - {fileID: 126874, guid: a82e8f9947ae5fb4ba62f42ec071a32b, type: 2}
-  battleManagerPrefab: {fileID: 110086, guid: d1863bfaf94c0204495fa2686ae99291, type: 2}
-  battleInfoModulePrefab: {fileID: 148648, guid: 8fda4e81e0052684ea5c77c69b60d961,
-    type: 2}
-  battleSceneName: BattleSceneNew
-  eggPrefab: {fileID: 153272, guid: 4cf85bfbcb948034094f4418fa5eb4d7, type: 2}
-  eggTrayPrefab: {fileID: 109432, guid: b07db0dc946310d41b9d8b661d827652, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

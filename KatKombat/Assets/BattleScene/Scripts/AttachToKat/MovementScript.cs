@@ -19,7 +19,9 @@ public class MovementScript : MonoBehaviour {
 	private Rigidbody2D katrb2d;
 	private HealthScript hpScript;
 	private Quaternion targetRotation;
-	private float rotateSpeed = 1.1f;
+//	private float rotateSpeed = 1.1f;
+	
+	private float rotateSpeed = 20f;
 
 	private readonly float walkSpeed = 4.0f;
 

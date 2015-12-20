@@ -11,6 +11,15 @@ public class KatBreed : MonoBehaviour {
 		Rai,
 	};
 
+	public enum BreedVariant
+	{
+		None,
+		Red,
+		Green,
+		Blue,
+		Dark,
+	};
+
 	public enum EggType
 	{
 		None,

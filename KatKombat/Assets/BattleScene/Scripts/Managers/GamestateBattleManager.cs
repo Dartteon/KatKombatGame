@@ -52,6 +52,7 @@ public class GamestateBattleManager : MonoBehaviour {
 	}
 	public void attachKatsInfo(KatStatsInfo playerKatStats, KatStatsInfo enemyKatStats){
 		playerKatInfo = playerKatStats;
+		Debug.Log ("Gamestate attached enemy : " + enemyKatStats.toString ());
 		enemyKatInfo = enemyKatStats;
 	}
 
@@ -126,6 +127,11 @@ public class GamestateBattleManager : MonoBehaviour {
 				else enemyKat = Instantiate(enemyKatPrefab) as GameObject;
 
 				enemyKat.GetComponent<StatsScript> ().setStats (enemyKatInfo);
+
+				//stub ***************************************************************************************************************
+				enemyKatInfo.setKommands(Kommand.ArcanePulse, Kommand.Earthquake, Kommand.Enrage);
+				//stub ***************************************************************************************************************
+
 				attachAttackToKat(enemyKat, enemyKatInfo);
 				enemyKat.tag = "Player2";
 				enemyKatLevel = enemyKatInfo.getLevel();
@@ -135,7 +141,7 @@ public class GamestateBattleManager : MonoBehaviour {
 
 		} catch (System.NullReferenceException e){
 			Debug.Log(e);
-			Debug.LogError("Attach spawn lcoation objects as child to map: " + mapChoice);
+			Debug.LogError("Attach spawn location objects as child to map: " + mapChoice);
 		}
 	}
 

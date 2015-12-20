@@ -18,7 +18,7 @@ public class ModuleSpawner : MonoBehaviour {
 		createFarmModule ();
 		adventureModule.GetComponent<AdventureManager>().setFarmManager (farmManagerModule.GetComponent<FarmManager> ());
 //		Debug.Log ("farM set in advM");
-		searchAndDestroyBattleInfoModule ();
+		searchAndDestroyOtherModules ();
 	}
 
 	void createAdventureManagerModule() {
@@ -37,8 +37,9 @@ public class ModuleSpawner : MonoBehaviour {
 		farmManagerModule.name = "FarmManagerModule";
 	}
 
-	void searchAndDestroyBattleInfoModule() {
+	void searchAndDestroyOtherModules() {
 		Destroy (GameObject.Find ("BattleInformationModule"));
+//		Destroy (GameObject.Find ("TournamentManagerModule"));
 	}
 
 }

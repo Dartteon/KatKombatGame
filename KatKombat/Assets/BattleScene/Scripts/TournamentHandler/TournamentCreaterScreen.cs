@@ -17,6 +17,10 @@ public class TournamentCreaterScreen : MonoBehaviour, OptionsChooserEmployer {
 	
 	[SerializeField]
 	private int numTournamentTypes;
+	
+	[SerializeField]
+	private GameObject tournamentManagerPrefab;
+
 
 	public void initiate(FarmManager farmMngr) {
 		playerKats = farmMngr.katsInfo;
@@ -104,6 +108,9 @@ public class TournamentCreaterScreen : MonoBehaviour, OptionsChooserEmployer {
 
 	public void executeTournament() {
 		Debug.Log ("Executing tournament [Difficulty " + tournamentDifficulty + "] [Type " + tournamentType + "] [" + playerKats[currentKat].toString() + "]");
+		GameObject tournament = Instantiate (tournamentManagerPrefab);
+		tournament.name = "TournamentManagerModule";
+		tournament.GetComponent<TournamentManager> ().initialize (playerKats [currentKat], tournamentDifficulty, tournamentType);
 	}
 
 	void Update() {

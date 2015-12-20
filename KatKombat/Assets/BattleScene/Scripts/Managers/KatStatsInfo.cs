@@ -13,6 +13,7 @@ public class KatStatsInfo {
 
 	//STRICTLY PERMANENT variables. Not changeable once the Kat is born.
 	private Breed breed;
+	private int variantNumber;
 	private string katBreed;
 	private string katName;
 	private int breedStr, breedDex, breedInt;
