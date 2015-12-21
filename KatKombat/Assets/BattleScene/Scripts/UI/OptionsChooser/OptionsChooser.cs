@@ -62,7 +62,11 @@ public class OptionsChooser : MonoBehaviour {
 
 		GameObject[] optionObjs = new GameObject[numOptions];
 		for (int i = 0; i < numOptions; i++) {
-			optionObjs[i] = optionsBar.transform.GetChild (i).gameObject;
+			try{
+				optionObjs[i] = optionsBar.transform.GetChild (i).gameObject;
+			} catch (UnityException e) {
+				Debug.LogError("Num options may be more than num of objects in options bar");
+			}
 		}
 
 		optionLocations = new Vector2[optionObjs.Length];

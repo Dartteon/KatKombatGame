@@ -6,9 +6,24 @@ public class Multitouch : MonoBehaviour {
 //	public GameObject testMouse;
 	Camera camera;
 
+
+	/*
+	[SerializeField]
+	private GameObject tapEffectPrefab;
+	private GameObject tapEffectObj;
+	private Animator tapEffect;
+
+	private float lastTapTime;
+	private float tapEffectCooldown = 0.4f;
+*/
 	// Use this for initialization
 	void Start () {
 		camera = GetComponent<Camera> ();
+		/*
+		tapEffectObj = Instantiate (tapEffectPrefab);
+		tapEffect = tapEffectObj.GetComponent<Animator> ();
+		tapEffectObj.name = "TapEffect";
+*/
 	}
 
 	void Update(){
@@ -16,6 +31,9 @@ public class Multitouch : MonoBehaviour {
 
 		for (int i = 0; i<numTouches; i++) {
 			TouchPhase touchPhase = Input.GetTouch (i).phase;
+
+
+
 			if (touchPhase == TouchPhase.Began || touchPhase == TouchPhase.Moved || touchPhase == TouchPhase.Ended || touchPhase == TouchPhase.Stationary) {
 //				Debug.Log ("Touch number " + i);
 				RaycastHit2D hit = Physics2D.Raycast (Camera.main.ScreenToWorldPoint ((Input.GetTouch (i).position)), Vector2.zero);
@@ -30,8 +48,20 @@ public class Multitouch : MonoBehaviour {
 				}
 			}
 
+			/*
+			if (touchPhase == TouchPhase.Ended) {
+				Vector2 newPos = Camera.main.ScreenToWorldPoint (Input.GetTouch (i).position);
+				tapEffectObj.transform.position = new Vector3(newPos.x, newPos.y, 1f);
+				lastTapTime = Time.time;
+				tapEffect.gameObject.SetActive(true);
+			}
+			*/
 		}
-
+		/*
+		if (Time.time - lastTapTime >= tapEffectCooldown) {
+			tapEffectObj.SetActive(false);
+		}
+		*/
 
 	}
 
