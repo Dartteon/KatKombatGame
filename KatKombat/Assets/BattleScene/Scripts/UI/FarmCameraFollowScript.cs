@@ -167,7 +167,7 @@ public class FarmCameraFollowScript : MonoBehaviour {
 		panner.SetActive (true);
 		goToCameraMode (0);
 	}
-
+	/*
 	public void setTournamentKatFaces(Sprite[] sprites) {
 		for (int i = 0; i < sprites.Length; i++) {
 			string btnName = "Kat" + i;
@@ -175,7 +175,7 @@ public class FarmCameraFollowScript : MonoBehaviour {
 			faceSprite.sprite = sprites[i];
 		}
 	}
-	
+	*/
 	public void goToCameraMode(int mode){
 		//0 = basic
 		//1 = basic + panning

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class OptionsChooser : MonoBehaviour {
@@ -11,8 +12,10 @@ public class OptionsChooser : MonoBehaviour {
 	private Vector2 optionsBarTargetPos;
 	private float optionsBarStartingZPos;
 	private float optionsBarStartingYPos;
+	private GameObject[] optionObjs;
 	private Vector2[] optionLocations;
 	private OptionsChooserEmployer notifiable;
+	private Text descriptionText;
 	
 	[SerializeField]
 	private int optionBarNumber;
@@ -24,6 +27,7 @@ public class OptionsChooser : MonoBehaviour {
 	public void shiftLeft() {
 		if (currentOption > 0 && notifiable.shiftLeft(optionBarNumber)) {
 			currentOption--;
+			reflectDescriptionText();
 //			optionsBarTargetPos = new Vector3(-currentOption*optionsWidthApart, this.transform.parent.position.y, optionsBarStartingZPos);
 		}
 	}
@@ -32,9 +36,15 @@ public class OptionsChooser : MonoBehaviour {
 //		Debug.Log (currentOption + " " + numOptions);
 		if (currentOption < numOptions - 1 && notifiable.shiftRight(optionBarNumber)) {
 			currentOption++;
+			reflectDescriptionText();
 //			optionsBarTargetPos = new Vector3(-currentOption*optionsWidthApart, this.transform.parent.position.y, optionsBarStartingZPos);
 //			optionsBarTargetPos = new Vector3(-optionLocations[currentOption].x, optionLocations[currentOption].y, optionsBarStartingZPos);
 		}
+	}
+
+	public void reflectDescriptionText() {
+		string name = optionObjs [currentOption].name;
+		descriptionText.text = name;
 	}
 
 	private void repositionOptionsBar() {
@@ -46,6 +56,10 @@ public class OptionsChooser : MonoBehaviour {
 	}
 
 	void Update() {
+		//temp fix (unoptimized) -----------------------------------------------------
+		reflectDescriptionText();
+		//temp fix (unoptimized) -----------------------------------------------------
+
 		repositionOptionsBar ();
 		if (Input.GetKeyDown (KeyCode.LeftArrow))
 			shiftLeft ();
@@ -59,8 +73,9 @@ public class OptionsChooser : MonoBehaviour {
 		optionsBarStartingZPos = optionsBar.transform.localPosition.z;
 		optionsBarStartingYPos = optionsBar.transform.localPosition.y;
 		notifiable = this.transform.parent.GetComponent<OptionsChooserEmployer> ();
+		descriptionText = this.transform.Find ("Description").Find ("Text").GetComponent<Text> ();
 
-		GameObject[] optionObjs = new GameObject[numOptions];
+		optionObjs = new GameObject[numOptions];
 		for (int i = 0; i < numOptions; i++) {
 			try{
 				optionObjs[i] = optionsBar.transform.GetChild (i).gameObject;
@@ -73,5 +88,8 @@ public class OptionsChooser : MonoBehaviour {
 		for (int i = 0; i<optionLocations.Length; i++) {
 			optionLocations[i] = optionObjs[i].transform.position;
 		}
+
+		
+		reflectDescriptionText();
 	}
 }

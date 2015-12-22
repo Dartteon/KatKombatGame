@@ -97,6 +97,8 @@ public class AdventureManager : MonoBehaviour {
 				this.katsInfo = playerDataScript.ownedKats;
 				this.eggs = playerDataScript.ownedEggs;
 				Debug.Log ("Loaded SaveFile: " + playerDataScript.playerToString ());
+				
+				Debug.Log ("Time Diff: " + DateTime.Now.Subtract(playerDataScript.time_lastActive).ToString());
 //				Debug.Log (katsInfo [0].toString ());
 
 //			Debug.Log("Owned Kats : " + playerDataScript.ownedKats.ToString());
@@ -173,9 +175,7 @@ public class AdventureManager : MonoBehaviour {
 			}
 
 			if (Input.GetKeyDown (KeyCode.F5)) {
-				for (int i=0; i<katsInfo.Count; i++) {
-					Debug.Log ("[Kat " + i + "] " + katsInfo [i].toString ());
-				}
+				reloadScene();
 			}
 
 			if (Input.GetKeyDown (KeyCode.F6)) {
@@ -216,6 +216,8 @@ public class AdventureManager : MonoBehaviour {
 
 
 		}
+
+		playerDataScript.UpdateDateTime (DateTime.Now);
 	}
 
 	public void setFarmManager(FarmManager farmM) {
@@ -241,5 +243,9 @@ public class AdventureManager : MonoBehaviour {
 
 	public void loadLastScene() {
 		Application.LoadLevel (lastLoadedSceneName);
+	}
+
+	public void reloadScene() {
+		Application.LoadLevel (Application.loadedLevel);
 	}
 }

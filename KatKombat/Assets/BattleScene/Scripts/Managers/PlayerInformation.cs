@@ -23,6 +23,8 @@ public class PlayerInformation{
 	public int playerPvpWins { get; private set; }
 	public int playerPvpLosses { get; private set; }
 
+	public DateTime time_lastActive { get; private set; }
+
 	//Constructor
 	public PlayerInformation(string username){
 //		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER","yes");
@@ -53,8 +55,9 @@ public class PlayerInformation{
 		playerCurrency += amount;
 	}
 
-	void Awake(){
-//		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER","yes");
+	public void UpdateDateTime(DateTime t) {
+//		Debug.Log ("Updating time : " + time_lastActive.ToString ());
+		time_lastActive = t;
 	}
 
 	public void extractDataFrom(PlayerInformation clone){
@@ -64,6 +67,6 @@ public class PlayerInformation{
 	}
 
 	public string playerToString() {
-		return "[" + playerUsername + "] [" + playerCurrency + " Kash] [" + ownedKats.Count + " Kats] [" + ownedEggs.Count + " Eggs]";
+		return "[" + playerUsername + "] [" + playerCurrency + " Kash] [" + ownedKats.Count + " Kats] [" + ownedEggs.Count + " Eggs] [Last Login : " + time_lastActive.ToString() + "]";
 	}
 }

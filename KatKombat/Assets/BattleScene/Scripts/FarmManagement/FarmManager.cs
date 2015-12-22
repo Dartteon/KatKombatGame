@@ -125,13 +125,16 @@ public class FarmManager : MonoBehaviour {
 	void setTournamentScreen() {
 //		Sprite[] faceSprites = new Sprite[spawnedKats.Count];
 		GameObject katFaceOptionsBar = Camera.main.transform.Find ("TournamentButton").transform.Find ("KatChooser").transform.Find ("OptionsBar").gameObject;
+//		katFaceOptionsBar.GetComponent<OptionsChooser> ().initiate ();
 		for (int i = 0; i < spawnedKats.Count; i++) {
 //			faceSprites[i] = spawnedKats[i].transform.Find("Sprite").transform.Find("Head").GetComponent<SpriteRenderer>().sprite;
 			Sprite sprite = spawnedKats[i].transform.Find("Sprite").transform.Find("Head").GetComponent<SpriteRenderer>().sprite;
 			string katFaceObjName = "Kat" + i;
 			katFaceOptionsBar.transform.Find(katFaceObjName).transform.Find("FaceSprite").GetComponent<SpriteRenderer>().sprite = sprite;
 			katFaceOptionsBar.transform.Find(katFaceObjName).gameObject.SetActive(true);
+			katFaceOptionsBar.transform.Find(katFaceObjName).gameObject.name = KatManipulator.getKatShortDescription(katsInfo[i]);
 		}
+//		katFaceOptionsBar.GetComponent<OptionsChooser>().reflectDescriptionText();
 
 		Camera.main.transform.Find ("TournamentButton").GetComponent<TournamentCreaterScreen> ().initiate (this);
 //		this.transform.Find("TournamentButton").GetComponent<TournamentCreaterScreen>().
