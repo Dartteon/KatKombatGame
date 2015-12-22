@@ -34,4 +34,12 @@ public class KatAttacksVessel : MonoBehaviour {
 		Debug.LogError("Kommand not found: " + k.ToString());
 		return katAttackPrefabs [0];
 	}
+
+	public Sprite findIcon (Kommand k) {
+		GameObject kommand = Instantiate(findKommand (k));
+		Sprite sprite = kommand.transform.Find("Icon").GetComponent<SpriteRenderer> ().sprite;
+		//	kommand.gameObject.Find ("Icon").GetComponent<SpriteRenderer> ().sprite;
+		Destroy (kommand);
+		return sprite;
+	}
 }

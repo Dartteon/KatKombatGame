@@ -76,6 +76,11 @@ public class KatStatsInfo {
 		katBreed = breed;
 		hasHatched = true;
 		isFertile = true;
+
+		activeKommandList.Add (Kommand.None);
+		activeKommandList.Add (Kommand.None);
+		activeKommandList.Add (Kommand.None);
+
 		if (initializeStats (katBreed, katPrefabs)) {
 			Debug.Log("[Kat successfully initialized] " + this.toString());
 		} else {

@@ -132,7 +132,7 @@ public class FarmCameraFollowScript : MonoBehaviour {
 		katName = katInfo.getName ();
 //		nameText.text = katName;
 //		Debug.Log (" FOLLOWING             " + katName);
-//		infoText.text = getKatDisplayInfo (katInfo);
+		//		infoText.text = getKatDisplayInfo (katInfo);
 		katCard.AttachKat (katInfo, kat);
 
 		isFollowingKat = true;
