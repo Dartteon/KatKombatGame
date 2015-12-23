@@ -12,6 +12,7 @@ public class KatDataCard : MonoBehaviour {
 	private Text level;
 	private GameObject katLocation;
 	private KatStatsInfo stats;
+	private GameObject hatchButton;
 
 	private SpriteRenderer[] kommandSprites = new SpriteRenderer[3];
 
@@ -29,10 +30,10 @@ public class KatDataCard : MonoBehaviour {
 		
 		currHealth = this.transform.Find ("CurrentHealthCanvas").transform.Find("Bar").GetComponent<Image> ();
 		exp = this.transform.Find ("ExpCanvas").transform.Find("Bar").GetComponent<Image> ();
+		hatchButton = this.transform.Find ("HatchButton").gameObject;
 		
 		//		Debug.Log (katName.ToString () + katBreed.ToString () + katSTR.ToString () + katDEX.ToString () + katINT.ToString ());
 	}
-
 
 	public void AttachKat(KatStatsInfo katInfo, GameObject katObj) {
 		stats = katInfo;
@@ -42,6 +43,25 @@ public class KatDataCard : MonoBehaviour {
 		reflectHealthAndXP ();
 //		Debug.Log ("Reflecting Kommands");
 		reflectKommands ();
+		hatchButton.SetActive (false);
+	}
+
+	public void AttachEgg (EggInfo eggInfo, GameObject eggObj) {
+		katName.text = "Egg";
+		katBreed.text = "";
+		katSTR.text = "???";
+		katDEX.text = "???";
+		katINT.text = "???";
+		currHealth.fillAmount = 1.0f;
+		hatchButton.SetActive (true);
+		disableAllKommandButtons ();
+	}
+
+	void disableAllKommandButtons() {
+		for (int i = 0; i < 3; i++) {
+			string btnName = "Kommand" + i;
+			this.transform.Find(btnName).gameObject.SetActive(false);
+		}
 	}
 
 	void reflectKommands() {

@@ -20,13 +20,17 @@ public class FarmSelectKatButton : MonoBehaviour {
 		farmMngr = farmManager;
 		kat = representedKat;
 		setButtonSprite ();
-		setKatName (katName);
+//		setKatName (katName);
 		this.gameObject.SetActive (true);
 	}
 
 	void setButtonSprite() {
 		Sprite katFace = kat.transform.Find ("Sprite").transform.Find ("Head").GetComponent<SpriteRenderer> ().sprite;
-		this.transform.Find ("FaceSprite").GetComponent<SpriteRenderer> ().sprite = katFace;
+		Debug.Log (katFace.ToString ());
+
+		if (katFace != null) {
+			this.transform.Find ("FaceSprite").GetComponent<SpriteRenderer> ().sprite = katFace;
+		}
 	//	this.gameObject.name = kat.name;
 	}
 

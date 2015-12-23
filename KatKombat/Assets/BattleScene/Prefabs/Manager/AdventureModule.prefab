@@ -58,6 +58,7 @@ MonoBehaviour:
   - {fileID: 196366, guid: 456028a1164776441a2e0bc31f36baff, type: 2}
   - {fileID: 179940, guid: 33a60bd9da7604445acb2f8e923b834d, type: 2}
   - {fileID: 126874, guid: a82e8f9947ae5fb4ba62f42ec071a32b, type: 2}
+  eggPrefabVessel: {fileID: 115152, guid: 7eb541435879cf44d83a2d48dae37ed4, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

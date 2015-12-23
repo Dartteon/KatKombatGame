@@ -23,6 +23,8 @@ public class AdventureManager : MonoBehaviour {
 
 	private PlayerInformation playerDataScript;
 
+	[SerializeField]
+	private GameObject eggPrefabVessel;
 
 	public void initialize(){
 		loadPlayerFile ();
@@ -134,6 +136,7 @@ public class AdventureManager : MonoBehaviour {
 		KatStatsInfo newKat = new KatStatsInfo (newKatBreed, katPrefabs, newEggName);
 		EggInfo newEgg = EggInfo.getNewEgg (newKat, EggType.BlueYellowStripe);
 		playerDataScript.addEggToInventory (newEgg);
+		GameObject eggObj = Instantiate (eggPrefabVessel.GetComponent<EggPrefabVessel> ().getEgg (newEgg));
 		eggs = playerDataScript.ownedEggs;
 	}
 

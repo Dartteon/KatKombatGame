@@ -11,19 +11,24 @@ public class FarmManager : MonoBehaviour {
 //	private GameObject katClickableEnablerObjectPrefab;
 
 	private List<GameObject> spawnedKats = new List<GameObject> ();
+	private List<GameObject> spawnedEggs = new List<GameObject> ();
 
 	private AdventureManager advMngr;
 	private int currentlySelectedKat = 0;
 	private GameObject[] katPrefabs;
 	public List<KatStatsInfo> katsInfo { get; private set; }
+	public List<EggInfo> eggsInfo { get; private set; }
 
 	public void initialize(AdventureManager mngr) {
 		advMngr = mngr;
 		katPrefabs = katPrefabVessel.GetComponent<KatPrefabsVesselScript> ().katPrefabs;
 
 		katsInfo = advMngr.katsInfo;
+		eggsInfo = advMngr.eggs;
 
 		spawnPlayerKats ();
+
+		spawnPlayerEggs ();
 
 		setKatButtons ();
 
@@ -108,8 +113,19 @@ public class FarmManager : MonoBehaviour {
 			spawnKatInScene(katsInfo [i]);
 		}
 	}
-
 	
+	void spawnPlayerEggs() {
+		for (int i = 0; i < eggsInfo.Count; i++) {
+			spawnEgg(eggsInfo[i]);
+			//		spawnedEggs.Add(Instantiate(eggPrefab));
+		}
+	}
+	public void spawnEgg(EggInfo eggInfo) {
+		Vector3 randomLoc = new Vector3 (Random.Range (-2f, 2f), Random.Range (-2f, 2f), -.1f);
+		GameObject newEgg = Instantiate (eggPrefab, randomLoc, this.transform.rotation) as GameObject;
+		spawnedEggs.Add (newEgg);
+	}
+
 	public void followThisKat(GameObject kat){
 		int katIndex;
 		
@@ -122,18 +138,44 @@ public class FarmManager : MonoBehaviour {
 		}
 	}
 
+	public void followThisEgg(GameObject egg) {
+		int eggIndex;
+
+		eggIndex = spawnedEggs.IndexOf (egg);
+		EggInfo info = eggsInfo [eggIndex];
+		Camera.main.GetComponent<FarmCameraFollowScript> ().followEgg (eggsInfo[eggIndex], egg);
+	}
+
 	void setTournamentScreen() {
 //		Sprite[] faceSprites = new Sprite[spawnedKats.Count];
 		GameObject katFaceOptionsBar = Camera.main.transform.Find ("TournamentButton").transform.Find ("KatChooser").transform.Find ("OptionsBar").gameObject;
 //		katFaceOptionsBar.GetComponent<OptionsChooser> ().initiate ();
+		int index = 0;
+
 		for (int i = 0; i < spawnedKats.Count; i++) {
 //			faceSprites[i] = spawnedKats[i].transform.Find("Sprite").transform.Find("Head").GetComponent<SpriteRenderer>().sprite;
 			Sprite sprite = spawnedKats[i].transform.Find("Sprite").transform.Find("Head").GetComponent<SpriteRenderer>().sprite;
 			string katFaceObjName = "Kat" + i;
 			katFaceOptionsBar.transform.Find(katFaceObjName).transform.Find("FaceSprite").GetComponent<SpriteRenderer>().sprite = sprite;
 			katFaceOptionsBar.transform.Find(katFaceObjName).gameObject.SetActive(true);
-			katFaceOptionsBar.transform.Find(katFaceObjName).gameObject.name = KatManipulator.getKatShortDescription(katsInfo[i]);
+
+			//To set tournament Kat names
+			katFaceOptionsBar.transform.Find(katFaceObjName).gameObject.name = KatManipulator.getKatShortDescription(katsInfo[i]); 
+			index++;
 		}
+
+		/*
+		for (int i = index; i < eggsInfo.Count + index; i++) {
+			Sprite sprite = spawnedEggs[i].transform.Find("EggSprite").GetComponent<SpriteRenderer>().sprite;
+			
+//			Debug.Log (sprite.ToString());
+			string katFaceObjName = "Kat" + i;
+			katFaceOptionsBar.transform.Find(katFaceObjName).transform.Find("FaceSprite").GetComponent<SpriteRenderer>().sprite = sprite;
+			katFaceOptionsBar.transform.Find(katFaceObjName).gameObject.SetActive(true);
+//			katFaceOptionsBar.transform.Find(katFaceObjName).gameObject.name = KatManipulator.getKatShortDescription(katsInfo[i]);
+			index++;
+		}
+*/
 //		katFaceOptionsBar.GetComponent<OptionsChooser>().reflectDescriptionText();
 
 		Camera.main.transform.Find ("TournamentButton").GetComponent<TournamentCreaterScreen> ().initiate (this);

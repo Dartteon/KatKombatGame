@@ -148,6 +148,17 @@ public class FarmCameraFollowScript : MonoBehaviour {
 		goToCameraMode (1);
 	}
 
+	public void followEgg (EggInfo eggInfo, GameObject egg) {
+		isFollowingKat = true;
+		katBeingFollowed = egg;
+		targetZoomSize = zoomedInSize;
+		currentPanSpeed = 2;
+		katCard.AttachEgg (eggInfo, egg);
+		katCard.gameObject.SetActive (true);
+		goToCameraMode (1);
+
+	}
+
 	string getKatDisplayInfo(KatStatsInfo katInfo){
 		string level = "[LV." + katInfo.getLevel () + "] ";
 		string breed = katInfo.getBreed ();
