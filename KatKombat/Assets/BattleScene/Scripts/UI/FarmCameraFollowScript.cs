@@ -21,7 +21,7 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	private string information;
 	private Text nameText;
 	private Text infoText;
-
+	private int currentButtonIndex;
 
 	private bool isFollowingKat = false;
 	private GameObject katBeingFollowed;
@@ -71,9 +71,22 @@ public class FarmCameraFollowScript : MonoBehaviour {
 
 	public void enableKatButtons(List<GameObject> kats, FarmManager fManager, AdventureManager aManager, string[] katNames) {
 		initiate ();
+		currentButtonIndex = 0;
+
 		for (int i=0; i<kats.Count; i++) {
 //			Debug.Log (katButtonScripts[i].ToString());
-			katButtonScripts[i].initialize(aManager, fManager, kats[i], katNames[i]);
+			katButtonScripts[i].initializeAsKat(aManager, fManager, kats[i], katNames[i]);
+			currentButtonIndex++;
+		}
+	}
+
+	public void enableEggButtons(List<GameObject> eggObjs, FarmManager fManager, AdventureManager aManager, string[] eggNames) {
+		if (!hasInit) initiate ();
+
+//		Debug.Log (currentButtonIndex);
+		for (int i = 0; i<eggObjs.Count; i++) {
+//			Debug.Log(katButtonScripts[i+currentButtonIndex].ToString());
+			katButtonScripts[i+currentButtonIndex].initializeAsEgg(aManager, fManager, eggObjs[i], eggNames[i]);
 		}
 	}
 

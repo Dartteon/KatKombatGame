@@ -41,6 +41,13 @@ public class FarmManager : MonoBehaviour {
 			katNames[i] = katsInfo[i].getName();
 		}
 		Camera.main.GetComponent<FarmCameraFollowScript> ().enableKatButtons (spawnedKats, this, advMngr, katNames);
+
+		string[] eggNames = new string[6];
+		for (int i = 0; i<eggsInfo.Count; i++) {
+			eggNames[i] = "Egg " + i;
+		}
+		Debug.Log (spawnedEggs [0].ToString ());
+		Camera.main.GetComponent<FarmCameraFollowScript> ().enableEggButtons (spawnedEggs, this, advMngr, eggNames);
 	}
 
 
@@ -164,11 +171,12 @@ public class FarmManager : MonoBehaviour {
 			index++;
 		}
 
+		//fix this ---------------------------------------------------------------------------------------------------------
 		/*
-		for (int i = index; i < eggsInfo.Count + index; i++) {
+		for (int i = 0; i < eggsInfo.Count + index; i++) {
 			Sprite sprite = spawnedEggs[i].transform.Find("EggSprite").GetComponent<SpriteRenderer>().sprite;
 			
-//			Debug.Log (sprite.ToString());
+			Debug.Log (sprite.ToString());
 			string katFaceObjName = "Kat" + i;
 			katFaceOptionsBar.transform.Find(katFaceObjName).transform.Find("FaceSprite").GetComponent<SpriteRenderer>().sprite = sprite;
 			katFaceOptionsBar.transform.Find(katFaceObjName).gameObject.SetActive(true);

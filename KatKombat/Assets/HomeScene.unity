@@ -87,60 +87,6 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &90368656
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 90368657}
-  - 212: {fileID: 90368658}
-  m_Layer: 0
-  m_Name: grey_button14
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &90368657
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 90368656}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .5, y: .5, z: 1}
-  m_Children: []
-  m_Father: {fileID: 376865125}
-  m_RootOrder: 0
---- !u!212 &90368658
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 90368656}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ab44c0ff5c2761a46ad566a5e04c72d0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &327273618
 Prefab:
   m_ObjectHideFlags: 0
@@ -191,34 +137,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be4a82b733fade743b28627f9a5b3c53, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &376865124
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 376865125}
-  m_Layer: 0
-  m_Name: HatchButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &376865125
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 376865124}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .800000012, y: .238999993, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 90368657}
-  m_Father: {fileID: 596572191}
-  m_RootOrder: 14
 --- !u!1001 &483756558
 Prefab:
   m_ObjectHideFlags: 0
@@ -228,11 +146,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 443598, guid: c0ddcb7c0b1642348aed7303b65b0872, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.20000005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 443598, guid: c0ddcb7c0b1642348aed7303b65b0872, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .899999976
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 443598, guid: c0ddcb7c0b1642348aed7303b65b0872, type: 2}
       propertyPath: m_LocalPosition.z
@@ -258,21 +176,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2031250, guid: c0ddcb7c0b1642348aed7303b65b0872, type: 2}
-      propertyPath: orthographic size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 135150, guid: c0ddcb7c0b1642348aed7303b65b0872, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0ddcb7c0b1642348aed7303b65b0872, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &596572191 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 460632, guid: c0ddcb7c0b1642348aed7303b65b0872, type: 2}
-  m_PrefabInternal: {fileID: 483756558}
 --- !u!1001 &663240190
 Prefab:
   m_ObjectHideFlags: 0

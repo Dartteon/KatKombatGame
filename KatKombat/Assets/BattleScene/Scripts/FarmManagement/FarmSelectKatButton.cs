@@ -10,12 +10,14 @@ public class FarmSelectKatButton : MonoBehaviour {
 	private GameObject kat;
 	private string katName;
 
-	void Start () {
-		advMngr = GameObject.Find ("AdventureModule").GetComponent<AdventureManager> ();
-		farmMngr = GameObject.Find ("FarmManagerModule").GetComponent<FarmManager> ();
-	}
+	private bool isEgg = false;
 
-	public void initialize(AdventureManager adventureManager, FarmManager farmManager, GameObject representedKat, string katName) {
+//	void Start () {
+//		advMngr = GameObject.Find ("AdventureModule").GetComponent<AdventureManager> ();
+//		farmMngr = GameObject.Find ("FarmManagerModule").GetComponent<FarmManager> ();
+//	}
+
+	public void initializeAsKat(AdventureManager adventureManager, FarmManager farmManager, GameObject representedKat, string katName) {
 		advMngr = adventureManager;
 		farmMngr = farmManager;
 		kat = representedKat;
@@ -24,9 +26,20 @@ public class FarmSelectKatButton : MonoBehaviour {
 		this.gameObject.SetActive (true);
 	}
 
+	public void initializeAsEgg(AdventureManager adventureManager, FarmManager farmManager, GameObject eggObj, string eggName) {
+		isEgg = true;
+		advMngr = adventureManager;
+		farmMngr = farmManager;
+		kat = eggObj;
+		Debug.Log (eggObj.ToString ());
+		Sprite eggSprite = eggObj.transform.Find ("EggSprite").GetComponent<SpriteRenderer> ().sprite;
+		this.transform.Find ("FaceSprite").GetComponent<SpriteRenderer> ().sprite = eggSprite;
+		this.gameObject.SetActive (true);
+	}
+
 	void setButtonSprite() {
 		Sprite katFace = kat.transform.Find ("Sprite").transform.Find ("Head").GetComponent<SpriteRenderer> ().sprite;
-		Debug.Log (katFace.ToString ());
+//		Debug.Log (katFace.ToString ());
 
 		if (katFace != null) {
 			this.transform.Find ("FaceSprite").GetComponent<SpriteRenderer> ().sprite = katFace;
@@ -40,6 +53,9 @@ public class FarmSelectKatButton : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-		farmMngr.followThisKat (kat);
+	//	Debug.Log ("Kat Btn pressed");
+		if (isEgg) farmMngr.followThisEgg (kat);
+		else farmMngr.followThisKat (kat);
+
 	}
 }
