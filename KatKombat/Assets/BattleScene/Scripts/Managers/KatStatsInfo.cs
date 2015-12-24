@@ -149,27 +149,30 @@ public class KatStatsInfo {
 				breedInt = katStatsScript.getInt();
 				return true;
 			}
+			Debug.Log(breedStr + " " + breedDex + " " + breedInt);
 		}
 		return false;
 	}
 
 	public int getTotalStr(){
 		int effectiveLevel = getLevel () + levelStatOffset;
-		int ratiodStr = (int)((breedStr + birthStr + extraStr) * (((float)effectiveLevel)/ MAX_LEVEL)) + STAT_OFFSET;
+		int ratiodStr = (int)((breedStr + birthStr + extraStr) * (((float)effectiveLevel)/ 60)) + STAT_OFFSET;
 	//	int ratiodStr = (int)(((float)getLevel () / MAX_LEVEL) * getScalableStr());
+//		Debug.Log ("Getting STR " + getLevel() + " x " + breedStr + " + " + birthStr + " + " + extraStr);
+//		Debug.Log (ratiodStr);
 		return (ratiodStr);
 	}
 
 	public int getTotalDex(){
 		int effectiveLevel = getLevel () + levelStatOffset;
-		int ratiodDex = (int)((breedDex + birthDex + extraDex) * (((float)effectiveLevel) / MAX_LEVEL)) + STAT_OFFSET;
+		int ratiodDex = (int)((breedDex + birthDex + extraDex) * (((float)effectiveLevel) / 60)) + STAT_OFFSET;
 	//	int ratiodDex = (int)(((float)getLevel () / MAX_LEVEL) * getScalableDex());
 		return (ratiodDex);
 	}
 
 	public int getTotalInt(){
 		int effectiveLevel = getLevel () + levelStatOffset;
-		int ratiodInt = (int)((breedInt + birthInt + extraInt) * (((float)effectiveLevel) / MAX_LEVEL)) + STAT_OFFSET;
+		int ratiodInt = (int)((breedInt + birthInt + extraInt) * (((float)effectiveLevel) / 60)) + STAT_OFFSET;
 	//	int ratiodInt = (int)(((float)getLevel () / MAX_LEVEL) * getScalableInt());
 		return (ratiodInt);
 	}

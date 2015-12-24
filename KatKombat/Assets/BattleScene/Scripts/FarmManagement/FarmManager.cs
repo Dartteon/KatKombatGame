@@ -26,16 +26,16 @@ public class FarmManager : MonoBehaviour {
 		katsInfo = advMngr.katsInfo;
 		eggsInfo = advMngr.eggs;
 
-		spawnPlayerKats ();
+//		spawnPlayerKats ();
 
-		spawnPlayerEggs ();
+//		spawnPlayerEggs ();
 
-		setKatButtons ();
+//		setKatButtons ();
 
-		setTournamentScreen ();
+//		setTournamentScreen ();
 	}
 
-	void setKatButtons(){
+	public void setKatButtons(){
 		string[] katNames = new string[6];
 		for (int i=0; i<katsInfo.Count; i++) {
 			katNames[i] = katsInfo[i].getName();
@@ -46,7 +46,7 @@ public class FarmManager : MonoBehaviour {
 		for (int i = 0; i<eggsInfo.Count; i++) {
 			eggNames[i] = "Egg " + i;
 		}
-		Debug.Log (spawnedEggs [0].ToString ());
+//		Debug.Log (spawnedEggs [0].ToString ());
 		Camera.main.GetComponent<FarmCameraFollowScript> ().enableEggButtons (spawnedEggs, this, advMngr, eggNames);
 	}
 
@@ -79,8 +79,11 @@ public class FarmManager : MonoBehaviour {
 		Camera.main.GetComponent<FarmCameraFollowScript> ().followKat (spawnedKats [currentlySelectedKat], katsInfo[currentlySelectedKat]);
 	}
 
-	public void spawnKatInScene(KatStatsInfo info){
-		GameObject spawnedKat = Instantiate (findKatWithName (info.getBreed ()), transform.position, transform.rotation) as GameObject; 
+	public GameObject spawnKatInScene(KatStatsInfo info){
+		Vector2 randomPos = new Vector2 (Random.Range(0.0f, 2.0f), Random.Range(0.0f, 2.0f));
+		Quaternion randomRot = BaronVec.randomRotation ();
+		Debug.Log (randomRot.ToString ());
+		GameObject spawnedKat = Instantiate (findKatWithName (info.getBreed ()), randomPos, randomRot) as GameObject; 
 		spawnedKats.Add (spawnedKat);
 		//		Debug.Log(spawnedKat.ToString());
 		StatsScript katStats = spawnedKat.GetComponent<StatsScript> ();
@@ -93,7 +96,27 @@ public class FarmManager : MonoBehaviour {
 //		clickEnabler.transform.parent = spawnedKat.transform;
 		spawnedKat.GetComponent<StatsScript> ().setKatStatsInfo (info);
 		spawnedKat.tag = "Player1";
+		Debug.Log ("Spawning kat " + info.toString ());
+		return spawnedKat;
 //		Debug.Log ("new kat added to scene, total kats : " + katsInfo.Count);
+	}
+	public GameObject spawnKatInScene(KatStatsInfo info, Vector2 loc){
+		GameObject spawnedKat = Instantiate (findKatWithName (info.getBreed ()), loc, transform.rotation) as GameObject; 
+		spawnedKats.Add (spawnedKat);
+		//		Debug.Log(spawnedKat.ToString());
+		StatsScript katStats = spawnedKat.GetComponent<StatsScript> ();
+		katStats.setToLevel (info.getLevel ());
+		katStats.setStats (info.getTotalStr (), info.getTotalDex (), info.getTotalInt ());
+		katStats.setKatCommands (info.getActiveKommands ());
+		disableKatCombatComponents (spawnedKat);
+		spawnedKat.AddComponent <NonCombatBehavior> ();
+		//		GameObject clickEnabler = Instantiate (katClickableEnablerObjectPrefab, spawnedKat.transform.position, spawnedKat.transform.rotation) as GameObject;
+		//		clickEnabler.transform.parent = spawnedKat.transform;
+		spawnedKat.GetComponent<StatsScript> ().setKatStatsInfo (info);
+		spawnedKat.tag = "Player1";
+		Debug.Log ("Spawning kat " + info.toString ());
+		return spawnedKat;
+		//		Debug.Log ("new kat added to scene, total kats : " + katsInfo.Count);
 	}
 	
 	GameObject findKatWithName(string katName){
@@ -113,15 +136,31 @@ public class FarmManager : MonoBehaviour {
 	}
 
 	
-	void spawnPlayerKats(){
+	public void spawnPlayerKats(){
 //		Debug.Log (katsInfo.Count);
+		katsInfo = advMngr.katsInfo;
+//		Debug.Log (katsInfo.Count);
+
 		for (int i = 0; i<katsInfo.Count; i++) {
 //			Debug.Log("attempting to spawn " + i);
 			spawnKatInScene(katsInfo [i]);
 		}
 	}
-	
-	void spawnPlayerEggs() {
+
+	public GameObject hatchAndSpawnEgg (GameObject egg) {
+		int eggIndex = spawnedEggs.IndexOf (egg);
+		KatStatsInfo babyKat = advMngr.setEggToHatched (eggsInfo [eggIndex]);
+//		spawnKatInScene (babyKat);
+		egg.SetActive (false);
+		GameObject babyObj = spawnKatInScene (babyKat, egg.transform.position);
+		Destroy (babyObj.GetComponent<NonCombatBehavior> ());
+		followThisKat (babyObj);
+		return (babyObj);
+	}
+
+	public void spawnPlayerEggs() {
+		eggsInfo = advMngr.eggs;
+
 		for (int i = 0; i < eggsInfo.Count; i++) {
 			spawnEgg(eggsInfo[i]);
 			//		spawnedEggs.Add(Instantiate(eggPrefab));
@@ -130,6 +169,9 @@ public class FarmManager : MonoBehaviour {
 	public void spawnEgg(EggInfo eggInfo) {
 		Vector3 randomLoc = new Vector3 (Random.Range (-2f, 2f), Random.Range (-2f, 2f), -.1f);
 		GameObject newEgg = Instantiate (eggPrefab, randomLoc, this.transform.rotation) as GameObject;
+		newEgg.GetComponent<EggTypeMatcher> ().matchSpriteToEggType (eggInfo.getEggType ());
+		KatBreed.EggType eggType = eggInfo.getEggType ();
+		newEgg.name = "Egg";
 		spawnedEggs.Add (newEgg);
 	}
 
@@ -153,7 +195,7 @@ public class FarmManager : MonoBehaviour {
 		Camera.main.GetComponent<FarmCameraFollowScript> ().followEgg (eggsInfo[eggIndex], egg);
 	}
 
-	void setTournamentScreen() {
+	public void setTournamentScreen() {
 //		Sprite[] faceSprites = new Sprite[spawnedKats.Count];
 		GameObject katFaceOptionsBar = Camera.main.transform.Find ("TournamentButton").transform.Find ("KatChooser").transform.Find ("OptionsBar").gameObject;
 //		katFaceOptionsBar.GetComponent<OptionsChooser> ().initiate ();

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BasicBallGame : MonoBehaviour {
+public class BasicBallGame : MonoBehaviour, Tappable {
 	public List<NonCombatBehavior> playingKats;
 	public int maxNumberPlaying;
 	public float playDuration = 20.0f;
@@ -13,7 +13,23 @@ public class BasicBallGame : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+	/*
+	void OnMouseDown() {
+//		Debug.Log ("Clicked");
+		Vector2 randomDir = new Vector2 (Random.Range (0.0f, 1.0f), Random.Range (0.0f, 1.0f));
+//		Debug.Log (randomDir.ToString ());
+		this.GetComponent<Rigidbody2D> ().velocity = randomDir * 10f;
+	}
+*/
+	public void handleTap (Vector2 pos1, Vector2 pos2) {
+//		Vector2 randomDir = new Vector2 (Random.Range (0.0f, 1.0f), Random.Range (0.0f, 1.0f));
+		Vector2 currentPos = this.transform.position;
+		Vector2 dir = currentPos - pos1;
+		dir.Normalize ();
+//		Debug.Log (randomDir.ToString ());
+		this.GetComponent<Rigidbody2D> ().AddForce (dir * 5f, ForceMode2D.Impulse);
+	}
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		for (int i=0; i<playingKats.Count; i++){
@@ -51,7 +67,7 @@ public class BasicBallGame : MonoBehaviour {
 			//remember to tag kats as Player1
 			NonCombatBehavior katBehavior = collidingObj.transform.GetComponent<NonCombatBehavior>();
 			//Debug.Log(katBehavior.isBusy);
-			if (katBehavior.isBusy == false && !katBehavior.isClicked){
+			if (katBehavior != null &&  katBehavior.isBusy == false && !katBehavior.isClicked){
 				playingKats.Add(katBehavior);
 //				Debug.Log("attached kat" + collidingObj.ToString());
 				katBehavior.isBusy = true;

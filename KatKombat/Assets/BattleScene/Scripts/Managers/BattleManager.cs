@@ -62,6 +62,7 @@ public class BattleManager : MonoBehaviour {
 //		enemykatPrefab.GetComponent<StatsScript> ().setStats (enemyKat);
 
 		gamestateBattleManagerModule = Instantiate (gamestateBattleManagerModulePrefab) as GameObject;
+		gamestateBattleManagerModule.name = "GameStateBattleManager";
 		GamestateBattleManager gamestateScript = gamestateBattleManagerModule.GetComponent<GamestateBattleManager> ();
 		gamestateScript.attachMap (mapIndex);
 		gamestateScript.attachKatsInfo (playerKat, enemyKat);

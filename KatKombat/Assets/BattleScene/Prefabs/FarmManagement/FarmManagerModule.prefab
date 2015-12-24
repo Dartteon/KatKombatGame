@@ -39,10 +39,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d03f5299030594fa341eccab9aca14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eggPrefab: {fileID: 153272, guid: 4cf85bfbcb948034094f4418fa5eb4d7, type: 2}
+  eggPrefab: {fileID: 162204, guid: 4cf85bfbcb948034094f4418fa5eb4d7, type: 2}
   katPrefabVessel: {fileID: 147776, guid: 02f5cbf7a65b06841bedac52933f947a, type: 2}
-  katClickableEnablerObjectPrefab: {fileID: 172154, guid: f4b9b631951fc4c49b3c9558a8085957,
-    type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

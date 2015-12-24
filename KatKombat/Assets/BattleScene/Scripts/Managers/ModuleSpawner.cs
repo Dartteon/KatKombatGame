@@ -17,8 +17,15 @@ public class ModuleSpawner : MonoBehaviour {
 		createAdventureManagerModule ();
 		createFarmModule ();
 		adventureModule.GetComponent<AdventureManager>().setFarmManager (farmManagerModule.GetComponent<FarmManager> ());
+//		adventureModule.initialize ();
 //		Debug.Log ("farM set in advM");
 		searchAndDestroyOtherModules ();
+		adventureModule.GetComponent<AdventureManager> ().attempToLoadFile ();
+
+		farmManagerModule.GetComponent<FarmManager> ().spawnPlayerEggs ();
+		farmManagerModule.GetComponent<FarmManager> ().spawnPlayerKats ();
+		farmManagerModule.GetComponent<FarmManager> ().setKatButtons ();
+		farmManagerModule.GetComponent<FarmManager> ().setTournamentScreen ();
 	}
 
 	void createAdventureManagerModule() {
@@ -28,7 +35,7 @@ public class ModuleSpawner : MonoBehaviour {
 			adventureModule.gameObject.name = "AdventureModule";
 		}
 		
-		adventureModule.GetComponent<AdventureManager> ().initialize ();
+//		adventureModule.GetComponent<AdventureManager> ().initialize ();
 	}
 
 	void createFarmModule() {

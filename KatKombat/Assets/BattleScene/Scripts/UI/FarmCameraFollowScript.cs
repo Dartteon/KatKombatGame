@@ -113,7 +113,12 @@ public class FarmCameraFollowScript : MonoBehaviour {
 	}
 
 	void repositionCameraToKat() {
-		Vector2 katFacing = katBeingFollowed.transform.up.normalized * 0.2f;
+		Vector2 katFacing;
+		if (katBeingFollowed.name != "Egg") {
+			katFacing = katBeingFollowed.transform.up.normalized * 0.2f;
+		} else {
+			katFacing = new Vector2 (0,0);
+		}
 		Vector2 katPos = katBeingFollowed.transform.position;
 		katPos += new Vector2 (-1.2f, 0.7f) + katFacing;
 

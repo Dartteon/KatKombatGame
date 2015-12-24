@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eggPrefabs:
-  - {fileID: 153272, guid: 4cf85bfbcb948034094f4418fa5eb4d7, type: 2}
+  - {fileID: 162204, guid: 4cf85bfbcb948034094f4418fa5eb4d7, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -59,7 +59,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: eggPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 153272, guid: 4cf85bfbcb948034094f4418fa5eb4d7, type: 2}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 115152}

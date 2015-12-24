@@ -651,9 +651,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   katID: 0
-  Str: 50
-  Dex: 60
-  Int: 90
+  Str: 75
+  Dex: 70
+  Int: 65
   col: {r: .400000036, g: .533333361, b: .666666687, a: 1}
   isBusy: 0
   statType: 2
@@ -1260,7 +1260,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Int
-      value: 90
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: defaultCommands
@@ -1269,6 +1269,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_CollisionDetection
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Str
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Dex
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

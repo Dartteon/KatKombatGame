@@ -20,6 +20,7 @@ public class EggHatchingSequence : MonoBehaviour, Tappable {
 	void execute(){
 //		Debug.Log ("Egg clicked");
 //		Camera.main.GetComponent<FarmCameraFollowScript> ().followEgg (this.gameObject.GetComponent<EggInfo>() ,this.gameObject);
+//		Debug.Log (this.gameObject);
 		GameObject.Find ("FarmManagerModule").GetComponent<FarmManager> ().followThisEgg (this.gameObject);
 //		hatchScreen.SetActive (true);
 	}

@@ -7,6 +7,7 @@ public class TournamentManager : MonoBehaviour {
 	private int currentStage;
 	private KatStatsInfo playerKat;
 	private KatStatsInfo currentEnemy;
+	private int tournamentType;
 
 	[SerializeField]
 	private GameObject katPrefabsVessel;
@@ -25,15 +26,23 @@ public class TournamentManager : MonoBehaviour {
 		GameObject.Find ("AdventureModule").GetComponent<AdventureManager> ().initiateBattleWithKat (playerKat, currentEnemy);
 	}
 
-	public void initialize(KatStatsInfo plyrKat, int _difficulty, int _numMatches) {
+	public void initialize(KatStatsInfo plyrKat, int _difficulty, int tournamentType) {
 		DontDestroyOnLoad (this.gameObject);
 		katPrefabs = katPrefabsVessel.GetComponent<KatPrefabsVesselScript> ().katPrefabs;
 		currentStage = 0;
 		playerKat = plyrKat;
 		difficulty = _difficulty;
-		numMatches = _numMatches;
+		numMatches = getNumMatches ();
 		getEnemy ();
 		commenceTournament ();
+	}
+
+	public int getNumMatches() {
+		if (tournamentType == 0)
+			return 10;
+		else
+			return 100;
+
 	}
 
 	private KatStatsInfo getEnemy() {
@@ -44,7 +53,7 @@ public class TournamentManager : MonoBehaviour {
 	}
 
 	private void setStatsOfEnemy (KatStatsInfo enemyKat) {
-		enemyKat.setLevel (5);
+		enemyKat.setLevel (getEnemyLevel());
 		setBirthStats (enemyKat);
 		setExtraStats (enemyKat);
 	}
@@ -58,7 +67,12 @@ public class TournamentManager : MonoBehaviour {
 	}
 
 	private int getEnemyLevel() {
-		return 5; //stub
+		if (tournamentType == 0) {
+			Debug.Log("Level " + difficulty + " * " + (currentStage+1));
+			return difficulty * currentStage + 1;
+		} else {
+			return ((difficulty - 1) * 10) + (currentStage * 2);
+		}
 	}
 
 	public void endRound (bool didPlayerWin) {
@@ -73,10 +87,18 @@ public class TournamentManager : MonoBehaviour {
 	}
 
 	private void endTournament() {
-		if (currentStage == numMatches) {
-			//reward extra bonus
+			GameObject.Find("AdventureModule").GetComponent<AdventureManager>().addCurrency(calculateKashRewards());
+
+	}
+
+	public int calculateKashRewards() {
+		if (currentStage == 1)
+			return 0;
+		if (tournamentType == 0) {
+			Debug.Log (difficulty + " " + currentStage);
+			return difficulty * currentStage;
 		} else {
-			//no bonus
+			return currentStage * 3;
 		}
 	}
 }

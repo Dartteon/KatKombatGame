@@ -27,12 +27,16 @@ public class AdventureManager : MonoBehaviour {
 	private GameObject eggPrefabVessel;
 
 	public void initialize(){
+//		loadPlayerFile ();
+	}
+	public void attempToLoadFile() {
 		loadPlayerFile ();
 	}
-
 	public void initiateBattleWithKat(KatStatsInfo playrKat, KatStatsInfo enemy){
-		currentFightingKatIndex = katsInfo.IndexOf (playrKat);
+		Debug.Log (playrKat.toString ());
 
+		currentFightingKatIndex = katsInfo.IndexOf (playrKat);
+//		Debug.Log (currentFightingKatIndex);
 		//find past battle remnant and destroy
 		Destroy (GameObject.Find ("BattleInformationModule"));
 
@@ -99,8 +103,11 @@ public class AdventureManager : MonoBehaviour {
 				this.katsInfo = playerDataScript.ownedKats;
 				this.eggs = playerDataScript.ownedEggs;
 				Debug.Log ("Loaded SaveFile: " + playerDataScript.playerToString ());
-				
-				Debug.Log ("Time Diff: " + DateTime.Now.Subtract(playerDataScript.time_lastActive).ToString());
+
+//				farmMngr.spawnPlayerEggs();
+//				farmMngr.spawnPlayerKats();
+
+//				Debug.Log ("Time Diff: " + DateTime.Now.Subtract(playerDataScript.time_lastActive).ToString());
 //				Debug.Log (katsInfo [0].toString ());
 
 //			Debug.Log("Owned Kats : " + playerDataScript.ownedKats.ToString());
@@ -111,15 +118,19 @@ public class AdventureManager : MonoBehaviour {
 	}
 
 	void handleNewGame(){
-		playerDataScript = new PlayerInformation ("Baron");
-		playerDataScript.addCurrency (50);
-		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
-		KatStatsInfo newKat = new KatStatsInfo (newKatBreed, katPrefabs, GameVariables.getRandomName());
+		Debug.Log ("Handling New Game");
+		playerDataScript = new PlayerInformation ("Kat Tamer");
+		summonNewEgg ();
+		savePlayerFile ();
+		Application.LoadLevel (Application.loadedLevel);
+//		playerDataScript.addCurrency (50);
+//		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
+//		KatStatsInfo newKat = new KatStatsInfo (newKatBreed, katPrefabs, GameVariables.getRandomName());
 	//	newKat.initializeStats (newKatName, katPrefabs);
 	//	newKat.increaseExp (1000);
-		Debug.Log (newKat.toString ());
-		playerDataScript.addKatToInventory (newKat);
-		katsInfo = playerDataScript.ownedKats;
+//		Debug.Log (newKat.toString ());
+//		playerDataScript.addKatToInventory (newKat);
+//		katsInfo = playerDataScript.ownedKats;
 	}
 
 	void summonNewKat(){
@@ -134,13 +145,26 @@ public class AdventureManager : MonoBehaviour {
 		String newEggName = GameVariables.getRandomName();
 		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
 		KatStatsInfo newKat = new KatStatsInfo (newKatBreed, katPrefabs, newEggName);
-		EggInfo newEgg = EggInfo.getNewEgg (newKat, EggType.BlueYellowStripe);
+		EggInfo newEgg = EggInfo.getNewEgg (newKat, KatBreed.getRandomEggColor());
 		playerDataScript.addEggToInventory (newEgg);
-		GameObject eggObj = Instantiate (eggPrefabVessel.GetComponent<EggPrefabVessel> ().getEgg (newEgg));
+		newEgg.getKat ().setKommands (Kommands.getRandomStrKommand (), Kommands.getRandomDexKommand (), Kommands.getRandomIntKommand ());
+//		GameObject eggObj = Instantiate (eggPrefabVessel.GetComponent<EggPrefabVessel> ().getEgg (newEgg));
+		Debug.Log (farmMngr.ToString ());
+		farmMngr.spawnEgg (newEgg);
 		eggs = playerDataScript.ownedEggs;
+		savePlayerFile ();
+//		Application.LoadLevel (Application.loadedLevel);
 	}
 
-	void savePlayerFile(){
+	public void sellKat(KatStatsInfo kat) {
+		playerDataScript.addCurrency (kat.getLevel () * 15);
+	}
+
+	public void addCurrency (int currency) {
+		playerDataScript.addCurrency (currency);
+	}
+
+	public void savePlayerFile(){
 		if (playerDataScript != null) {
 //		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER","yes");
 			BinaryFormatter bf = new BinaryFormatter ();
@@ -199,7 +223,6 @@ public class AdventureManager : MonoBehaviour {
 				}
 			}
 
-
 /*
 			if (Input.GetKeyDown (KeyCode.F7)) {
 				Debug.Log("Attemping to add an egg image to tray");
@@ -233,7 +256,11 @@ public class AdventureManager : MonoBehaviour {
 		KatStatsInfo baby = egg.getKat ();
 		eggs.Remove (egg);
 		katsInfo.Add (baby);
-		farmMngr.spawnKatInScene(baby);
+		playerDataScript.addKatToInventory (baby);
+//		Debug.Log (katsInfo.Count);
+//		farmMngr.spawnKatInScene(baby);
+		Debug.Log ("Egg set to hatch");
+		savePlayerFile ();
 		return baby;
 	}
 

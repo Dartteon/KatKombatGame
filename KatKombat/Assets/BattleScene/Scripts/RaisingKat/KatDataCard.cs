@@ -14,6 +14,8 @@ public class KatDataCard : MonoBehaviour {
 	private KatStatsInfo stats;
 	private GameObject hatchButton;
 
+	public GameObject objectBeingFollowed { get; private set; }
+
 	private SpriteRenderer[] kommandSprites = new SpriteRenderer[3];
 
 	[SerializeField]
@@ -36,6 +38,7 @@ public class KatDataCard : MonoBehaviour {
 	}
 
 	public void AttachKat(KatStatsInfo katInfo, GameObject katObj) {
+		Debug.Log ("Attaching Kat to DataCard " + katInfo.toString ());
 		stats = katInfo;
 //		InstantiateKatImage (katObj);
 		reflectNameAndBreedOfKat ();
@@ -43,6 +46,7 @@ public class KatDataCard : MonoBehaviour {
 		reflectHealthAndXP ();
 //		Debug.Log ("Reflecting Kommands");
 		reflectKommands ();
+		objectBeingFollowed = katObj;
 		hatchButton.SetActive (false);
 	}
 
@@ -54,6 +58,7 @@ public class KatDataCard : MonoBehaviour {
 		katINT.text = "???";
 		currHealth.fillAmount = 1.0f;
 		hatchButton.SetActive (true);
+		objectBeingFollowed = eggObj;
 		disableAllKommandButtons ();
 	}
 
@@ -64,12 +69,13 @@ public class KatDataCard : MonoBehaviour {
 		}
 	}
 
+
 	void reflectKommands() {
 		//loop through kat kommands, set sprite then enable kommand
 		List<Kommand> katKommands = stats.getActiveKommands ();
 
 		KatAttacksVessel kommandsScript = katAttackPrefabVessel.GetComponent<KatAttacksVessel> ();
-		stats.setKommands (Kommand.ArcanePulse, Kommand.None, Kommand.Furball);
+//		stats.setKommands (Kommand.ArcanePulse, Kommand.None, Kommand.Furball);
 
 		for (int i = 0; i < 3; i++) {
 			if (katKommands[i] != Kommand.None){

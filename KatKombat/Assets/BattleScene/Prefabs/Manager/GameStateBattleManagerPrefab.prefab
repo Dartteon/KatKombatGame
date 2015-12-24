@@ -39,7 +39,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c4cf6a787c577488a1789cf39372e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defeatButtonPrefab: {fileID: 122490, guid: 86668fac3915fe74c9e9c95dad3e6c95, type: 2}
   stageBeginScreenPrefab: {fileID: 105998, guid: 5d1f5e6004aae6549aa2d07c02c70da0,
     type: 2}
   katAttackVesselPrefab: {fileID: 190522, guid: bf25ce4ee8869614084271a81d41dada,
@@ -49,6 +48,8 @@ MonoBehaviour:
   - {fileID: 153666, guid: d851f300684288f409904d63556da0f7, type: 2}
   - {fileID: 110026, guid: 5d1338abfbe6bc944a6e59f69d199a12, type: 2}
   - {fileID: 112676, guid: c2177b44d9b5d854ca52c6fb55f89d36, type: 2}
+  enemyAIModule: {fileID: 140718, guid: 978730254eb1e0741b8c403f52dff8cc, type: 2}
+  defeatButtonPrefab: {fileID: 150536, guid: 5629efe7e4131d34ea1a2d9f94210a33, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

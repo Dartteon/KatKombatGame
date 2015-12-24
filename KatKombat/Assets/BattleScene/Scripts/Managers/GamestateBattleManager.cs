@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Kommand = Kommands.KommandCode;
 
 public class GamestateBattleManager : MonoBehaviour {
 
-	public GameObject defeatButtonPrefab;
 	public GameObject stageBeginScreenPrefab;
 	public GameObject katAttackVesselPrefab;
 
@@ -26,6 +26,11 @@ public class GamestateBattleManager : MonoBehaviour {
 	private KatStatsInfo playerKatInfo, enemyKatInfo;
 
 	private GameObject controller;
+
+	[SerializeField]
+	private GameObject enemyAIModule;
+	[SerializeField]
+	private GameObject defeatButtonPrefab;
 
 	public Vector2 getSpawnLocation(bool isPlayer){
 		if (isPlayer) {
@@ -105,7 +110,7 @@ public class GamestateBattleManager : MonoBehaviour {
 	void spawnKats(){
 		try{
 			if (playerKatPrefab != null) {
-				playerKatInfo.setKommands(Kommands.KommandCode.ArcanePulse, Kommands.KommandCode.Charge, Kommands.KommandCode.Furball);
+//				playerKatInfo.setKommands(Kommands.KommandCode.ArcanePulse, Kommands.KommandCode.Charge, Kommands.KommandCode.Furball);
 //				playerKatInfo.setCommands("Earthquake", "LightningHelix", "TwinFang");
 
 				if (spawnLocations [0] != null) playerKat = Instantiate(playerKatPrefab, spawnLocations[0].transform.position, spawnLocations[0].transform.rotation) as GameObject;
@@ -129,7 +134,7 @@ public class GamestateBattleManager : MonoBehaviour {
 				enemyKat.GetComponent<StatsScript> ().setStats (enemyKatInfo);
 
 				//stub ***************************************************************************************************************
-				enemyKatInfo.setKommands(Kommand.ArcanePulse, Kommand.Earthquake, Kommand.Enrage);
+				enemyKatInfo.setKommands(Kommands.getRandomStrKommand (), Kommands.getRandomDexKommand (), Kommands.getRandomIntKommand ());
 				//stub ***************************************************************************************************************
 
 				attachAttackToKat(enemyKat, enemyKatInfo);
@@ -179,15 +184,25 @@ public class GamestateBattleManager : MonoBehaviour {
 			int currentKatIndex = 0;
 
 			handleVictoryEffects();
+
+			adventureManager.savePlayerFile ();
 		}
 	}
 	public void displayLoss(){
-		controller.SetActive (false);
+		if (hasGameStarted) {
+			controller.SetActive (false);
 //		Time.timeScale = 0;
-		Camera.main.GetComponent<BattleCameraFollowScript> ().showEnemyVictory (enemyKat);
+			Camera.main.GetComponent<BattleCameraFollowScript> ().showEnemyVictory (enemyKat);
 //		Debug.Log ("Lost");
-		Instantiate (defeatButtonPrefab);
+			Vector3 camPos = new Vector3 (Camera.main.transform.position.x, Camera.main.transform.position.y, -9.5f);
+			GameObject defBtn =	Instantiate (defeatButtonPrefab, camPos, transform.rotation) as GameObject;
+			GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>().endRound(false);
+			defBtn.transform.Find("RewardsInfo").Find("Text").GetComponent<Text>().text = GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>().calculateKashRewards() + " Kash";
+			adventureManager.savePlayerFile ();
+			hasGameStarted = false;
+		}
 	}
+
 
 	void attachAttackToKat(GameObject kat, KatStatsInfo katInfo){
 		List<Kommand> komList = katInfo.getActiveKommands ();

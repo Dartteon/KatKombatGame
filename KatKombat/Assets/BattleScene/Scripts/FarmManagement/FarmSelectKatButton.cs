@@ -31,7 +31,7 @@ public class FarmSelectKatButton : MonoBehaviour {
 		advMngr = adventureManager;
 		farmMngr = farmManager;
 		kat = eggObj;
-		Debug.Log (eggObj.ToString ());
+//		Debug.Log (eggObj.ToString ());
 		Sprite eggSprite = eggObj.transform.Find ("EggSprite").GetComponent<SpriteRenderer> ().sprite;
 		this.transform.Find ("FaceSprite").GetComponent<SpriteRenderer> ().sprite = eggSprite;
 		this.gameObject.SetActive (true);

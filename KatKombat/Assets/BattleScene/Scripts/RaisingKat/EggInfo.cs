@@ -15,6 +15,10 @@ public class EggInfo {
 		conceptionTime = System.DateTime.Now;
 	}
 
+	public EggType getEggType() {
+		return eggType;
+	}
+
 	public string eggToString(){
 		string information = "[EGG] ";
 		string katInformation = katInside.toString ();

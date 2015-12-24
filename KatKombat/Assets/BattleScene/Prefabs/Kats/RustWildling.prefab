@@ -721,9 +721,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   katID: 0
-  Str: 90
-  Dex: 75
-  Int: 35
+  Str: 75
+  Dex: 70
+  Int: 65
   col: {r: .533333361, g: .266666681, b: .200000018, a: 1}
   isBusy: 0
   statType: 0
@@ -1248,15 +1248,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Str
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: Dex
       value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 0}
+      propertyPath: Dex
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: Int
-      value: 35
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: defaultCommands

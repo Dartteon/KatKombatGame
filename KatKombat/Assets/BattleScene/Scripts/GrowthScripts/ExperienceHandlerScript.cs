@@ -7,7 +7,7 @@ public class ExperienceHandlerScript : MonoBehaviour {
 
 
 	public static int calculateExpGain(int level){
-		return 100;
+		return level * 3;
 		//return (int)(level * 2);
 	}
 

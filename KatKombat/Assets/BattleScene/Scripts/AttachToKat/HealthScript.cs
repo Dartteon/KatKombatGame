@@ -262,6 +262,8 @@ public class HealthScript : MonoBehaviour {
 	}
 
 	float GetEffectivenessMultiplier(int damagerType){
+		return 1.0f;
+		/*
 		if (damagerType == 0) { //incoming damage is STR
 			if (statType == 1)
 				return EFFECTIVE;
@@ -285,5 +287,6 @@ public class HealthScript : MonoBehaviour {
 				return NORMAL_EFFECTIVE;
 		} else
 			return NORMAL_EFFECTIVE;
+			*/
 	}
 }
