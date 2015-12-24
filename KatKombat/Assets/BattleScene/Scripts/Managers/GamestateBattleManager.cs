@@ -90,6 +90,7 @@ public class GamestateBattleManager : MonoBehaviour {
 
 		BattleCameraFollowScript camScript = Camera.main.GetComponent<BattleCameraFollowScript> ();
 
+	//	GameObject.Find ("TournamentManagerModule").GetComponent<TournamentManager> ().endRound (true);
 		camScript.showPlayerVictory ();
 
 		if (adventureManager.rewardKatWithExp (ExperienceHandlerScript.calculateExpGain(enemyKatLevel))) {
@@ -105,6 +106,7 @@ public class GamestateBattleManager : MonoBehaviour {
 	public void initialize(){
 		spawnMap ();
 		spawnKats ();
+		attachEnemyAI ();
 	}
 
 	void spawnKats(){
@@ -183,7 +185,7 @@ public class GamestateBattleManager : MonoBehaviour {
 
 			int currentKatIndex = 0;
 
-			handleVictoryEffects();
+//			handleVictoryEffects();
 
 			adventureManager.savePlayerFile ();
 		}
@@ -226,5 +228,13 @@ public class GamestateBattleManager : MonoBehaviour {
 				projectileLauncherScripts[i].SetInactive();
 			}
 		} 
+	}
+
+	void attachEnemyAI() {
+		GameObject enemyAI = Instantiate (enemyAIModule, enemyKat.transform.position, enemyKat.transform.rotation) as GameObject;
+		enemyAI.transform.parent = enemyKat.transform;
+		Debug.Log (enemyAI.ToString ());
+		enemyAI.GetComponent<EnemyKatAI> ().enemyKat = playerKat;
+		enemyAI.SetActive (true);
 	}
 }

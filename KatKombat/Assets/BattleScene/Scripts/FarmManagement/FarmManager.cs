@@ -82,7 +82,7 @@ public class FarmManager : MonoBehaviour {
 	public GameObject spawnKatInScene(KatStatsInfo info){
 		Vector2 randomPos = new Vector2 (Random.Range(0.0f, 2.0f), Random.Range(0.0f, 2.0f));
 		Quaternion randomRot = BaronVec.randomRotation ();
-		Debug.Log (randomRot.ToString ());
+	//	Debug.Log (randomRot.ToString ());
 		GameObject spawnedKat = Instantiate (findKatWithName (info.getBreed ()), randomPos, randomRot) as GameObject; 
 		spawnedKats.Add (spawnedKat);
 		//		Debug.Log(spawnedKat.ToString());

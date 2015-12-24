@@ -52,6 +52,7 @@ public class AdventureManager : MonoBehaviour {
 
 //		farmMngr = GameObject.Find ("FarmManagerModule").GetComponent<FarmManager> ();
 	}
+
 	public void initiateBattleWithKat(KatStatsInfo enemy){
 		//find past battle remnant and destroy
 		Destroy (GameObject.Find ("BattleInformationModule"));
@@ -121,6 +122,7 @@ public class AdventureManager : MonoBehaviour {
 		Debug.Log ("Handling New Game");
 		playerDataScript = new PlayerInformation ("Kat Tamer");
 		summonNewEgg ();
+		playerDataScript.addCurrency (100);
 		savePlayerFile ();
 		Application.LoadLevel (Application.loadedLevel);
 //		playerDataScript.addCurrency (50);
@@ -141,7 +143,7 @@ public class AdventureManager : MonoBehaviour {
 		katsInfo = playerDataScript.ownedKats;
 	}
 
-	void summonNewEgg(){
+	public void summonNewEgg(){
 		String newEggName = GameVariables.getRandomName();
 		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
 		KatStatsInfo newKat = new KatStatsInfo (newKatBreed, katPrefabs, newEggName);
@@ -182,7 +184,14 @@ public class AdventureManager : MonoBehaviour {
 		Time.timeScale = 1;
 		DontDestroyOnLoad (this);
 	}
+	public int getCurrencyAmount() {
+		return playerDataScript.playerCurrency;
+	}
 
+	public void reflectPlayerCurrency() {
+		string curr = "" + getCurrencyAmount ();
+		Camera.main.transform.Find ("MarketplaceButton").transform.Find ("KashText").transform.Find ("Text").GetComponent<Text> ().text = curr;
+	}
 
 	void Update () {
 		if (GameVariables.DEBUG_MODE == true) {
@@ -255,7 +264,7 @@ public class AdventureManager : MonoBehaviour {
 	public KatStatsInfo setEggToHatched(EggInfo egg){
 		KatStatsInfo baby = egg.getKat ();
 		eggs.Remove (egg);
-		katsInfo.Add (baby);
+//		katsInfo.Add (baby);
 		playerDataScript.addKatToInventory (baby);
 //		Debug.Log (katsInfo.Count);
 //		farmMngr.spawnKatInScene(baby);
@@ -277,5 +286,11 @@ public class AdventureManager : MonoBehaviour {
 
 	public void reloadScene() {
 		Application.LoadLevel (Application.loadedLevel);
+	}
+
+	public bool deductCurrency(int curr) {
+		if (playerDataScript.deductCurrency(curr)) {
+			return true;		
+		} else return false;
 	}
 }

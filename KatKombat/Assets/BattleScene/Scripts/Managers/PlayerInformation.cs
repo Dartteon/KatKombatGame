@@ -54,6 +54,13 @@ public class PlayerInformation{
 	public void addCurrency(int amount){
 		playerCurrency += amount;
 	}
+	public bool deductCurrency (int amount) {
+		if (playerCurrency >= amount) {
+			playerCurrency -= amount;
+			return true;
+		} else
+			return false;
+	}
 
 	public void UpdateDateTime(DateTime t) {
 //		Debug.Log ("Updating time : " + time_lastActive.ToString ());

@@ -7,7 +7,7 @@ public class ExperienceHandlerScript : MonoBehaviour {
 
 
 	public static int calculateExpGain(int level){
-		return level * 3;
+		return (int) (level * 0.8f) + 1;
 		//return (int)(level * 2);
 	}
 
@@ -27,17 +27,25 @@ public class ExperienceHandlerScript : MonoBehaviour {
 	public static int getLevel(int currentExp) {
 
 		int level = 1;
-		int expSum = BASE_EXP;
+		int expSum = 0;
 		
 		for (int i=1; i<100; i++) {
-			if (currentExp >= expSum){
+			if (currentExp > expSum){
 				//Debug.Log("Level " + i + " :" + ((int)expSum));
+				expSum += getExpNeededToLevelAt(level);
 				level++;
-				expSum = (int)(expSum*1.2f);
+				//expSum = (int)(expSum*1.2f);
 			}
 		}
 		return level;
 	}
+
+	public static int getExpNeededToLevelAt (int level) {
+		//return (int)((0.8f) * (Mathf.Pow (level, 3)));
+		//return (int) Mathf.Log10 (level);
+		return (int)((1.5f) * level);
+	}
+
 
 	public static int getExpAtLevel(int lvl) {
 		int currLevel = 1;
@@ -49,9 +57,21 @@ public class ExperienceHandlerScript : MonoBehaviour {
 		return exp;
 	}
 
+	public static void setKatToLevel(KatStatsInfo kat, int lvl) {
+		int currLevel = 1;
+//		Debug.Log ("settingLevel to " + lvl);
+		while (currLevel < lvl) {
+//			Debug.Log (currLevel);
+			kat.increaseExp(getExpNeededToLevelAt(currLevel));
+			currLevel++;
+		}
+	}
+
+	/*
 	public static int getExpNeededToLevelUp(int currExp) {
 		int currLvl = getLevel (currExp);
 		int nextLvlExp = getExpAtLevel(currLvl + 1);
 		return (nextLvlExp - currExp);
 	}
+	*/
 }

@@ -53,7 +53,8 @@ public class TournamentManager : MonoBehaviour {
 	}
 
 	private void setStatsOfEnemy (KatStatsInfo enemyKat) {
-		enemyKat.setLevel (getEnemyLevel());
+		ExperienceHandlerScript.setKatToLevel (enemyKat, getEnemyLevel ());
+	//	enemyKat.setLevel (getEnemyLevel());
 		setBirthStats (enemyKat);
 		setExtraStats (enemyKat);
 	}
@@ -67,9 +68,10 @@ public class TournamentManager : MonoBehaviour {
 	}
 
 	private int getEnemyLevel() {
+//		Debug.LogError ("Getting enemy level at type " + tournamentType);
 		if (tournamentType == 0) {
-			Debug.Log("Level " + difficulty + " * " + (currentStage+1));
-			return difficulty * currentStage + 1;
+//			Debug.Log("Level " + ((difficulty * 10) + currentStage + 1));
+			return ((difficulty-1) * 10) + currentStage + 1;
 		} else {
 			return ((difficulty - 1) * 10) + (currentStage * 2);
 		}
@@ -95,8 +97,8 @@ public class TournamentManager : MonoBehaviour {
 		if (currentStage == 1)
 			return 0;
 		if (tournamentType == 0) {
-			Debug.Log (difficulty + " " + currentStage);
-			return difficulty * currentStage;
+//			Debug.Log ("Kash gain: " + ((difficulty+1) * currentStage) + currentStage);
+			return (difficulty+1) * currentStage;
 		} else {
 			return currentStage * 3;
 		}

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ModuleSpawner : MonoBehaviour {
@@ -26,6 +27,9 @@ public class ModuleSpawner : MonoBehaviour {
 		farmManagerModule.GetComponent<FarmManager> ().spawnPlayerKats ();
 		farmManagerModule.GetComponent<FarmManager> ().setKatButtons ();
 		farmManagerModule.GetComponent<FarmManager> ().setTournamentScreen ();
+
+		adventureModule.GetComponent<AdventureManager> ().reflectPlayerCurrency ();
+	//	Camera.main.transform.Find("MarketplaceButton").transform.Find("KashBox").transform.Find("Text").GetComponent<Text>().text = 
 	}
 
 	void createAdventureManagerModule() {
@@ -34,7 +38,8 @@ public class ModuleSpawner : MonoBehaviour {
 			adventureModule = Instantiate(adventureModulePrefab) as GameObject;
 			adventureModule.gameObject.name = "AdventureModule";
 		}
-		
+//		Camera.main.transform.Find ("MarketplaceButton").transform.Find ("KashBox").transform.Find ("TextCanvas").transform.Find ("Text").GetComponent<Text> ().text = 
+//			adventureModule.GetComponent<AdventureManager> ().getCurrencyAmount ().ToString();
 //		adventureModule.GetComponent<AdventureManager> ().initialize ();
 	}
 

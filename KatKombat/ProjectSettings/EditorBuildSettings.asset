@@ -6,10 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/HomeScene.unity
+  - enabled: 0
     path: Assets/KatSelect.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/BattleScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/PvpBattleScene.unity
   - enabled: 0
     path: Assets/KatSelect.unity

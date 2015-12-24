@@ -149,7 +149,7 @@ public class KatStatsInfo {
 				breedInt = katStatsScript.getInt();
 				return true;
 			}
-			Debug.Log(breedStr + " " + breedDex + " " + breedInt);
+//			Debug.Log(breedStr + " " + breedDex + " " + breedInt);
 		}
 		return false;
 	}
@@ -200,9 +200,9 @@ public class KatStatsInfo {
 	public void increaseExp(int exp){
 		int oldExp = currentExp;
 		currentExp += exp;
-		Debug.Log ("Increasing EXP for " + katBreed + " : " + exp);
-		Debug.Log ("Kat is level " + getLevel ());
-		Debug.Log("EXP needed for next level: " + ExperienceHandlerScript.getExpNeededToLevelUp(currentExp));
+//		Debug.Log ("Increasing EXP for " + katBreed + " : " + exp);
+//		Debug.Log ("Kat is level " + getLevel ());
+//		Debug.Log("EXP needed for next level: " + ExperienceHandlerScript.getExpNeededToLevelUp(currentExp));
 
 	}
 
