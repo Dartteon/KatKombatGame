@@ -12,10 +12,19 @@ public class KatBreed : MonoBehaviour {
 		Triphire,
 		Trisard,
 		Trimerald,
+		Voltyr,
+		Oceanyr,
+		Lavyr,
+		Junglyr,
+		Pyrozard,
+		Cyrozard,
+		Wispzard,
+		Rubyzard,
 	};
 
 	public static Breed getRandomBreed() {
-		Breed[] breeds = {Breed.Dustfang, Breed.Wildfang, Breed.Roughfang, Breed.Triphire, Breed.Trisard, Breed.Trimerald};
+		Breed[] breeds = {Breed.Dustfang, Breed.Wildfang, Breed.Roughfang, Breed.Triphire, Breed.Trisard, Breed.Trimerald, 
+			Breed.Voltyr, Breed.Oceanyr, Breed.Lavyr, Breed.Junglyr, Breed.Pyrozard, Breed.Cyrozard, Breed.Wildfang, Breed.Rubyzard};
 		return breeds[Random.Range (0, breeds.Length)];
 	}
 
