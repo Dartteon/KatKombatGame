@@ -179,7 +179,7 @@ public class FarmCameraFollowScript : MonoBehaviour {
 
 	string getKatDisplayInfo(KatStatsInfo katInfo){
 		string level = "[LV." + katInfo.getLevel () + "] ";
-		string breed = katInfo.getBreed ();
+		string breed = katInfo.breed.ToString();
 		return level + breed;
 	}
 

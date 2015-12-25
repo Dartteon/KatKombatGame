@@ -13,6 +13,7 @@ public class KatDataCard : MonoBehaviour {
 	private GameObject katLocation;
 	private KatStatsInfo stats;
 	private GameObject hatchButton;
+	private Text hpText;
 
 	public GameObject objectBeingFollowed { get; private set; }
 
@@ -33,12 +34,13 @@ public class KatDataCard : MonoBehaviour {
 		currHealth = this.transform.Find ("CurrentHealthCanvas").transform.Find("Bar").GetComponent<Image> ();
 		exp = this.transform.Find ("ExpCanvas").transform.Find("Bar").GetComponent<Image> ();
 		hatchButton = this.transform.Find ("HatchButton").gameObject;
+		hpText = this.transform.Find ("HPText").transform.Find ("Text").GetComponent<Text> ();
 		
 		//		Debug.Log (katName.ToString () + katBreed.ToString () + katSTR.ToString () + katDEX.ToString () + katINT.ToString ());
 	}
 
 	public void AttachKat(KatStatsInfo katInfo, GameObject katObj) {
-		Debug.Log ("Attaching Kat to DataCard " + katInfo.toString ());
+//		Debug.Log ("Attaching Kat to DataCard " + katInfo.toString ());
 		stats = katInfo;
 //		InstantiateKatImage (katObj);
 		reflectNameAndBreedOfKat ();
@@ -52,10 +54,11 @@ public class KatDataCard : MonoBehaviour {
 
 	public void AttachEgg (EggInfo eggInfo, GameObject eggObj) {
 		katName.text = "Egg";
-		katBreed.text = "";
-		katSTR.text = "???";
-		katDEX.text = "???";
-		katINT.text = "???";
+		katBreed.text = "Ready to hatch!";
+		katSTR.text = "??";
+		katDEX.text = "??";
+		katINT.text = "??";
+		hpText.text = "???";
 		currHealth.fillAmount = 1.0f;
 		hatchButton.SetActive (true);
 		objectBeingFollowed = eggObj;
@@ -93,7 +96,7 @@ public class KatDataCard : MonoBehaviour {
 	void reflectNameAndBreedOfKat() {
 //		Debug.Log (katName.ToString ());
 		katName.text = stats.getName ();
-		katBreed.text = "Lv." + stats.getLevel() + "   " + stats.getBreed ();
+		katBreed.text = "Lv." + stats.getLevel() + "   " + stats.breed.ToString ();
 	}
 
 	void reflectStatsOfKat() {
@@ -110,6 +113,7 @@ public class KatDataCard : MonoBehaviour {
 	}
 
 	void reflectHealthAndXP() {
+		/*
 		stats.setCurrentHP (35);
 		float currHP = (float)stats.currentHP;
 		float maxHP = (float) stats.getMaxHP ();
@@ -117,5 +121,8 @@ public class KatDataCard : MonoBehaviour {
 //		Debug.Log (currHP + " over " + maxHP);
 		float hpRatio = currHP / maxHP;
 		currHealth.fillAmount = hpRatio;
+		*/
+		hpText.text = stats.getMaxHP ().ToString();
+		currHealth.fillAmount = 1.0f;
 	}
 }

@@ -321,7 +321,8 @@ public class Manager : MonoBehaviour {
 	}
 
 	void setEnemyProjectiles(int i){
-		string[] commandNames = spawnedKats[i].GetComponent<StatsScript>().defaultCommands.Split(null);
+		string[] commandNames = {"stub", "stub", "stub"};
+//		string[] commandNames = spawnedKats[i].GetComponent<StatsScript>().defaultCommands.Split(null);
 //		Debug.Log (commandNames[0] + commandNames[1] + commandNames[2]);
 		int[] atkIndexesArray = new int[3];
 

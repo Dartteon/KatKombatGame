@@ -17,7 +17,7 @@ public class AdventureManager : MonoBehaviour {
 	private int currentFightingKatIndex = 0;
 	private GameObject spawnedBattleInfoModule;
 	private string lastLoadedSceneName;
-	public GameObject[] katPrefabs;
+	private GameObject[] katPrefabs;
 
 	private FarmManager farmMngr;
 
@@ -25,8 +25,11 @@ public class AdventureManager : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject eggPrefabVessel;
+	[SerializeField]
+	private GameObject katPrefabVessel;
 
 	public void initialize(){
+		katPrefabs = katPrefabVessel.GetComponent<KatPrefabsVesselScript> ().katPrefabs;
 //		loadPlayerFile ();
 	}
 	public void attempToLoadFile() {
@@ -46,7 +49,7 @@ public class AdventureManager : MonoBehaviour {
 		Debug.Log ("[AdventureManager Spawned Enemy] " + enemy.toString ());
 		battleInfoScript.setKats (playrKat, enemy);
 		battleInfoScript.setMap (getCurrentMap ());
-		battleInfoScript.setKatPrefabs(katPrefabs);
+		battleInfoScript.setKatPrefabVessel(katPrefabVessel);
 		spawnedBattleInfoModule = battleInfo;
 		Application.LoadLevel (battleSceneName);
 
@@ -64,7 +67,7 @@ public class AdventureManager : MonoBehaviour {
 		Debug.Log ("[AdventureManager Spawned Enemy] " + enemy.toString ());
 		battleInfoScript.setKats (katsInfo [currentFightingKatIndex], enemy);
 		battleInfoScript.setMap (getCurrentMap ());
-		battleInfoScript.setKatPrefabs(katPrefabs);
+		battleInfoScript.setKatPrefabVessel(katPrefabVessel);
 		spawnedBattleInfoModule = battleInfo;
 		Application.LoadLevel (battleSceneName);
 		
@@ -85,8 +88,9 @@ public class AdventureManager : MonoBehaviour {
 
 	KatStatsInfo getNewEnemy(){
 		//stub
-		int randomEnemyIndex = UnityEngine.Random.Range (0, katPrefabs.Length);
-		KatStatsInfo enemy = new KatStatsInfo (katPrefabs[randomEnemyIndex].name, katPrefabs, "EnemyName");
+//		int randomEnemyIndex = UnityEngine.Random.Range (0, katPrefabs.Length);
+//		KatStatsInfo enemy = new KatStatsInfo (katPrefabs[randomEnemyIndex].name, katPrefabs, "EnemyName");
+		KatStatsInfo enemy = new KatStatsInfo (KatBreed.getRandomBreed(), katPrefabVessel, "EnemyName");
 		return enemy;
 	}
 
@@ -117,7 +121,12 @@ public class AdventureManager : MonoBehaviour {
 			}
 		}
 	}
-
+	public bool hasSlotForEggOrKat() {
+		if (eggs.Count + katsInfo.Count <= 6)
+			return true;
+		else
+			return false;
+	}
 	void handleNewGame(){
 		Debug.Log ("Handling New Game");
 		playerDataScript = new PlayerInformation ("Kat Tamer");
@@ -137,16 +146,16 @@ public class AdventureManager : MonoBehaviour {
 
 	void summonNewKat(){
 		String newKatName = GameVariables.getRandomName();
-		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
-		KatStatsInfo newKat = new KatStatsInfo (newKatBreed, katPrefabs, newKatName);
+//		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
+		KatStatsInfo newKat = new KatStatsInfo (KatBreed.getRandomBreed(), katPrefabVessel, newKatName);
 		playerDataScript.addKatToInventory (newKat);
 		katsInfo = playerDataScript.ownedKats;
 	}
 
 	public void summonNewEgg(){
 		String newEggName = GameVariables.getRandomName();
-		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
-		KatStatsInfo newKat = new KatStatsInfo (newKatBreed, katPrefabs, newEggName);
+//		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
+		KatStatsInfo newKat = new KatStatsInfo (KatBreed.getRandomBreed(), katPrefabVessel, newEggName);
 		EggInfo newEgg = EggInfo.getNewEgg (newKat, KatBreed.getRandomEggColor());
 		playerDataScript.addEggToInventory (newEgg);
 		newEgg.getKat ().setKommands (Kommands.getRandomStrKommand (), Kommands.getRandomDexKommand (), Kommands.getRandomIntKommand ());
@@ -268,7 +277,7 @@ public class AdventureManager : MonoBehaviour {
 		playerDataScript.addKatToInventory (baby);
 //		Debug.Log (katsInfo.Count);
 //		farmMngr.spawnKatInScene(baby);
-		Debug.Log ("Egg set to hatch");
+//		Debug.Log ("Egg set to hatch");
 		savePlayerFile ();
 		return baby;
 	}

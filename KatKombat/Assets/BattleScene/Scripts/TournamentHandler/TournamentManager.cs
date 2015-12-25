@@ -46,8 +46,8 @@ public class TournamentManager : MonoBehaviour {
 	}
 
 	private KatStatsInfo getEnemy() {
-		string enemyBreed = katPrefabs [Random.Range (0, katPrefabs.Length)].name;
-		currentEnemy = new KatStatsInfo (enemyBreed, katPrefabs, GameVariables.getRandomName ());
+//		string enemyBreed = katPrefabs [Random.Range (0, katPrefabs.Length)].name;
+		currentEnemy = new KatStatsInfo (KatBreed.getRandomBreed(), katPrefabsVessel, GameVariables.getRandomName ());
 		setStatsOfEnemy (currentEnemy);
 		return currentEnemy;
 	}
@@ -71,7 +71,9 @@ public class TournamentManager : MonoBehaviour {
 //		Debug.LogError ("Getting enemy level at type " + tournamentType);
 		if (tournamentType == 0) {
 //			Debug.Log("Level " + ((difficulty * 10) + currentStage + 1));
-			return ((difficulty-1) * 10) + currentStage + 1;
+			int lvl = Mathf.Clamp(((difficulty) * 10), 0, 200) + (int)(currentStage*1.5) + 1;
+//			Debug.LogError("Enemy Level : " + lvl);
+			return lvl;
 		} else {
 			return ((difficulty - 1) * 10) + (currentStage * 2);
 		}

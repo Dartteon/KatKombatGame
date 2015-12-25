@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CommenceTournamentButton : MonoBehaviour, Tappable {
@@ -12,13 +13,19 @@ public class CommenceTournamentButton : MonoBehaviour, Tappable {
 
 
 	void OnMouseDown() {
-		isClicked = true;
-		clickTime = Time.time;
+		if (!isClicked) {
+			this.transform.Find("TextCanvas").transform.Find("Text").GetComponent<Text>().text = "Get Ready!";
+			isClicked = true;
+			clickTime = Time.time;
+		}
 	}
 	
 	public void handleTap(Vector2 pos1, Vector2 pos2) {
-		isClicked = true;
-		clickTime = Time.time;
+		if (!isClicked) {
+			this.transform.Find("TextCanvas").transform.Find("Text").GetComponent<Text>().text = "Get Ready!";
+			isClicked = true;
+			clickTime = Time.time;
+		}
 	}
 
 	void Update() {

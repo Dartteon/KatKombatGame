@@ -40,7 +40,7 @@ public class ModuleSpawner : MonoBehaviour {
 		}
 //		Camera.main.transform.Find ("MarketplaceButton").transform.Find ("KashBox").transform.Find ("TextCanvas").transform.Find ("Text").GetComponent<Text> ().text = 
 //			adventureModule.GetComponent<AdventureManager> ().getCurrencyAmount ().ToString();
-//		adventureModule.GetComponent<AdventureManager> ().initialize ();
+		adventureModule.GetComponent<AdventureManager> ().initialize ();
 	}
 
 	void createFarmModule() {

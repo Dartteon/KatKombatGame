@@ -233,7 +233,7 @@ public class GamestateBattleManager : MonoBehaviour {
 	void attachEnemyAI() {
 		GameObject enemyAI = Instantiate (enemyAIModule, enemyKat.transform.position, enemyKat.transform.rotation) as GameObject;
 		enemyAI.transform.parent = enemyKat.transform;
-		Debug.Log (enemyAI.ToString ());
+//		Debug.Log (enemyAI.ToString ());
 		enemyAI.GetComponent<EnemyKatAI> ().enemyKat = playerKat;
 		enemyAI.SetActive (true);
 	}

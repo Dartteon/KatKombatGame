@@ -10,25 +10,29 @@ public class StatsScript : MonoBehaviour {
 	public int katID;
 	public int Str, Dex, Int;
 	public Color col;
-	public bool isBusy;
+	public bool isBusy = false;
 	public int statType;
 	public int level = 100;
-	public string defaultCommands = "Furball MightyPaw TwinFang";
+//	public string defaultCommands = "Furball MightyPaw TwinFang";
 	private List<Kommand> kommands;
 	public KatStatsInfo katStatInfo { get; private set; }
 
 
 	public char statusEffect = 'n';
 	private readonly float MAXLEVEL = 100;
+
+	[SerializeField]
+	public KatBreed.Breed breed;
+
 	//n(nil), f(freeze), b(burn), s(stun), x(bleed), p(poison)
 
 	// Use this for initialization
-	void Start () {
-		isBusy = false;
-		transform.FindChild ("TargetRing").gameObject.GetComponent<SpriteRenderer> ().color = col;
-		defaultCommands = "Furball MightyPaw TwinFang";
+//	void Start () {
+//		isBusy = false;
+//		transform.FindChild ("TargetRing").gameObject.GetComponent<SpriteRenderer> ().color = col;
+//		defaultCommands = "Furball MightyPaw TwinFang";
 	//	setStatsToLevel (level);
-	}
+//	}
 
 	public void setKatStatsInfo(KatStatsInfo info){
 		katStatInfo = info;

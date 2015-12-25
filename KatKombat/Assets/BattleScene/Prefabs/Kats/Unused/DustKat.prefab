@@ -821,8 +821,8 @@ MonoBehaviour:
   isBusy: 0
   statType: 1
   level: 100
-  defaultCommands: Furball MightyPaw TwinFang
   statusEffect: 110
+  breed: 0
 --- !u!114 &11475754
 MonoBehaviour:
   m_ObjectHideFlags: 1

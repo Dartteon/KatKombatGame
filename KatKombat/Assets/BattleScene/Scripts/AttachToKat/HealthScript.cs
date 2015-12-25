@@ -50,7 +50,10 @@ public class HealthScript : MonoBehaviour {
 
 	//	healthBar = transform.FindChild ("CanvasHealthBar").gameObject.transform.FindChild ("HealthBar").gameObject.GetComponentInChildren<Image> ();
 		//transform.FindChild ("CanvasHealthBar").gameObject.GetComponentInChildren<Image> ();
-		health = MAX_LEVEL_HP + (int)(transform.GetComponent<StatsScript> ().Str * 0.7f + transform.GetComponent<StatsScript> ().level);
+//		health = MAX_LEVEL_HP + (int)(transform.GetComponent<StatsScript> ().Str * 0.7f + transform.GetComponent<StatsScript> ().level);
+		StatsScript katStats = transform.GetComponent<StatsScript> ();
+		health = KatStatsInfo.getMaxHP (katStats.Str, katStats.level);
+//		Debug.Log ("Health: " + health);
 //		Debug.Log (transform.ToString () + " has " + health + " HP");
 		statType = transform.GetComponent<StatsScript> ().statType;
 		maxHealth = health;

@@ -12,9 +12,9 @@ public class KatStatsInfo {
 	//This class is the main information carrier for Kats the player owns.
 
 	//STRICTLY PERMANENT variables. Not changeable once the Kat is born.
-	private Breed breed;
+	public Breed breed { get; private set;}
 	private int variantNumber;
-	private string katBreed;
+//	private string katBreed;
 	private string katName;
 	private int breedStr, breedDex, breedInt;
 	private readonly int BASE_EXP = ExperienceHandlerScript.BASE_EXP;
@@ -68,12 +68,14 @@ public class KatStatsInfo {
 		}
 	}
 	*/
-	public KatStatsInfo(string breed, GameObject[] katPrefabs, string name){
+//	public KatStatsInfo(string breed, GameObject[] katPrefabs, string name){
+	public KatStatsInfo(KatBreed.Breed kBreed, GameObject katPrefabVessel, string name){
 		katName = name;
 		currentHP = 1;
 		currentExp = 0;
 		randomizeBirthStats ();
-		katBreed = breed;
+//		katBreed = breed;
+		breed = kBreed;
 		hasHatched = true;
 		isFertile = true;
 
@@ -81,17 +83,17 @@ public class KatStatsInfo {
 		activeKommandList.Add (Kommand.None);
 		activeKommandList.Add (Kommand.None);
 
-		if (initializeStats (katBreed, katPrefabs)) {
+		if (initializeStats (kBreed, katPrefabVessel)) {
 			Debug.Log("[Kat successfully initialized] " + this.toString());
 		} else {
 			//	Debug.Log(katBreed + " not found. Attach Prefab to katPrefabVessel!");
-			Debug.LogError(katBreed + " not found. Attach Prefab to katPrefabVessel!");
+			Debug.LogError(kBreed.ToString() + " not found. Attach Prefab to katPrefabVessel!");
 		}
 	}
 
 
-	public static KatStatsInfo getEgg(string breed, GameObject[] katPrefabs, string name){
-		KatStatsInfo newEgg = new KatStatsInfo (breed, katPrefabs, name);
+	public static KatStatsInfo getEgg(KatBreed.Breed kBreed, GameObject katPrefabVessel, string name){
+		KatStatsInfo newEgg = new KatStatsInfo (kBreed, katPrefabVessel, name);
 		newEgg.setKatAsEgg ();
 		return newEgg;
 	}
@@ -108,9 +110,9 @@ public class KatStatsInfo {
 		return hasHatched;
 	}
 
-	public string getBreed(){
-		return katBreed;
-	}
+//	public string getBreed(){
+//		return katBreed;
+//	}
 
 	private void randomizeBirthStats(){
 		this.birthStr = UnityEngine.Random.Range (0, 32);
@@ -139,12 +141,24 @@ public class KatStatsInfo {
 		return activeKommandList;
 	}
 
-	public bool initializeStats(string katBreedName, GameObject[] katPrefabs){
-		katBreed = katBreedName;
+	public bool initializeStats(KatBreed.Breed kBreed, GameObject katPrefabVessel){
+		breed = kBreed;
+		GameObject kat = katPrefabVessel.GetComponent<KatPrefabsVesselScript> ().getKatOfBreed (kBreed);
+		if (kat != null) {
+			StatsScript statsScript = kat.GetComponent<StatsScript> ();
+			breedStr = statsScript.getStr ();
+			breedDex = statsScript.getDex ();
+			breedInt = statsScript.getInt ();
+			return true;
+		} else
+			return false;
+		/*
 		for (int i=0; i<katPrefabs.Length; i++) {
-			if (katBreed.Equals(katPrefabs[i].name.Split(' ')[0])){
+	//		if (katBreed.Equals(katPrefabs[i].name.Split(' ')[0])){
+			if (kBreed.Equals(katPrefabs[i].GetComponent<StatsScript>().breed)){
 				StatsScript katStatsScript = katPrefabs[i].GetComponent<StatsScript>();
 				breedStr = katStatsScript.getStr();
+//				Debug.Log("Breed Str: " + breedStr);
 				breedDex = katStatsScript.getDex();
 				breedInt = katStatsScript.getInt();
 				return true;
@@ -152,6 +166,7 @@ public class KatStatsInfo {
 //			Debug.Log(breedStr + " " + breedDex + " " + breedInt);
 		}
 		return false;
+		*/
 	}
 
 	public int getTotalStr(){
@@ -244,14 +259,21 @@ public class KatStatsInfo {
 	}
 
 	public int getMaxHP() {
-		return getTotalStr () + getLevel () + 10;
+	//	Debug.Log ("Max HP = " + (getTotalStr () + getLevel () + 50));
+		return getMaxHP (getTotalStr (), getLevel ());
+	//	return getTotalStr () + getLevel () + 10;
+	}
+	public static int getMaxHP(int str, int level) {
+		return (str * 2) + 70;
 	}
 
 	public string toString(){
 		int effectiveLevel = getLevel () + levelStatOffset;
 	//	Debug.Log (getLevel ());
 //		Debug.Log ((int)((breedStr + birthStr + extraStr) * (((float)effectiveLevel)/ MAX_LEVEL)) + STAT_OFFSET);
-		return (katName + " : " + katBreed + " [Level: " + getLevel() + "] [STR: " + getTotalStr () + "]" + " [DEX: " + getTotalDex () + "]" + " [INT: " + getTotalInt () + "]" + " [EXP:" + currentExp + "]");
+//		return (katName + " : " + katBreed + " BreedStats: [" + breedStr + "][" + breedDex + "][" + breedInt + "]");
+	
+		return (katName + " : " + breed.ToString() + " [Level: " + getLevel() + "] [STR: " + getTotalStr () + "]" + " [DEX: " + getTotalDex () + "]" + " [INT: " + getTotalInt () + "]" + " [EXP:" + currentExp + "]");
 	}
 
 	public void setHealth (int hp) {

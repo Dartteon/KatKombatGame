@@ -6,11 +6,18 @@ public class KatBreed : MonoBehaviour {
 	public enum Breed
 	{
 		None,
-		Greye,
-		Wildling,
-		Magi,
-		Rai,
+		Dustfang,
+		Wildfang,
+		Roughfang,
+		Triphire,
+		Trisard,
+		Trimerald,
 	};
+
+	public static Breed getRandomBreed() {
+		Breed[] breeds = {Breed.Dustfang, Breed.Wildfang, Breed.Roughfang, Breed.Triphire, Breed.Trisard, Breed.Trimerald};
+		return breeds[Random.Range (0, breeds.Length)];
+	}
 
 	public enum BreedVariant
 	{

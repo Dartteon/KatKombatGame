@@ -83,7 +83,7 @@ public class FarmManager : MonoBehaviour {
 		Vector2 randomPos = new Vector2 (Random.Range(0.0f, 2.0f), Random.Range(0.0f, 2.0f));
 		Quaternion randomRot = BaronVec.randomRotation ();
 	//	Debug.Log (randomRot.ToString ());
-		GameObject spawnedKat = Instantiate (findKatWithName (info.getBreed ()), randomPos, randomRot) as GameObject; 
+		GameObject spawnedKat = Instantiate (findKatWithName (info.breed), randomPos, randomRot) as GameObject; 
 		spawnedKats.Add (spawnedKat);
 		//		Debug.Log(spawnedKat.ToString());
 		StatsScript katStats = spawnedKat.GetComponent<StatsScript> ();
@@ -96,12 +96,12 @@ public class FarmManager : MonoBehaviour {
 //		clickEnabler.transform.parent = spawnedKat.transform;
 		spawnedKat.GetComponent<StatsScript> ().setKatStatsInfo (info);
 		spawnedKat.tag = "Player1";
-		Debug.Log ("Spawning kat " + info.toString ());
+//		Debug.Log ("Spawning kat " + info.toString ());
 		return spawnedKat;
 //		Debug.Log ("new kat added to scene, total kats : " + katsInfo.Count);
 	}
 	public GameObject spawnKatInScene(KatStatsInfo info, Vector2 loc){
-		GameObject spawnedKat = Instantiate (findKatWithName (info.getBreed ()), loc, transform.rotation) as GameObject; 
+		GameObject spawnedKat = Instantiate (findKatWithName (info.breed), loc, transform.rotation) as GameObject; 
 		spawnedKats.Add (spawnedKat);
 		//		Debug.Log(spawnedKat.ToString());
 		StatsScript katStats = spawnedKat.GetComponent<StatsScript> ();
@@ -119,14 +119,16 @@ public class FarmManager : MonoBehaviour {
 		//		Debug.Log ("new kat added to scene, total kats : " + katsInfo.Count);
 	}
 	
-	GameObject findKatWithName(string katName){
+	GameObject findKatWithName(KatBreed.Breed breed){
 		katPrefabs = katPrefabVessel.GetComponent<KatPrefabsVesselScript> ().katPrefabs;
 		for (int i=0; i<katPrefabs.Length; i++){
-			if (katPrefabs[i].name.Equals(katName)){
+		//	if (katPrefabs[i].name.Equals(katName)){
+		//		return katPrefabs[i];
+		//	}
+			if (katPrefabs[i].GetComponent<StatsScript>().breed == breed)
 				return katPrefabs[i];
-			}
 		}
-		Debug.Log (katPrefabs.Length);
+//		Debug.Log (katPrefabs.Length);
 		return katPrefabs [0];
 	}
 	

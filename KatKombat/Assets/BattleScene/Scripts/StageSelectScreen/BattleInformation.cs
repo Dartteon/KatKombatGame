@@ -5,19 +5,15 @@ using UnityEngine.UI;
 public class BattleInformation : MonoBehaviour {
 	public KatStatsInfo playerKat, enemyKat;
 	public string mapName;
-	private GameObject[] katPrefabs;
+	public GameObject katPrefabVessel { get; private set; }
 
 	public void setKats(KatStatsInfo player_kat, KatStatsInfo enemy_kat){
 		playerKat = player_kat;
 		enemyKat = enemy_kat;
 	}
 
-	public void setKatPrefabs(GameObject[] prefabs){
-		katPrefabs = prefabs;
-	}
-
-	public GameObject[] getKatPrefabs(){
-		return katPrefabs;
+	public void setKatPrefabVessel(GameObject prefabVessel){
+		katPrefabVessel = prefabVessel;
 	}
 
 	public void setMap(string map_name){

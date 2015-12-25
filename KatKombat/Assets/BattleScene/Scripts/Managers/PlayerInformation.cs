@@ -43,12 +43,12 @@ public class PlayerInformation{
 
 	public void addKatToInventory(KatStatsInfo newKat){
 		ownedKats.Add (newKat);
-		Debug.Log ("Added to Kat Inventory: [" + ownedKats.Count + "]");
+//		Debug.Log ("Added to Kat Inventory: [" + ownedKats.Count + "]");
 	}
 
 	public void addEggToInventory(EggInfo newEgg){
 		ownedEggs.Add (newEgg);
-		Debug.Log ("Added to Egg Inventory: [" + newEgg.eggToString () + "]");
+//		Debug.Log ("Added to Egg Inventory: [" + newEgg.eggToString () + "]");
 	}
 
 	public void addCurrency(int amount){

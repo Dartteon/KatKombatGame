@@ -13,7 +13,7 @@ public class BattleManager : MonoBehaviour {
 	private List<GameObject> playerKats = new List<GameObject>();
 	private List<GameObject> enemyKats = new List<GameObject>();
 	private List<GameObject> AIModules = new List<GameObject> ();
-	private GameObject[] katPrefabs;
+	private GameObject katPrefabVessel;
 
 	public GameObject controllerPrefab;
 	public GameObject[] mapPrefabs;
@@ -82,7 +82,7 @@ public class BattleManager : MonoBehaviour {
 			KatStatsInfo playerKat = battleInfoScript.playerKat;
 			KatStatsInfo enemykat = battleInfoScript.enemyKat;
 			string mapName = battleInfoScript.mapName;
-			katPrefabs = battleInfoScript.getKatPrefabs();
+			katPrefabVessel = battleInfoScript.katPrefabVessel;
 
 			initialize(playerKat, enemykat, mapIndex);
 		} else {
@@ -91,18 +91,23 @@ public class BattleManager : MonoBehaviour {
 	}
 
 	GameObject searchKat(KatStatsInfo katInfo){
-		string katBreed = katInfo.getBreed ();
+//		string katBreed = katInfo.getBreed ();
+		KatBreed.Breed breed = katInfo.breed;
 
+		return katPrefabVessel.GetComponent<KatPrefabsVesselScript> ().getKatOfBreed (breed);
+		/*
 		for (int i=0; i<katPrefabs.Length; i++){
-			if (katBreed.Equals(katPrefabs[i].name)){
+			if (breed.Equals(katPrefabs[i].GetComponent<StatsScript>().breed)){
 				return katPrefabs[i];
 			}
 		}
-
+*/
+//		GameObject enemy = katPrefabVessel.GetCo
 		//If kat not found:
-		return katPrefabs [0];
+//		return katPrefabs [0];
 	}
 
+	/*
 	GameObject findKatWithName(string katName){
 		for (int i=0; i<katPrefabs.Length; i++){
 			if (katPrefabs[i].name.Equals(katName)){
@@ -111,4 +116,5 @@ public class BattleManager : MonoBehaviour {
 		}
 		return katPrefabs [0];
 	}
+	*/
 }
