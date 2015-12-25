@@ -29,18 +29,19 @@ public class ModuleSpawner : MonoBehaviour {
 		farmManagerModule.GetComponent<FarmManager> ().setTournamentScreen ();
 
 		adventureModule.GetComponent<AdventureManager> ().reflectPlayerCurrency ();
+		adventureModule.GetComponent<AdventureManager> ().initialize ();
 	//	Camera.main.transform.Find("MarketplaceButton").transform.Find("KashBox").transform.Find("Text").GetComponent<Text>().text = 
 	}
 
 	void createAdventureManagerModule() {
 		adventureModule = GameObject.Find ("AdventureModule");
 		if (adventureModule == null) {
+//			Debug.Log("First time opening");
 			adventureModule = Instantiate(adventureModulePrefab) as GameObject;
 			adventureModule.gameObject.name = "AdventureModule";
 		}
 //		Camera.main.transform.Find ("MarketplaceButton").transform.Find ("KashBox").transform.Find ("TextCanvas").transform.Find ("Text").GetComponent<Text> ().text = 
 //			adventureModule.GetComponent<AdventureManager> ().getCurrencyAmount ().ToString();
-		adventureModule.GetComponent<AdventureManager> ().initialize ();
 	}
 
 	void createFarmModule() {

@@ -54,13 +54,14 @@ public class MTControllerJoystick : MonoBehaviour, Tappable {
 
 	void turnOffActivate(){
 		isActivated = false;
-		stickRenderer.sortingOrder = -2;
-		joystickCentre.SetActive (false);
+		joystickCentre.transform.localPosition = joystickSource.transform.localPosition;
+//		stickRenderer.sortingOrder = -2;
+//		joystickCentre.SetActive (false);
 	}
 	void turnOnActivate(){
 		isActivated = true;
-		lastActivatedTime = Time.time;
-		joystickCentre.SetActive (true);
+//		lastActivatedTime = Time.time;
+//		joystickCentre.SetActive (true);
 	}
 
 	void registerTouch(){

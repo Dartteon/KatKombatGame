@@ -29,7 +29,8 @@ public class AdventureManager : MonoBehaviour {
 	private GameObject katPrefabVessel;
 
 	public void initialize(){
-		katPrefabs = katPrefabVessel.GetComponent<KatPrefabsVesselScript> ().katPrefabs;
+		katsInfo = playerDataScript.ownedKats;
+		eggs = playerDataScript.ownedEggs;
 //		loadPlayerFile ();
 	}
 	public void attempToLoadFile() {
@@ -128,11 +129,11 @@ public class AdventureManager : MonoBehaviour {
 			return false;
 	}
 	void handleNewGame(){
-		Debug.Log ("Handling New Game");
+//		Debug.Log ("Handling New Game");
 		playerDataScript = new PlayerInformation ("Kat Tamer");
-		summonNewEgg ();
 		playerDataScript.addCurrency (100);
-		savePlayerFile ();
+		summonNewEgg ();
+//		savePlayerFile ();
 		Application.LoadLevel (Application.loadedLevel);
 //		playerDataScript.addCurrency (50);
 //		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
@@ -160,7 +161,7 @@ public class AdventureManager : MonoBehaviour {
 		playerDataScript.addEggToInventory (newEgg);
 		newEgg.getKat ().setKommands (Kommands.getRandomStrKommand (), Kommands.getRandomDexKommand (), Kommands.getRandomIntKommand ());
 //		GameObject eggObj = Instantiate (eggPrefabVessel.GetComponent<EggPrefabVessel> ().getEgg (newEgg));
-		Debug.Log (farmMngr.ToString ());
+//		Debug.Log (farmMngr.ToString ());
 		farmMngr.spawnEgg (newEgg);
 		eggs = playerDataScript.ownedEggs;
 		savePlayerFile ();
@@ -192,6 +193,7 @@ public class AdventureManager : MonoBehaviour {
 	void Start () {
 		Time.timeScale = 1;
 		DontDestroyOnLoad (this);
+		katPrefabs = katPrefabVessel.GetComponent<KatPrefabsVesselScript> ().katPrefabs;
 	}
 	public int getCurrencyAmount() {
 		return playerDataScript.playerCurrency;
@@ -274,10 +276,11 @@ public class AdventureManager : MonoBehaviour {
 		KatStatsInfo baby = egg.getKat ();
 		eggs.Remove (egg);
 //		katsInfo.Add (baby);
-		playerDataScript.addKatToInventory (baby);
+//		playerDataScript.addKatToInventory (baby);
 //		Debug.Log (katsInfo.Count);
 //		farmMngr.spawnKatInScene(baby);
 //		Debug.Log ("Egg set to hatch");
+		katsInfo.Add (baby);
 		savePlayerFile ();
 		return baby;
 	}

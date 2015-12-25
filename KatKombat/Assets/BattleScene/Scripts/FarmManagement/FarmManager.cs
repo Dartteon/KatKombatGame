@@ -26,6 +26,8 @@ public class FarmManager : MonoBehaviour {
 		katsInfo = advMngr.katsInfo;
 		eggsInfo = advMngr.eggs;
 
+//		Debug.Log (advMngr.ToString ());
+//		Debug.Log (katsInfo.Count + " kats " + eggsInfo.Count + " eggs");
 //		spawnPlayerKats ();
 
 //		spawnPlayerEggs ();
