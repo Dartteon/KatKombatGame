@@ -55,4 +55,8 @@ public class KatAttacksVessel : MonoBehaviour {
 	public string getPowerInString(Kommand k) {
 		return findKommand (k).GetComponent<GeneralProjectileScript> ().displayPower.ToString ();
 	}
+
+	public string getKommandName (Kommand k) {
+		return k.ToString ();
+	}
 }

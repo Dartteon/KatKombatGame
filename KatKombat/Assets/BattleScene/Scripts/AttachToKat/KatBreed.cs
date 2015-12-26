@@ -9,6 +9,7 @@ public class KatBreed : MonoBehaviour {
 		Dustfang,
 		Wildfang,
 		Roughfang,
+		Goldfang,
 		Triphire,
 		Trisard,
 		Trimerald,

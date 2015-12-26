@@ -19,9 +19,12 @@ public class KatDataCard : MonoBehaviour {
 	public GameObject objectBeingFollowed { get; private set; }
 
 	private SpriteRenderer[] kommandSprites = new SpriteRenderer[3];
+	private GameObject[] kommandDescription = new GameObject[3];
 
 	[SerializeField]
 	private GameObject katAttackPrefabVessel;
+
+	private KatAttacksVessel katAttacksScript;
 
 	public void initiate() {
 		katName = this.transform.Find ("KatName").transform.Find("Text").GetComponent<Text> ();
@@ -36,7 +39,13 @@ public class KatDataCard : MonoBehaviour {
 		exp = this.transform.Find ("ExpCanvas").transform.Find("Bar").GetComponent<Image> ();
 		hatchButton = this.transform.Find ("HatchButton").gameObject;
 		hpText = this.transform.Find ("HPText").transform.Find ("Text").GetComponent<Text> ();
-		
+
+		katAttacksScript = katAttackPrefabVessel.GetComponent<KatAttacksVessel> ();
+
+		for (int i = 0; i<3; i++) {
+			string childName = "KommandDescription" + i;
+			kommandDescription[i] = this.transform.Find(childName).gameObject;
+		}
 		//		Debug.Log (katName.ToString () + katBreed.ToString () + katSTR.ToString () + katDEX.ToString () + katINT.ToString ());
 	}
 
@@ -129,22 +138,37 @@ public class KatDataCard : MonoBehaviour {
 	}
 
 	public void enableKommandDescriptionBox (int index) {
-		disableAllKommandButtons ();
+		disableAllKommandDescriptionBoxes ();
 		switch (index) {
 		case 0:
-			Debug.Log("Kommandbox 0 activated");
+//			Debug.Log("Kommandbox 0 activated");
+			setDescriptionBoxInfo(0);
+			kommandDescription[0].SetActive(true);
 			break;
 		case 1:
-			Debug.Log("Kommandbox 1 activated");
+//			Debug.Log("Kommandbox 1 activated");
+			kommandDescription[1].SetActive(true);
 			break;
 		default:
-			Debug.Log("Kommandbox 2 activated");
+//			Debug.Log("Kommandbox 2 activated");
+			kommandDescription[2].SetActive(true);
 			break;
 		}
 	}
 
-	public void disableAllKommandDescriptionBoxes () {
+	private void setDescriptionBoxInfo (int index) {
+//		string kommandName = katKommands [index].ToString ();
+		kommandDescription [index].transform.Find ("Title").transform.Find ("Text").GetComponent<Text> ().text = katAttacksScript.getKommandName (katKommands [index]);
+		kommandDescription [index].transform.Find ("PowerText").transform.Find ("Text").GetComponent<Text> ().text = katAttacksScript.getPowerInString (katKommands [index]);
 		
-		Debug.Log("Disabling all Kommandboxes");
+		kommandDescription [index].transform.Find ("CooldownText").transform.Find ("Text").GetComponent<Text> ().text = katAttacksScript.getCooldownInString (katKommands [index]);
+		kommandDescription [index].transform.Find ("Description").transform.Find ("Text").GetComponent<Text> ().text = katAttacksScript.getKommandDescription (katKommands [index]);
+	}
+
+	public void disableAllKommandDescriptionBoxes () {
+		for (int i=0; i<3; i++) {
+			kommandDescription[i].SetActive(false);
+		}
+//		Debug.Log("Disabling all Kommandboxes");
 	}
 }
