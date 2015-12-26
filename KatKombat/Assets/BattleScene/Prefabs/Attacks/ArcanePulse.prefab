@@ -260,9 +260,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kommand: 1
+  displayPower: 0
   commandDescription: Repulses and damage all nearby enemies, dealing addtional 70%
     damage if they collide. (0.35*INT Damage) (0.4s Cast) (12s Cooldown)
-  lingerTime: .25
+  lingerTime: .349999994
   statType: 2
   statRatio: .25
   cooldown: 12
@@ -432,6 +433,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: kommand
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: isPiercing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lingerTime
+      value: .349999994
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

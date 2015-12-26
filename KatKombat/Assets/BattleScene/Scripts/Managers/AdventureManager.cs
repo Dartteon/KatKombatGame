@@ -40,6 +40,7 @@ public class AdventureManager : MonoBehaviour {
 		Debug.Log (playrKat.toString ());
 
 		currentFightingKatIndex = katsInfo.IndexOf (playrKat);
+		Debug.Log (currentFightingKatIndex + " fighting");
 //		Debug.Log (currentFightingKatIndex);
 		//find past battle remnant and destroy
 		Destroy (GameObject.Find ("BattleInformationModule"));
@@ -227,7 +228,7 @@ public class AdventureManager : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.F6)) {
 				for (int i=0; i<katsInfo.Count; i++) {
-					Debug.Log ("[Kat " + i + "] " + katsInfo [i].toString ());
+						Debug.Log ("[Kat " + i + "] " + katsInfo [i].toString ());
 				}
 			}
 

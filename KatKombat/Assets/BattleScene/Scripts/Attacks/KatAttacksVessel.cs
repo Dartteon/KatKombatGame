@@ -42,4 +42,17 @@ public class KatAttacksVessel : MonoBehaviour {
 		Destroy (kommand);
 		return sprite;
 	}
+
+	public string getKommandDescription(Kommand k) {
+		return findKommand(k).GetComponent<GeneralProjectileScript>().commandDescription;
+	}
+
+	public string getCooldownInString(Kommand k) {
+		string cd = findKommand (k).GetComponent<GeneralProjectileScript> ().cooldown.ToString ();
+		return cd;
+	}
+
+	public string getPowerInString(Kommand k) {
+		return findKommand (k).GetComponent<GeneralProjectileScript> ().displayPower.ToString ();
+	}
 }

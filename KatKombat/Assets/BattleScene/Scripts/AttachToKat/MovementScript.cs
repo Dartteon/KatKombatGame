@@ -21,7 +21,7 @@ public class MovementScript : MonoBehaviour {
 	private Quaternion targetRotation;
 //	private float rotateSpeed = 1.1f;
 	
-	private float rotateSpeed = 20f;
+	private float rotateSpeed = 200f;
 
 	private readonly float walkSpeed = 4.0f;
 

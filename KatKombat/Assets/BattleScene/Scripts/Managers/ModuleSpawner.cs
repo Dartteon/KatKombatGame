@@ -52,7 +52,7 @@ public class ModuleSpawner : MonoBehaviour {
 
 	void searchAndDestroyOtherModules() {
 		Destroy (GameObject.Find ("BattleInformationModule"));
-//		Destroy (GameObject.Find ("TournamentManagerModule"));
+		Destroy (GameObject.Find ("TournamentManagerModule"));
 	}
 
 }

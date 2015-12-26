@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 38bb76166486ba24ea012e817d72c189
-timeCreated: 1443325876
+timeCreated: 1451136528
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -58,8 +58,8 @@ TextureImporter:
         y: 284
         width: 216
         height: 157
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .419999987}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RaiyuSpriteSheet_1
       rect:
@@ -69,7 +69,7 @@ TextureImporter:
         width: 158
         height: 267
       alignment: 9
-      pivot: {x: .5, y: .710550249}
+      pivot: {x: .5, y: .769999981}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

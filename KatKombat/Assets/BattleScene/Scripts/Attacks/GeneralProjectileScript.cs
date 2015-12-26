@@ -6,6 +6,7 @@ using Kommand = Kommands.KommandCode;
 public class GeneralProjectileScript : MonoBehaviour {
 	public Kommand kommand;
 
+	public int displayPower = 0;
 	public string commandDescription = "Default Text";
 	public float lingerTime = 1.0f;
 	public int statType; //str(0), dex(1), int(2)

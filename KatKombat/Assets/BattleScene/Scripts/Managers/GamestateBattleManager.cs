@@ -198,6 +198,7 @@ public class GamestateBattleManager : MonoBehaviour {
 //		Debug.Log ("Lost");
 			Vector3 camPos = new Vector3 (Camera.main.transform.position.x, Camera.main.transform.position.y, -9.5f);
 			GameObject defBtn =	Instantiate (defeatButtonPrefab, camPos, transform.rotation) as GameObject;
+			defBtn.transform.parent = Camera.main.transform;
 			GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>().endRound(false);
 			defBtn.transform.Find("RewardsInfo").Find("Text").GetComponent<Text>().text = GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>().calculateKashRewards() + " Kash";
 			adventureManager.savePlayerFile ();

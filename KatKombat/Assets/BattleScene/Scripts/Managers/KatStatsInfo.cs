@@ -13,6 +13,7 @@ public class KatStatsInfo {
 
 	//STRICTLY PERMANENT variables. Not changeable once the Kat is born.
 	public Breed breed { get; private set;}
+	public bool isMaleGender { get; private set; }
 	private int variantNumber;
 //	private string katBreed;
 	private string katName;
@@ -78,6 +79,7 @@ public class KatStatsInfo {
 		breed = kBreed;
 		hasHatched = true;
 		isFertile = true;
+		isMaleGender = getRandomGender ();
 
 		activeKommandList.Add (Kommand.None);
 		activeKommandList.Add (Kommand.None);
@@ -272,8 +274,8 @@ public class KatStatsInfo {
 	//	Debug.Log (getLevel ());
 //		Debug.Log ((int)((breedStr + birthStr + extraStr) * (((float)effectiveLevel)/ MAX_LEVEL)) + STAT_OFFSET);
 //		return (katName + " : " + katBreed + " BreedStats: [" + breedStr + "][" + breedDex + "][" + breedInt + "]");
-	
-		return (katName + " : " + breed.ToString() + " [Level: " + getLevel() + "] [STR: " + getTotalStr () + "]" + " [DEX: " + getTotalDex () + "]" + " [INT: " + getTotalInt () + "]" + " [EXP:" + currentExp + "]");
+
+		return (katName + " : " + getGenderString() + breed.ToString() + " [Level: " + getLevel() + "] [STR: " + getTotalStr () + "]" + " [DEX: " + getTotalDex () + "]" + " [INT: " + getTotalInt () + "]" + " [EXP:" + currentExp + "]" );
 	}
 
 	public void setHealth (int hp) {
@@ -282,6 +284,18 @@ public class KatStatsInfo {
 		} else {
 			currentHP = getMaxHP();
 		}
+	}
+
+	private bool getRandomGender() {
+		float randNum = UnityEngine.Random.Range (0.0f, 1.0f);
+		if (randNum >= 0.5f)
+			return true;
+		else
+			return false;
+	}
+
+	public string getGenderString() {
+		return (isMaleGender) ? "♂" : "♀";
 	}
 
 }

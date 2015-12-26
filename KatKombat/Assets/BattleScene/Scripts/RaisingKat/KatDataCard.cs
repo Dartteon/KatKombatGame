@@ -14,6 +14,7 @@ public class KatDataCard : MonoBehaviour {
 	private KatStatsInfo stats;
 	private GameObject hatchButton;
 	private Text hpText;
+	private List<Kommand> katKommands;
 
 	public GameObject objectBeingFollowed { get; private set; }
 
@@ -75,7 +76,7 @@ public class KatDataCard : MonoBehaviour {
 
 	void reflectKommands() {
 		//loop through kat kommands, set sprite then enable kommand
-		List<Kommand> katKommands = stats.getActiveKommands ();
+		katKommands = stats.getActiveKommands ();
 
 		KatAttacksVessel kommandsScript = katAttackPrefabVessel.GetComponent<KatAttacksVessel> ();
 //		stats.setKommands (Kommand.ArcanePulse, Kommand.None, Kommand.Furball);
@@ -96,7 +97,8 @@ public class KatDataCard : MonoBehaviour {
 	void reflectNameAndBreedOfKat() {
 //		Debug.Log (katName.ToString ());
 		katName.text = stats.getName ();
-		katBreed.text = "Lv." + stats.getLevel() + "   " + stats.breed.ToString ();
+		
+		katBreed.text = "Lv." + stats.getLevel() + "   " + stats.getGenderString() + "  " + stats.breed.ToString ();
 	}
 
 	void reflectStatsOfKat() {
@@ -124,5 +126,25 @@ public class KatDataCard : MonoBehaviour {
 		*/
 		hpText.text = stats.getMaxHP ().ToString();
 		currHealth.fillAmount = 1.0f;
+	}
+
+	public void enableKommandDescriptionBox (int index) {
+		disableAllKommandButtons ();
+		switch (index) {
+		case 0:
+			Debug.Log("Kommandbox 0 activated");
+			break;
+		case 1:
+			Debug.Log("Kommandbox 1 activated");
+			break;
+		default:
+			Debug.Log("Kommandbox 2 activated");
+			break;
+		}
+	}
+
+	public void disableAllKommandDescriptionBoxes () {
+		
+		Debug.Log("Disabling all Kommandboxes");
 	}
 }
