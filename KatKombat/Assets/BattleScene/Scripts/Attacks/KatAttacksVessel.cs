@@ -54,9 +54,30 @@ public class KatAttacksVessel : MonoBehaviour {
 
 	public string getPowerInString(Kommand k) {
 		return findKommand (k).GetComponent<GeneralProjectileScript> ().displayPower.ToString ();
+	
 	}
 
-	public string getKommandName (Kommand k) {
-		return k.ToString ();
+public string getKommandName (Kommand k) {
+		switch (k) {
+		case Kommand.ArcanePulse:
+			return "Arcane Pulse";
+			break;
+		case Kommand.GlacialTail:
+			return "Glacial Tail";
+			break;
+		case Kommand.LightningHelix:
+			return "Lightning Helix";
+			break;
+		case Kommand.SplinterBarrage:
+			return "Splinter Barrage";
+			break;
+		case Kommand.TwinFang:
+			return "Twin Fang";
+			break;
+
+		default:
+			return k.ToString ();
+			break;
+		}
 	}
 }

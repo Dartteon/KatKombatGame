@@ -260,8 +260,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kommand: 6
+  displayPower: 60
   commandDescription: 'Swipes icy tail in front of itself, dealing damage and potentially
-    freezing enemies hit. (0.6*STR Damage) (0.8s Cast) (10s Cooldown) '
+    freezing enemies hit. '
   lingerTime: .349999994
   statType: 0
   statRatio: .600000024
@@ -427,7 +428,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: commandDescription
       value: 'Swipes icy tail in front of itself, dealing damage and potentially freezing
-        enemies hit. (0.6*STR Damage) (0.8s Cast) (10s Cooldown) '
+        enemies hit. '
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
@@ -436,6 +437,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: kommand
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: displayPower
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class BattleCameraFollowScript : MonoBehaviour {
@@ -20,6 +21,11 @@ public class BattleCameraFollowScript : MonoBehaviour {
 
 	public void initialize() {
 		cam = this.GetComponent<Camera> ();
+
+		TournamentManager tm = GameObject.Find ("TournamentManagerModule").GetComponent<TournamentManager> ();
+		if (tm != null) {
+			this.transform.Find("StageText").transform.Find("Text").GetComponent<Text>().text = tm.getStringRepOfStage();
+		}
 	}
 
 	public void attachKat(GameObject kat){

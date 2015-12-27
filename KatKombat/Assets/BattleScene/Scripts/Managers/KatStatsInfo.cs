@@ -298,4 +298,8 @@ public class KatStatsInfo {
 		return (isMaleGender) ? "♂" : "♀";
 	}
 
+	public int getCurrentExp() {
+		return currentExp;
+	}
+
 }

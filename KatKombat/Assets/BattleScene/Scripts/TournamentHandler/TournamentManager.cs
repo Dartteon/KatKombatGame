@@ -68,10 +68,19 @@ public class TournamentManager : MonoBehaviour {
 	}
 
 	private int getEnemyLevel() {
+		Debug.Log ("Fighting stage " + currentStage);
 //		Debug.LogError ("Getting enemy level at type " + tournamentType);
 		if (tournamentType == 0) {
+//			int bossLevel = (currentStage == 10) ? (int)(difficulty * 1.5) : 0;
+//			Debug.Log("Boss level offset " + bossLevel);
 //			Debug.Log("Level " + ((difficulty * 10) + currentStage + 1));
 			int lvl = Mathf.Clamp(((difficulty) * 10), 0, 200) + (int)(currentStage*1.5) + 1;
+//			Debug.Log("Enemy level " + lvl);
+//			Debug.LogError(currentStage + " vs " + numMatches);
+			if (currentStage == numMatches) {
+//				Debug.LogError("Fighting boss stage! " + (int)((difficulty+1) * 3));
+				lvl += (int)(difficulty * 1.5);
+			}
 //			Debug.LogError("Enemy Level : " + lvl);
 			return lvl;
 		} else {
@@ -104,5 +113,22 @@ public class TournamentManager : MonoBehaviour {
 		} else {
 			return currentStage * 3;
 		}
+	}
+
+	public bool hasTournamentEnded() {
+		if (currentStage == numMatches)
+			return true;
+		else
+			return false;
+	}
+
+	public int getTournamentEndBonus() {
+		return (difficulty+1) * 10;
+	}
+
+	public string getStringRepOfStage() {
+		if (currentStage == numMatches)
+			return "BOSS STAGE";
+		return "Stage " + (currentStage+1);
 	}
 }

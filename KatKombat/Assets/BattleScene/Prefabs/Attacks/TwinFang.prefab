@@ -859,8 +859,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kommand: 15
-  commandDescription: 'Propels two piercing fangs forward, dealing damage to all enemies
-    hit. Double damage if both fangs hit. (0.2*DEX Damage) (0.3s Cast) (5s Cooldown) '
+  displayPower: 60
+  commandDescription: Propels two piercing fangs forward, dealing damage to all enemies
+    hit, dealing double damage if both hits.
   lingerTime: .400000006
   statType: 1
   statRatio: .300000012
@@ -1113,8 +1114,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: commandDescription
-      value: 'Propels two piercing fangs forward, dealing damage to all enemies hit.
-        Double damage if both fangs hit. (0.2*DEX Damage) (0.3s Cast) (5s Cooldown) '
+      value: Propels two piercing fangs forward, dealing damage to all enemies hit,
+        dealing double damage if both hits.
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.x
@@ -1127,6 +1128,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: kommand
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: displayPower
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -214,8 +214,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kommand: 13
-  commandDescription: Ejects spiky hairs forward, dealing damage to all enemies hit.
-    (0.1xDEXx10) (0.3s Cast) (3s Cooldown)
+  displayPower: 100
+  commandDescription: Fires a barrage of thorns forward, dealing damage to enemies
+    hit. Chance to cause poison.
   lingerTime: 1
   statType: 0
   statRatio: 0
@@ -350,8 +351,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: commandDescription
-      value: Ejects spiky hairs forward, dealing damage to all enemies hit. (0.1xDEXx10)
-        (0.3s Cast) (3s Cooldown)
+      value: Fires a barrage of thorns forward, dealing damage to enemies hit. Chance
+        to cause poison.
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: cooldown
@@ -360,6 +361,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: kommand
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: displayPower
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

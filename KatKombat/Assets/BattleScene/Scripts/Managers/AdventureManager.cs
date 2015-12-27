@@ -40,7 +40,7 @@ public class AdventureManager : MonoBehaviour {
 		Debug.Log (playrKat.toString ());
 
 		currentFightingKatIndex = katsInfo.IndexOf (playrKat);
-		Debug.Log (currentFightingKatIndex + " fighting");
+//		Debug.Log (currentFightingKatIndex + " fighting");
 //		Debug.Log (currentFightingKatIndex);
 		//find past battle remnant and destroy
 		Destroy (GameObject.Find ("BattleInformationModule"));
@@ -124,7 +124,8 @@ public class AdventureManager : MonoBehaviour {
 		}
 	}
 	public bool hasSlotForEggOrKat() {
-		if (eggs.Count + katsInfo.Count <= 6)
+//		Debug.LogError ("Num of kats and eggs " + (eggs.Count + katsInfo.Count));
+		if (eggs.Count + katsInfo.Count <= 5)
 			return true;
 		else
 			return false;
@@ -213,7 +214,7 @@ public class AdventureManager : MonoBehaviour {
 			}
 
 			if (Input.GetKeyDown (KeyCode.F3)) {
-				Camera.main.GetComponent<FarmCameraFollowScript>().goToCameraMode(2);
+				playerDataScript.addCurrency(100);
 			}
 
 			if (Input.GetKeyDown (KeyCode.F4)) {

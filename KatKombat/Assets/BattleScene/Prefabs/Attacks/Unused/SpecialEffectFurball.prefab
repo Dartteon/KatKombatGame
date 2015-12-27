@@ -215,6 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49093f3d409a9a14daf07d239626c0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kommand: 0
+  displayPower: 0
   commandDescription: Default Text
   lingerTime: 1
   statType: 2

@@ -910,8 +910,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kommand: 8
+  displayPower: 60
   commandDescription: Spits two lightning bolts forward, dealing damage to all enemies
-    hit (0.3xINTx2) (0.3s Cast) (10s Cooldown)
+    hit, dealing double damage if both hits.
   lingerTime: .5
   statType: 2
   statRatio: .300000012
@@ -1060,12 +1061,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: commandDescription
-      value: Spits two lightning bolts forward, dealing damage to all enemies hit
-        (0.3xINTx2) (0.3s Cast) (10s Cooldown)
+      value: Spits two lightning bolts forward, dealing damage to all enemies hit,
+        dealing double damage if both hits.
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: kommand
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: displayPower
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

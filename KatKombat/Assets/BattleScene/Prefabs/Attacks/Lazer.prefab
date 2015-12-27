@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kommand: 7
-  commandDescription: Charges a huge laz0r, blasting all enemies hit. (0.55*INT Damage)\n(1.3s
-    Cast)\n (10s Cooldown)
+  displayPower: 65
+  commandDescription: Charges a huge laz0r, blasting all enemies hit.
   lingerTime: .25
   statType: 2
   statRatio: .649999976
@@ -327,8 +327,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: commandDescription
-      value: Charges a huge laz0r, blasting all enemies hit. (0.55*INT Damage)\n(1.3s
-        Cast)\n (10s Cooldown)
+      value: Charges a huge laz0r, blasting all enemies hit.
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
@@ -345,6 +344,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: kommand
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: displayPower
+      value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

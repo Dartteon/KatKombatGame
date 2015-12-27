@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49093f3d409a9a14daf07d239626c0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kommand: 0
+  displayPower: 0
   commandDescription: Repulses and damage all nearby enemies, dealing addtional 70%
     damage if they collide. (0.35*INT Damage) (0.4s Cast) (12s Cooldown)
   lingerTime: .800000012

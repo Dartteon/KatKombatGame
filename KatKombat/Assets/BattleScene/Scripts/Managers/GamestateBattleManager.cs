@@ -31,6 +31,8 @@ public class GamestateBattleManager : MonoBehaviour {
 	private GameObject enemyAIModule;
 	[SerializeField]
 	private GameObject defeatButtonPrefab;
+	[SerializeField]
+	private GameObject tournamentEndSignPrefab;
 
 	public Vector2 getSpawnLocation(bool isPlayer){
 		if (isPlayer) {
@@ -91,7 +93,11 @@ public class GamestateBattleManager : MonoBehaviour {
 		BattleCameraFollowScript camScript = Camera.main.GetComponent<BattleCameraFollowScript> ();
 
 	//	GameObject.Find ("TournamentManagerModule").GetComponent<TournamentManager> ().endRound (true);
-		camScript.showPlayerVictory ();
+		if (GameObject.Find ("TournamentManagerModule").GetComponent<TournamentManager> ().hasTournamentEnded()) {
+			showTournamentEnded();
+		} else {
+			camScript.showPlayerVictory ();
+		}
 
 		if (adventureManager.rewardKatWithExp (ExperienceHandlerScript.calculateExpGain(enemyKatLevel))) {
 			camScript.showLevelUp();
@@ -206,6 +212,21 @@ public class GamestateBattleManager : MonoBehaviour {
 		}
 	}
 
+	private void showTournamentEnded() {
+		if (hasGameStarted) {
+			controller.SetActive (false);
+//			Camera.main.GetComponent<BattleCameraFollowScript> ().showEnemyVictory (enemyKat);
+			Vector3 camPos = new Vector3 (Camera.main.transform.position.x, Camera.main.transform.position.y, -9.5f);
+			GameObject defBtn =	Instantiate (tournamentEndSignPrefab, camPos, transform.rotation) as GameObject;
+			defBtn.transform.parent = Camera.main.transform;
+			GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>().endRound(false);
+			TournamentManager tm = GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>();
+			defBtn.transform.Find("RewardsInfo").Find("Text").GetComponent<Text>().text = 
+				tm.calculateKashRewards() + " + " + tm.getTournamentEndBonus() + " Kash";
+			adventureManager.savePlayerFile ();
+			hasGameStarted = false;
+		}
+	}
 
 	void attachAttackToKat(GameObject kat, KatStatsInfo katInfo){
 		List<Kommand> komList = katInfo.getActiveKommands ();

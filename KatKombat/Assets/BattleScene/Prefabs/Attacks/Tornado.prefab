@@ -525,7 +525,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kommand: 14
-  commandDescription: Default Text
+  displayPower: 135
+  commandDescription: Fires a slow moving tornado that grows in size, dealing damage
+    every half a second to enemies inside.
   lingerTime: 2
   statType: 1
   statRatio: .150000006
@@ -648,6 +650,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: kommand
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: displayPower
+      value: 135
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: commandDescription
+      value: Fires a slow moving tornado that grows in size, dealing damage every
+        half a second to enemies inside.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

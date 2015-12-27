@@ -51,9 +51,10 @@ public class ExperienceHandlerScript : MonoBehaviour {
 		int currLevel = 1;
 		int exp = 0;
 		while (currLevel < lvl) {
-			exp++;
-			currLevel = getLevel(exp);
+			exp += getExpNeededToLevelAt(currLevel);
+			currLevel++;
 		}
+//		Debug.Log ("Added exp up to level " + currLevel);
 		return exp;
 	}
 

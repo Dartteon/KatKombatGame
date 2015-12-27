@@ -656,8 +656,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kommand: 5
-  commandDescription: Spit a wad of furball, dealing damage to first enemy hit. (0.3*INT
-    Damage) (0.3s Cast) (3s Cooldown)
+  displayPower: 35
+  commandDescription: 'Spit a wad of furball, dealing damage to first enemy hit. '
   lingerTime: .699999988
   statType: 2
   statRatio: .349999994
@@ -918,8 +918,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: commandDescription
-      value: Spit a wad of furball, dealing damage to first enemy hit. (0.3*INT Damage)
-        (0.3s Cast) (3s Cooldown)
+      value: 'Spit a wad of furball, dealing damage to first enemy hit. '
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: isPiercing
@@ -928,6 +927,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: kommand
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: displayPower
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

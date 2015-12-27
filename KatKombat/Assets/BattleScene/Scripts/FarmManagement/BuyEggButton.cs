@@ -15,7 +15,7 @@ public class BuyEggButton : MonoBehaviour, Tappable {
 		AdventureManager advMngr = GameObject.Find ("AdventureModule").gameObject.GetComponent<AdventureManager> ();
 		if (isClicked) {
 //		advMngr.addCurrency (100);
-			if (advMngr.hasSlotForEggOrKat () && advMngr.deductCurrency (100)) {
+			if (advMngr.deductCurrency (100)) {
 				advMngr.reflectPlayerCurrency ();
 				//		this.transform.parent.Find("KashBox").transform.Find ("TextCanvas").transform.Find("Text").GetComponent<Text>().text = advMngr.getCurrencyAmount().ToString();
 				advMngr.summonNewEgg ();
@@ -23,11 +23,14 @@ public class BuyEggButton : MonoBehaviour, Tappable {
 			}
 		
 		} else {
-			if (advMngr.getCurrencyAmount() >= 100) {
+			if (advMngr.hasSlotForEggOrKat () && advMngr.getCurrencyAmount() >= 100) {
 				isClicked = true;
 				this.transform.Find("DescriptionText").transform.Find("Text").GetComponent<Text>().text = "Confirm";
-			} else {
+			} else if (advMngr.getCurrencyAmount() < 100){
 				this.transform.Find("DescriptionText").transform.Find("Text").GetComponent<Text>().text = "No Kash..";
+			} else {
+//				Debug.LogError("2 many eggs");
+				this.transform.Find("DescriptionText").transform.Find("Text").GetComponent<Text>().text = "Too many \n kats!";
 			}
 		}
 	}

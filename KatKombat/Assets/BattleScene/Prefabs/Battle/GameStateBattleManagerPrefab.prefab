@@ -50,6 +50,8 @@ MonoBehaviour:
   - {fileID: 112676, guid: c2177b44d9b5d854ca52c6fb55f89d36, type: 2}
   enemyAIModule: {fileID: 140718, guid: 978730254eb1e0741b8c403f52dff8cc, type: 2}
   defeatButtonPrefab: {fileID: 150536, guid: 5629efe7e4131d34ea1a2d9f94210a33, type: 2}
+  tournamentEndSignPrefab: {fileID: 103768, guid: 1ffba3f269da8ad4bb53e7fff96f5cc3,
+    type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

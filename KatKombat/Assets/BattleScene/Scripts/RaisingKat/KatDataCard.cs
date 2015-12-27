@@ -60,6 +60,7 @@ public class KatDataCard : MonoBehaviour {
 		reflectKommands ();
 		objectBeingFollowed = katObj;
 		hatchButton.SetActive (false);
+		disableAllKommandDescriptionBoxes ();
 	}
 
 	public void AttachEgg (EggInfo eggInfo, GameObject eggObj) {
@@ -135,6 +136,18 @@ public class KatDataCard : MonoBehaviour {
 		*/
 		hpText.text = stats.getMaxHP ().ToString();
 		currHealth.fillAmount = 1.0f;
+		
+		float expAtCurrentLevel = ExperienceHandlerScript.getExpAtLevel (stats.getLevel());
+		float expAtNextLevel = ExperienceHandlerScript.getExpAtLevel (stats.getLevel() + 1);
+		float currExp = stats.getCurrentExp ();
+
+		float numerator = expAtCurrentLevel - currExp;
+		float denominator = expAtNextLevel - expAtCurrentLevel;
+//		Debug.Log ("Numerator: " + numerator);
+//		Debug.Log ("Denominator: " + denominator);
+
+		exp.fillAmount = numerator / denominator;
+//		Debug.Log (exp.fillAmount);
 	}
 
 	public void enableKommandDescriptionBox (int index) {
@@ -146,11 +159,13 @@ public class KatDataCard : MonoBehaviour {
 			kommandDescription[0].SetActive(true);
 			break;
 		case 1:
-//			Debug.Log("Kommandbox 1 activated");
+			//			Debug.Log("Kommandbox 1 activated");
+			setDescriptionBoxInfo(1);
 			kommandDescription[1].SetActive(true);
 			break;
 		default:
-//			Debug.Log("Kommandbox 2 activated");
+			//			Debug.Log("Kommandbox 2 activated");
+			setDescriptionBoxInfo(2);
 			kommandDescription[2].SetActive(true);
 			break;
 		}
@@ -161,7 +176,7 @@ public class KatDataCard : MonoBehaviour {
 		kommandDescription [index].transform.Find ("Title").transform.Find ("Text").GetComponent<Text> ().text = katAttacksScript.getKommandName (katKommands [index]);
 		kommandDescription [index].transform.Find ("PowerText").transform.Find ("Text").GetComponent<Text> ().text = katAttacksScript.getPowerInString (katKommands [index]);
 		
-		kommandDescription [index].transform.Find ("CooldownText").transform.Find ("Text").GetComponent<Text> ().text = katAttacksScript.getCooldownInString (katKommands [index]);
+		kommandDescription [index].transform.Find ("CooldownText").transform.Find ("Text").GetComponent<Text> ().text = katAttacksScript.getCooldownInString (katKommands [index]) + " sec";
 		kommandDescription [index].transform.Find ("Description").transform.Find ("Text").GetComponent<Text> ().text = katAttacksScript.getKommandDescription (katKommands [index]);
 	}
 

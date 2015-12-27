@@ -319,12 +319,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kommand: 2
+  displayPower: 40
   commandDescription: Charges in a direction, dealing damage to the first enemy hit.
-    (0.4*STR Damage) (0.3s Cast) (10s Cooldown)
   lingerTime: .400000006
   statType: 0
   statRatio: .400000006
-  cooldown: 12
+  cooldown: 9
   isMelee: 0
   projectileShootingForce: 4
   maxProjectiles: 1
@@ -467,7 +467,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: cooldown
-      value: 12
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: statRatio
@@ -523,8 +523,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: commandDescription
-      value: Charges in a direction, dealing damage to the first enemy hit. (0.4*STR
-        Damage) (0.3s Cast) (10s Cooldown)
+      value: Charges in a direction, dealing damage to the first enemy hit.
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: isPiercing
@@ -533,6 +532,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: kommand
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: displayPower
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

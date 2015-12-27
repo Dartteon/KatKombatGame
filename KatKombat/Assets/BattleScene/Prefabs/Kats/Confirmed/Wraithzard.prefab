@@ -688,7 +688,7 @@ MonoBehaviour:
   statType: 2
   level: 100
   statusEffect: 110
-  breed: 15
+  breed: 16
 --- !u!114 &11455556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1229,7 +1229,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: breed
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198634}

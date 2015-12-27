@@ -318,9 +318,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kommand: 10
-  commandDescription: 'Enlarges paw and swipes all enemies in front, knocking them
-    back, dealing additional 80% damage if they collide. (0.35*STR Damage) (0.5s Cast)
-    (6s Cooldown) '
+  displayPower: 55
+  commandDescription: Enlarges paw and swipes all enemies in front, knocking them
+    back, dealing additional 80% damage if they collide with anything.
   lingerTime: .349999994
   statType: 0
   statRatio: .349999994
@@ -561,8 +561,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: commandDescription
-      value: 'Enlarges paw and swipes all enemies in front, knocking them back, dealing
-        additional 80% damage if they collide. (0.35*STR Damage) (0.5s Cast) (6s Cooldown) '
+      value: Enlarges paw and swipes all enemies in front, knocking them back, dealing
+        additional 80% damage upon collision.
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
@@ -571,6 +571,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: kommand
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: displayPower
+      value: 55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

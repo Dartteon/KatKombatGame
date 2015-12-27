@@ -175,8 +175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kommand: 3
+  displayPower: 100
   commandDescription: Summons an earthquake, dealing damage to enemies inside every
-    0.5s (0.1*STR Damage x 10) (0.3s Cast) (15s Cooldown)
+    half a second.
   lingerTime: 5
   statType: 0
   statRatio: .100000001
@@ -310,8 +311,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: commandDescription
-      value: Summons an earthquake, dealing damage to enemies inside every 0.5s (0.1*STR
-        Damage x 10) (0.3s Cast) (15s Cooldown)
+      value: Summons an earthquake, dealing damage to enemies inside every half a
+        second.
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_IsActive
@@ -320,6 +321,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: kommand
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: displayPower
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

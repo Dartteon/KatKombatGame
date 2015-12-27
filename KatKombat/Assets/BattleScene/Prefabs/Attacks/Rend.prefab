@@ -340,8 +340,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kommand: 12
-  commandDescription: 'Claws all enemies in front arc of Kat, dealing additional damage
-    if hit by both claws. Chance to bleed. (0.35*DEX Damage) (0.8s Cast) (5s Cooldown) '
+  displayPower: 65
+  commandDescription: Claws all enemies in front arc of Kat, dealing additional damage
+    if hit by both claws. Chance to cause bleed.
   lingerTime: .25
   statType: 1
   statRatio: .349999994
@@ -486,8 +487,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: commandDescription
-      value: 'Claws all enemies in front arc of Kat, dealing additional damage if
-        hit by both claws. Chance to bleed. (0.35*DEX Damage) (0.8s Cast) (5s Cooldown) '
+      value: Claws all enemies in front arc of Kat, dealing additional damage if hit
+        by both claws. Chance to cause bleed.
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
@@ -496,6 +497,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: kommand
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: displayPower
+      value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
