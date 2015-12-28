@@ -294,6 +294,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11408482, guid: d1863bfaf94c0204495fa2686ae99291, type: 2}
+      propertyPath: experimentalMultiKatGameStateBattleManagerPrefab
+      value: 
+      objectReference: {fileID: 152118, guid: 90fb867740ace394bb6b722a25001c18, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1863bfaf94c0204495fa2686ae99291, type: 2}
   m_IsPrefabParent: 0

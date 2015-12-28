@@ -15,20 +15,37 @@ public class MTControllerJump : MonoBehaviour, Tappable {
 	private float jumpCooldown;
 	private float lastJumpTime = -100f;
 	private bool hasRecentlyJumped = false;
+	
+	private Text cdText;
+	private SpriteRenderer iconRenderer;
+	private Color pureWhite = new Color (1f, 1f, 1f);
+	private Color grey = new Color(0.3f, 0.3f, 0.3f);
 
 	// Use this for initialization
 	void Start () {
 		cooldownCircle = transform.Find ("CooldownCircle").gameObject.GetComponentInChildren<Image> ();
+		cdText = transform.Find ("TextCanvas").transform.Find ("Text").GetComponent<Text> ();
+		iconRenderer = transform.Find ("Icon").GetComponent<SpriteRenderer> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (hasRecentlyJumped) {
 			float timeDifference = Time.time - lastJumpTime;
-			if (timeDifference >= jumpCooldown)
+			if (timeDifference >= jumpCooldown){
 				hasRecentlyJumped = false;
-			else
-				cooldownCircle.fillAmount = (jumpCooldown - timeDifference) / jumpCooldown - 0.02f;
+				cdText.text = "";
+				iconRenderer.color = pureWhite;
+			}
+			else {
+				float timeLeft = jumpCooldown - timeDifference;
+				cooldownCircle.fillAmount = (timeLeft) / jumpCooldown - 0.02f;
+
+				string timeLeftString = timeLeft.ToString();
+				if (timeLeftString.Length >= 3) timeLeftString = timeLeftString.Substring(0,3);
+				cdText.text = timeLeftString;
+				iconRenderer.color = grey;
+			}
 			
 		}
 	}

@@ -13,7 +13,10 @@ public class MTControllerCommand : MonoBehaviour, Tappable {
 	private Image manaCircle;
 	private int manaCost;
 	private ManaScript katMana;
-
+	private Text cdText;
+	private SpriteRenderer iconRenderer;
+	private Color pureWhite = new Color (1f, 1f, 1f);
+	private Color grey = new Color(0.3f, 0.3f, 0.3f);
 	
 	protected Vector2 startPoint, endPoint, direction, centre;
 	protected bool isClicked = false;
@@ -25,7 +28,9 @@ public class MTControllerCommand : MonoBehaviour, Tappable {
 		centre = transform.position;
 		cooldownCircle = transform.Find ("CooldownCircle").gameObject.GetComponentInChildren<Image> ();
 		manaCircle = transform.Find ("ManaCircle").gameObject.GetComponentInChildren<Image> ();
-		
+		cdText = transform.Find ("TextCanvas").transform.Find ("Text").GetComponent<Text> ();
+		iconRenderer = transform.Find ("Icon").GetComponent<SpriteRenderer> ();
+
 		if (gameObject.name == "Attack1Joystick") {
 			attackNum = 1;
 		} else if (gameObject.name == "Attack2Joystick") {
@@ -37,6 +42,7 @@ public class MTControllerCommand : MonoBehaviour, Tappable {
 
 	void Update(){
 		if (atkScript != null) {
+			/*
 			switch (attackNum) {
 			case 1:
 				if (atkScript.atk1Cost > katMana.manaCount) {
@@ -57,13 +63,24 @@ public class MTControllerCommand : MonoBehaviour, Tappable {
 					manaCircle.fillAmount = 0.0f;
 				break;
 			}
-
+*/
 			if (hasCasted) {
 				float timeDifference = Time.time - lastCastTime;
-				if (timeDifference >= atkCooldown)
+				if (timeDifference >= atkCooldown){
 					hasCasted = false;
-				else
-					cooldownCircle.fillAmount = (atkCooldown - timeDifference) / atkCooldown - 0.02f;
+					cdText.text = "";
+					iconRenderer.color = pureWhite;
+				}
+				else{
+					float timeLeft = atkCooldown - timeDifference;
+					cooldownCircle.fillAmount = (timeLeft) / atkCooldown - 0.02f;
+					
+					string timeLeftString = timeLeft.ToString();
+					if (timeLeftString.Length >= 3) timeLeftString = timeLeftString.Substring(0,3);
+					cdText.text = timeLeftString;
+					iconRenderer.color = grey;
+
+				}
 			}
 		}
 	}

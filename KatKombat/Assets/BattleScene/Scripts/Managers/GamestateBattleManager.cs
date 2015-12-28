@@ -261,7 +261,7 @@ public class GamestateBattleManager : MonoBehaviour {
 
 		TournamentManager tm = GameObject.Find ("TournamentManagerModule").GetComponent<TournamentManager> ();
 		if (tm != null) {
-			Debug.LogError("Aim discrepancy = " + tm.getEnemyAimDiscrepancy());
+//			Debug.LogError("Aim discrepancy = " + tm.getEnemyAimDiscrepancy());
 			enemyAI.GetComponent<EnemyKatAI> ().aimDiscrepancy = tm.getEnemyAimDiscrepancy();
 		}
 

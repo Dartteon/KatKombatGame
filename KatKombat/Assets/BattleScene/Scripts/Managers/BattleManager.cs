@@ -10,9 +10,9 @@ public class BattleManager : MonoBehaviour {
 	 * Manager class instead of this one.
 	 */
 
-	private List<GameObject> playerKats = new List<GameObject>();
-	private List<GameObject> enemyKats = new List<GameObject>();
-	private List<GameObject> AIModules = new List<GameObject> ();
+//	private List<GameObject> playerKats = new List<GameObject>();
+//	private List<GameObject> enemyKats = new List<GameObject>();
+//	private List<GameObject> AIModules = new List<GameObject> ();
 	private GameObject katPrefabVessel;
 
 	public GameObject controllerPrefab;
@@ -20,7 +20,7 @@ public class BattleManager : MonoBehaviour {
 	public GameObject gamestateBattleManagerModulePrefab;
 	public GameObject katAttackVesselPrefab;
 
-	private int mapIndex;
+	private int mapIndex = 0;
 	private Vector2 spawnLoc_player, spawnLoc_enemy;
 	private GameObject gamestateBattleManagerModule;
 
@@ -34,6 +34,9 @@ public class BattleManager : MonoBehaviour {
 
 	//To attach to player's Kat
 	public GameObject targetRingPrefab;
+
+	[SerializeField]
+	private GameObject experimentalMultiKatGameStateBattleManagerPrefab;
 
 	/*
 	public void initialize(GameObject playerKat, GameObject enemyKat, string nameOfMap){
@@ -87,6 +90,7 @@ public class BattleManager : MonoBehaviour {
 			initialize(playerKat, enemykat, mapIndex);
 		} else {
 			Debug.Log("BattleInformation not found!");
+			startMultiKatBattle();
 		}
 	}
 
@@ -105,6 +109,15 @@ public class BattleManager : MonoBehaviour {
 //		GameObject enemy = katPrefabVessel.GetCo
 		//If kat not found:
 //		return katPrefabs [0];
+	}
+
+	private void startMultiKatBattle() {
+		gamestateBattleManagerModule = Instantiate (experimentalMultiKatGameStateBattleManagerPrefab) as GameObject;
+		gamestateBattleManagerModule.name = "GameStateBattleManager";
+		MultiKatBattleManager gamestateScript = gamestateBattleManagerModule.GetComponent<MultiKatBattleManager> ();
+		gamestateScript.attachMap (0);
+		gamestateScript.initialize ();
+		gamestateScript.activateGameStart ();
 	}
 
 	/*

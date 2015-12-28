@@ -91,7 +91,7 @@ public class GeneralProjectileScript : MonoBehaviour {
 
 	protected void SetColor(){
 		if (mimicOwnerColor) {
-			Color katColor = katStats.col;
+				Color katColor = katStats.col;
 			Color newCol = new Color (katColor.r, katColor.g, katColor.b, transparency);
 		
 			if (transform.gameObject.transform.Find ("Sprite").gameObject != null) {

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using System.Collections.Generic;
+
 public class EnemyKatAI : MonoBehaviour {
 	private static readonly int CONST_MAX_PLAYERS = 1000;
 	/*
@@ -19,7 +21,7 @@ public class EnemyKatAI : MonoBehaviour {
 	public GameObject enemyKat;
 	private int ownerKatType;
 
-	private GameObject[] enemyKatArray = new GameObject[CONST_MAX_PLAYERS];
+	private List<GameObject> enemyKatArray = new List<GameObject>();
 	private KatProjectileLauncherScript[] atkScriptsArray = new KatProjectileLauncherScript[3];
 	private float[] atkRangeArray = new float[3];
 	private char[] atkModeArray = new char[3];
@@ -52,7 +54,7 @@ public class EnemyKatAI : MonoBehaviour {
 	}
 
 
-	public GameObject[] getEnemyArray(){
+	public List<GameObject> getEnemyArray(){
 		return enemyKatArray;
 	}
 	void initializeOwnerKat(){
@@ -94,7 +96,7 @@ public class EnemyKatAI : MonoBehaviour {
 		int[] aliveKats = new int[CONST_MAX_PLAYERS];
 		int count = 0;
 
-		for (int i=0; i<enemyKatArray.Length; i++) {
+		for (int i=0; i<enemyKatArray.Count; i++) {
 			if (enemyKatArray [i] != null) {
 				float chanceToAttack = calculateChanceToAttack (i);
 				aliveKats[count] = i; //store into alive kats array
@@ -346,5 +348,10 @@ public class EnemyKatAI : MonoBehaviour {
 				return med;
 		} else
 			return med;
+	}
+
+	public void addEnemy(GameObject enemy) {
+		enemyKatArray.Add (enemy);
+		Debug.Log (enemyKatArray.Count);
 	}
 }

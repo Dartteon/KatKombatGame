@@ -302,4 +302,8 @@ public class KatStatsInfo {
 		return currentExp;
 	}
 
+	public void setLevelHandicap(int lvlHandicap) {
+		levelStatOffset -= lvlHandicap;
+//		Debug.LogError ("Stat handicap: " + levelStatOffset);
+	}
 }

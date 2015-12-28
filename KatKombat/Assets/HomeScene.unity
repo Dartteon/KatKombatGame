@@ -3170,7 +3170,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 434800, guid: 4a332969ad9c33f4c9bec1f6bed6784b, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a332969ad9c33f4c9bec1f6bed6784b, type: 2}
@@ -3595,7 +3595,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 456528, guid: be4a82b733fade743b28627f9a5b3c53, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 158652, guid: be4a82b733fade743b28627f9a5b3c53, type: 2}
       propertyPath: m_IsActive
@@ -12467,7 +12467,7 @@ Transform:
   - {fileID: 391041800}
   - {fileID: 493046343}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
 --- !u!114 &1062667193
 MonoBehaviour:
   m_ObjectHideFlags: 0

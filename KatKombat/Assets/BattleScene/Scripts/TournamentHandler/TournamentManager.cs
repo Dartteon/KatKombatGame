@@ -26,10 +26,11 @@ public class TournamentManager : MonoBehaviour {
 		GameObject.Find ("AdventureModule").GetComponent<AdventureManager> ().initiateBattleWithKat (playerKat, currentEnemy);
 	}
 
-	public void initialize(KatStatsInfo plyrKat, int _difficulty, int tournamentType) {
+	public void initialize(KatStatsInfo plyrKat, int _difficulty, int _tournamentType) {
 		DontDestroyOnLoad (this.gameObject);
 		katPrefabs = katPrefabsVessel.GetComponent<KatPrefabsVesselScript> ().katPrefabs;
 		currentStage = 0;
+		tournamentType = _tournamentType;
 		playerKat = plyrKat;
 		difficulty = _difficulty;
 		numMatches = getNumMatches ();
@@ -40,9 +41,9 @@ public class TournamentManager : MonoBehaviour {
 	public int getNumMatches() {
 		if (tournamentType == 0)
 			return 10;
-		else
+		else {
 			return 100;
-
+		}
 	}
 
 	private KatStatsInfo getEnemy() {
@@ -55,20 +56,15 @@ public class TournamentManager : MonoBehaviour {
 	private void setStatsOfEnemy (KatStatsInfo enemyKat) {
 		ExperienceHandlerScript.setKatToLevel (enemyKat, getEnemyLevel ());
 	//	enemyKat.setLevel (getEnemyLevel());
-		setBirthStats (enemyKat);
-		setExtraStats (enemyKat);
+		setStatsHandicap (enemyKat);
 	}
 
-	private void setBirthStats (KatStatsInfo enemyKat) {
-
-	}
-
-	private void setExtraStats (KatStatsInfo enemyKat) {
-
+	private void setStatsHandicap(KatStatsInfo enemyKat) {
+		enemyKat.setLevelHandicap ((5 - difficulty) * 2);
 	}
 
 	private int getEnemyLevel() {
-		Debug.Log ("Fighting stage " + currentStage);
+//		Debug.Log ("Fighting stage " + currentStage);
 //		Debug.LogError ("Getting enemy level at type " + tournamentType);
 		if (tournamentType == 0) {
 //			int bossLevel = (currentStage == 10) ? (int)(difficulty * 1.5) : 0;
@@ -108,8 +104,14 @@ public class TournamentManager : MonoBehaviour {
 		if (currentStage == 1)
 			return 0;
 		if (tournamentType == 0) {
+			int reward = (difficulty+1) * currentStage;
+			if (currentStage == numMatches){ 
+				Debug.LogError("Extra rewards!");
+				reward += getTournamentEndBonus();
+
+			}
 //			Debug.Log ("Kash gain: " + ((difficulty+1) * currentStage) + currentStage);
-			return (difficulty+1) * currentStage;
+			return reward;
 		} else {
 			return currentStage * 3;
 		}
@@ -127,9 +129,19 @@ public class TournamentManager : MonoBehaviour {
 	}
 
 	public string getStringRepOfStage() {
+		string stageNum = (currentStage + 1).ToString ();
+		string diff = "[D" + (difficulty + 1) + "]";
+		string type = "[";
+		if (tournamentType == 0) {
+			type += "Limited";
+		} else {
+			type += "Arcade";
+		}
+		type += "]";
+
 		if (currentStage == numMatches)
-			return "BOSS STAGE";
-		return "Stage " + (currentStage+1);
+			return diff + " " + type + " " + "LAST BATTLE";
+		return diff + " " + type + " " + "Stage " + stageNum;
 	}
 
 	public float getEnemyAimDiscrepancy() {
