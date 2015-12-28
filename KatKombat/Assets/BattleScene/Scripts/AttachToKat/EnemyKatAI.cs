@@ -40,6 +40,8 @@ public class EnemyKatAI : MonoBehaviour {
 	private float lastDecideEnemyTime;
 
 	private float lastRotateTime;
+
+	public float aimDiscrepancy = 0.8f;
 //	private float redecisionDelay = 1.0f;
 
 	// Use this for initialization
@@ -208,9 +210,11 @@ public class EnemyKatAI : MonoBehaviour {
 		if (enemyKat != null) {
 			Vector2 direction = this.transform.up * Time.timeScale;
 			Vector2 distance = enemyKat.transform.position - this.transform.position;
+
 			if (distance.magnitude > 2.5f) {
 				katMovement.walkInDirection (direction);
 			}
+
 		}
 	}
 
@@ -275,9 +279,10 @@ public class EnemyKatAI : MonoBehaviour {
 	}
 
 	void executeAttack(int attackNum, Vector2 absDistance){
-		Vector2 castDirection = getCastDirection (this.transform.position, enemyKat.transform.position, 0.8f);
+		Vector2 castDirection = getCastDirection (this.transform.position, enemyKat.transform.position, aimDiscrepancy);
 		float angle = Mathf.Atan2 (castDirection.y, castDirection.x) * Mathf.Rad2Deg;
 		this.transform.parent.rotation = Quaternion.Euler (new Vector3 (0, 0, angle - 90));
+		katMovement.FaceFoward (Quaternion.Euler (new Vector3 (0, 0, angle - 90)));
 
 		atkScriptsArray[attackNum].Cast (castDirection);
 		canMakeDecision = false;
@@ -295,9 +300,11 @@ public class EnemyKatAI : MonoBehaviour {
 	}
 
 	Vector2 getCastDirection(Vector2 startPt, Vector2 endPt, float discrepancy){
-		float difference = Random.Range (-discrepancy, discrepancy);
-		difference *= (startPt - endPt).magnitude / 7.0f;
-		Vector2 newEndPt = new Vector2 (endPt.x + difference, endPt.y + difference);
+		float difference1 = Random.Range (-discrepancy, discrepancy);
+		float difference2 = Random.Range (-discrepancy, discrepancy);
+//		difference *= (startPt - endPt).magnitude / 2.0f;
+//		Debug.Log ("Difference = " + difference);
+		Vector2 newEndPt = new Vector2 (endPt.x + difference1, endPt.y + difference2);
 		return (newEndPt - startPt);
 	}
 

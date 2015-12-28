@@ -236,4 +236,8 @@ public class FarmManager : MonoBehaviour {
 //		this.transform.Find("TournamentButton").GetComponent<TournamentCreaterScreen>().
 	}
 
+	public void followFirstEgg() {
+		followThisEgg(spawnedEggs[0]);
+	}
+
 }

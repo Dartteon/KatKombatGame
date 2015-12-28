@@ -153,6 +153,7 @@ public class GamestateBattleManager : MonoBehaviour {
 			}
 
 		} catch (System.NullReferenceException e){
+
 			Debug.Log(e);
 			Debug.LogError("Attach spawn location objects as child to map: " + mapChoice);
 		}
@@ -257,6 +258,13 @@ public class GamestateBattleManager : MonoBehaviour {
 		enemyAI.transform.parent = enemyKat.transform;
 //		Debug.Log (enemyAI.ToString ());
 		enemyAI.GetComponent<EnemyKatAI> ().enemyKat = playerKat;
+
+		TournamentManager tm = GameObject.Find ("TournamentManagerModule").GetComponent<TournamentManager> ();
+		if (tm != null) {
+			Debug.LogError("Aim discrepancy = " + tm.getEnemyAimDiscrepancy());
+			enemyAI.GetComponent<EnemyKatAI> ().aimDiscrepancy = tm.getEnemyAimDiscrepancy();
+		}
+
 		enemyAI.SetActive (true);
 	}
 }

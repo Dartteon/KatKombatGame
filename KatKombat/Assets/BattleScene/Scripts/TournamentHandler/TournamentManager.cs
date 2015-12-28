@@ -131,4 +131,8 @@ public class TournamentManager : MonoBehaviour {
 			return "BOSS STAGE";
 		return "Stage " + (currentStage+1);
 	}
+
+	public float getEnemyAimDiscrepancy() {
+		return 2.0f - (difficulty * 0.3f);
+	}
 }

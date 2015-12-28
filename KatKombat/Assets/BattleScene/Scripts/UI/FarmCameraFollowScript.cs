@@ -236,4 +236,10 @@ public class FarmCameraFollowScript : MonoBehaviour {
 		}
 	}
 
+
+	public void setCameraForNewGame() {
+//		Debug.LogError ("new game!");
+		this.transform.Find ("TournamentButton").gameObject.SetActive (false);
+		this.transform.Find ("MarketplaceButton").gameObject.SetActive (false);
+	}
 }

@@ -23,7 +23,7 @@ public class MovementScript : MonoBehaviour {
 	
 	private float rotateSpeed = 200f;
 
-	private readonly float walkSpeed = 4.0f;
+	private readonly float walkSpeed = 2.0f;
 
 	void Start () {
 		anim = GetComponentInChildren<Animator> ();

@@ -8,6 +8,7 @@ public class MTControllerJoystick : MonoBehaviour, Tappable {
 	protected MovementScript moveScript;
 	protected GameObject joystickCentre;
 	protected GameObject joystickSource;
+	private Vector2 stickSourceStartPos;
 
 	private Vector2 activatedCamPos;
 	private Vector2 activatedWorldPos;
@@ -24,6 +25,7 @@ public class MTControllerJoystick : MonoBehaviour, Tappable {
 		joystickCentre = transform.FindChild ("Circle").gameObject;
 		stickRenderer = joystickCentre.GetComponent<SpriteRenderer> ();
 		joystickSource = transform.FindChild ("StickSource").gameObject;
+		stickSourceStartPos = joystickSource.transform.localPosition;
 	}
 	
 	void Update(){
@@ -35,18 +37,19 @@ public class MTControllerJoystick : MonoBehaviour, Tappable {
 
 				Vector2 joyStickSourcePos = joystickSource.transform.position;
 				Vector2 difference = currWorldPos - joyStickSourcePos;
-				if (difference.magnitude <= 1.5f){
+				if (difference.magnitude <= 1.2f){
 					
 					joystickCentre.transform.position = currWorldPos;
 				} else {
 					Vector2 newJoystickPos = difference.normalized * 1.5f + joyStickSourcePos;
 					joystickCentre.transform.position = newJoystickPos;
 				}
+
 				
 				moveScript.walkInDirection(direction);
-
 		//		Vector2 currSourcePos = joystickSource.transform.position;
 			} else {
+				joystickSource.transform.localPosition = stickSourceStartPos;
 				turnOffActivate();
 			}
 		}

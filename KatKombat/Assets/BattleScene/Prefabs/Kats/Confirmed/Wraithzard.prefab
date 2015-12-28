@@ -428,7 +428,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.79399991, y: -.939999998, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 444312}
@@ -683,7 +683,7 @@ MonoBehaviour:
   Str: 70
   Dex: 70
   Int: 72
-  col: {r: .400000036, g: .533333361, b: .666666687, a: 1}
+  col: {r: .866666734, g: .933333397, b: .800000072, a: 1}
   isBusy: 0
   statType: 2
   level: 100

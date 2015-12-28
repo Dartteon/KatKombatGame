@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HatchEggButton : MonoBehaviour, Tappable {
@@ -29,6 +30,7 @@ public class HatchEggButton : MonoBehaviour, Tappable {
 			egg.GetComponent<Animator> ().Play ("Hatching");
 			isHatching = true;
 			startHatchTime = Time.time;
+			this.transform.Find("HatchText").transform.Find("Text").GetComponent<Text>().text = "Hatching!";
 		}
 	}
 

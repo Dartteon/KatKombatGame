@@ -307,4 +307,11 @@ public class AdventureManager : MonoBehaviour {
 			return true;		
 		} else return false;
 	}
+
+	public void checkIfNewGameAndSetCamera() {
+		if (playerDataScript.ownedKats.Count == 0) {
+			Camera.main.transform.GetComponent<FarmCameraFollowScript>().setCameraForNewGame();
+			farmMngr.followFirstEgg();
+		}
+	}
 }

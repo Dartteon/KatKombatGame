@@ -30,6 +30,8 @@ public class ModuleSpawner : MonoBehaviour {
 
 		adventureModule.GetComponent<AdventureManager> ().reflectPlayerCurrency ();
 		adventureModule.GetComponent<AdventureManager> ().initialize ();
+		
+		adventureModule.GetComponent<AdventureManager> ().checkIfNewGameAndSetCamera ();
 	//	Camera.main.transform.Find("MarketplaceButton").transform.Find("KashBox").transform.Find("Text").GetComponent<Text>().text = 
 	}
 
