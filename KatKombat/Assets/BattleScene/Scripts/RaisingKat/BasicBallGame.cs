@@ -9,18 +9,21 @@ public class BasicBallGame : MonoBehaviour, Tappable {
 	public float actionInterval = 2.0f;
 	public int numInteractionsPerPlay = 5;
 
+	private Animator ballAnim;
+
 	// Use this for initialization
 	void Start () {
-	
+		ballAnim = this.GetComponent<Animator> ();
 	}
-	/*
+
 	void OnMouseDown() {
 //		Debug.Log ("Clicked");
 		Vector2 randomDir = new Vector2 (Random.Range (0.0f, 1.0f), Random.Range (0.0f, 1.0f));
 //		Debug.Log (randomDir.ToString ());
 		this.GetComponent<Rigidbody2D> ().velocity = randomDir * 10f;
+		ballAnim.Play ("BallClicked");
 	}
-*/
+
 	public void handleTap (Vector2 pos1, Vector2 pos2) {
 //		Vector2 randomDir = new Vector2 (Random.Range (0.0f, 1.0f), Random.Range (0.0f, 1.0f));
 		Vector2 currentPos = this.transform.position;
@@ -28,6 +31,7 @@ public class BasicBallGame : MonoBehaviour, Tappable {
 		dir.Normalize ();
 //		Debug.Log (randomDir.ToString ());
 		this.GetComponent<Rigidbody2D> ().AddForce (dir * 5f, ForceMode2D.Impulse);
+		ballAnim.Play ("BallClicked");
 	}
 
 	// Update is called once per frame

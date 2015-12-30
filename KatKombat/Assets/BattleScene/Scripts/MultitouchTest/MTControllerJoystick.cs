@@ -29,10 +29,12 @@ public class MTControllerJoystick : MonoBehaviour, Tappable {
 	}
 	
 	void Update(){
-		if (!isUsingExternalController && isActivated && (attachedKat != null)) {
+//		Debug.Log("test" + isUsingExternalController);
+		if ((!isUsingExternalController) && isActivated && (attachedKat != null)) {
 			if (!(Time.time - lastActivatedTime >= 0.1f)){
 				direction = currCamPos - activatedCamPos;
 				float angle = getAngle(direction);
+				Debug.Log("rotating kat and ring");
 				rotateKatAndRing(angle);
 
 				Vector2 joyStickSourcePos = joystickSource.transform.position;
@@ -73,7 +75,7 @@ public class MTControllerJoystick : MonoBehaviour, Tappable {
 	}
 	
 	void rotateKatAndRing(float angle){
-		moveScript.FaceFoward(Quaternion.Euler (new Vector3(0, 0, angle - 90)));
+		moveScript.instantFaceForward(Quaternion.Euler (new Vector3(0, 0, angle - 90)));
 //		targetRing.transform.rotation = Quaternion.Euler (new Vector3(0, 0, angle -90));
 	}
 	
@@ -113,10 +115,18 @@ public class MTControllerJoystick : MonoBehaviour, Tappable {
 		lastActivatedTime = Time.time;
 
 		float angle = getAngle(displacement);
-		moveScript.FaceFoward(Quaternion.Euler (new Vector3(0, 0, angle - 90)));
-//		Debug.Log (angle);
+//		moveScript.instantFaceForward(Quaternion.Euler (new Vector3(0, 0, angle - 90)));
+//		moveScript.walkInDirection(displacement);
+
+		joystickSource.transform.localPosition = stickSourceStartPos;
+		Vector2 pos = joystickSource.transform.position;
+		joystickCentre.transform.position = pos + displacement;
+
 		
+		rotateKatAndRing(angle);
 		moveScript.walkInDirection(displacement);
+//		Debug.Log (angle);
+
 //		startPoint = centre + displacement;
 	}
 }

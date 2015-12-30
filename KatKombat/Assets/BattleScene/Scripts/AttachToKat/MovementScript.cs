@@ -37,13 +37,13 @@ public class MovementScript : MonoBehaviour {
 	}
 
 	void Update () {
-
-//		if (!targetRotation.Equals((transform.rotation))){
-//			Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.time*rotateSpeed*Time.timeScale);
-//			if(newRotation!=null)
-//				this.transform.rotation = newRotation;
-//		}
-		this.transform.rotation = targetRotation;
+		/*
+		if (!targetRotation.Equals((transform.rotation))){
+			Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.time*rotateSpeed*Time.timeScale);
+			if(newRotation!=null)
+				this.transform.rotation = newRotation;
+		}*/
+//		this.transform.rotation = targetRotation;
 
 		if (!canMove && (Time.time - lastMoveTime >= jumpCooldown)){
 			canMove = true;
@@ -124,25 +124,29 @@ public class MovementScript : MonoBehaviour {
 
 	}
 
-	public void FaceFoward(Vector2 dir){ //turns to Kat to face correct direction
 
+	public void FaceForward(Vector2 dir){ //turns to Kat to face correct direction
 		float angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
-		targetRotation = Quaternion.Euler (new Vector3(0, 0, angle - 90));
-//		this.transform.rotation = targetRotation;
-		//	transform.rotation = Quaternion.Euler (new Vector3(0, 0, angle - 90));
-		//Vector3 dir = Camera.main.ScreenToWorldPoint (Input.mousePosition) - transform.position;
-		//sprite.transform.rotation = Quaternion.Euler (new Vector3(0, 0, angle - 90));
-		//sprite.transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (new Vector3 (0, 0, angle - 90)), Time.deltaTime * turnSpeed);
+		targetRotation = Quaternion.Euler (new Vector3 (0, 0, angle - 90));
+		this.transform.rotation = targetRotation;
 	}
 
 	public void instantFaceForward(Vector2 dir){
+//		Debug.Log (this.transform.rotation.ToString ());
 		float angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
 		//	transform.rotation = Quaternion.Euler (new Vector3(0, 0, angle - 90));
 		targetRotation = Quaternion.Euler (new Vector3(0, 0, angle - 90));
 		this.transform.rotation = targetRotation;
+//		Debug.Log (this.transform.rotation.ToString ());
+	}
+	public void instantFaceForward(Quaternion dir){
+//		Debug.Log (this.transform.rotation.ToString ());
+		targetRotation = dir;
+		this.transform.rotation = dir;
+//		Debug.Log (this.transform.rotation.ToString ());
 	}
 
-	public void FaceFoward(Quaternion dir){ //turns to Kat to face correct direction
+	public void FaceForward(Quaternion dir){ //turns to Kat to face correct direction
 		targetRotation = dir;
 		//Vector3 dir = Camera.main.ScreenToWorldPoint (Input.mousePosition) - transform.position;
 		//sprite.transform.rotation = Quaternion.Euler (new Vector3(0, 0, angle - 90));
@@ -159,7 +163,7 @@ public class MovementScript : MonoBehaviour {
 	}
 
 	public void freeLeapInDirection(Vector2 direction){
-		FaceFoward (direction);
+		FaceForward (direction);
 		//direction.Normalize();
 		direction.x *= 3.6f;
 		direction.y *= 3.6f;

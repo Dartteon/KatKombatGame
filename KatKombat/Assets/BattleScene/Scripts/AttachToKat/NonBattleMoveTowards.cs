@@ -36,17 +36,17 @@ public class NonBattleMoveTowards : MonoBehaviour {
 			Vector2 currentPos = this.transform.position;
 
 			if ((Time.time - lastJumpTime >= jumpCooldown) && (targetPos-currentPos).magnitude >= minJumpDistance){
-				katMovementScript.FaceFoward(targetPos-currentPos);
+				katMovementScript.FaceForward(targetPos-currentPos);
 				katMovementScript.jumpForward();
 				lastJumpTime = Time.time;
 				jumpCooldown = Random.Range(0.5f, 1.5f);
 			} else if ((targetPos-currentPos).magnitude >= minWalkDistance){
 				katMovementScript.walkInDirection(targetPos-currentPos);
-				katMovementScript.FaceFoward(targetPos-currentPos);
+				katMovementScript.FaceForward(targetPos-currentPos);
 			} else if ((targetPos-currentPos).magnitude <= minWalkDistance){
 				//katMovementScript.FaceFoward(targetPos-currentPos);
 				
-				katMovementScript.FaceFoward(movementTarget.transform.up);
+				katMovementScript.FaceForward(movementTarget.transform.up);
 				lastJumpTime = Time.time;
 
 			}

@@ -7,6 +7,8 @@ public class FarmManager : MonoBehaviour {
 	private GameObject eggPrefab;
 	[SerializeField]
 	private GameObject katPrefabVessel;
+	[SerializeField]
+	public GameObject katClickModulePrefab;
 //	[SerializeField]
 //	private GameObject katClickableEnablerObjectPrefab;
 
@@ -98,6 +100,14 @@ public class FarmManager : MonoBehaviour {
 //		clickEnabler.transform.parent = spawnedKat.transform;
 		spawnedKat.GetComponent<StatsScript> ().setKatStatsInfo (info);
 		spawnedKat.tag = "Player1";
+
+//		GameObject katClickModule = Instantiate (katClickModulePrefab, spawnedKat.transform.position, spawnedKat.transform.rotation) as GameObject;
+//		katClickModule.transform.parent = spawnedKat.transform;
+
+		spawnedKat.AddComponent<CircleCollider2D> ();
+		CircleCollider2D[] cols = spawnedKat.GetComponentsInChildren<CircleCollider2D> ();
+		cols [1].radius = 1.0f;
+		cols [1].isTrigger = true;
 		spawnedKat.AddComponent<FarmClickKatScript> ();
 		/*
 		CircleCollider2D newCollider = new CircleCollider2D ();

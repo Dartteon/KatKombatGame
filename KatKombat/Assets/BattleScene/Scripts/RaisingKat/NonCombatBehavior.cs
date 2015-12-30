@@ -65,17 +65,17 @@ public class NonCombatBehavior : MonoBehaviour {
 */
 	
 	public void faceDirection(Vector2 direction){
-		katMovementScript.FaceFoward(direction);
+		katMovementScript.FaceForward(direction);
 
 	}
 
 	public void walkInDirection(Vector2 direction){
-		katMovementScript.FaceFoward(direction);
+		katMovementScript.FaceForward(direction);
 		katMovementScript.walkInDirection(direction);
 	}
 
 	public void jumpInDirection(Vector2 direction){
-		katMovementScript.FaceFoward(direction);
+		katMovementScript.FaceForward(direction);
 		katMovementScript.jumpForward();
 	}
 
@@ -98,7 +98,7 @@ public class NonCombatBehavior : MonoBehaviour {
 			Vector2 currentFacingDirection = this.transform.up;
 			Vector2 reflectedDirection = (new Vector2(0,0)) - currentFacingDirection;
 			Vector2 newDirection = new Vector2 (reflectedDirection.x + Random.Range(-0.5f,0.5f), reflectedDirection.y + Random.Range(-0.5f,0.5f));
-			katMovementScript.FaceFoward(newDirection);
+			katMovementScript.FaceForward(newDirection);
 
 		}
 		else if (!collidingTag.Equals ("interactableradius") 
@@ -108,7 +108,7 @@ public class NonCombatBehavior : MonoBehaviour {
 			Vector2 currentFacingDirection = this.transform.up;
 			Vector2 reflectedDirection = (new Vector2(0,0)) - currentFacingDirection;
 			Vector2 newDirection = new Vector2 (reflectedDirection.x + Random.Range(-0.5f,0.5f), reflectedDirection.y + Random.Range(-0.5f,0.5f));
-			katMovementScript.FaceFoward(newDirection);
+			katMovementScript.FaceForward(newDirection);
 			lastTurnedTime = Time.time;
 		}
 	}

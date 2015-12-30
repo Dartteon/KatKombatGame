@@ -13,11 +13,9 @@ public class FarmClickKatScript : MonoBehaviour {
 
 	void handleTap(Vector2 pos1, Vector2 pos2){
 		farmMngr.followThisKat (this.transform.parent.gameObject);
-		Debug.Log ("Tapped");
 	}
-
+	
 	void OnMouseDown(){
-		
 		farmMngr.followThisKat (this.gameObject);
 	}
 }

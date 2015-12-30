@@ -110,6 +110,7 @@ public class TournamentManager : MonoBehaviour {
 				reward += getTournamentEndBonus();
 
 			}
+			Debug.Log("Rewards for tournament : " + reward);
 //			Debug.Log ("Kash gain: " + ((difficulty+1) * currentStage) + currentStage);
 			return reward;
 		} else {

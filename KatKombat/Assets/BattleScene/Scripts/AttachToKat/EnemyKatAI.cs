@@ -224,7 +224,7 @@ public class EnemyKatAI : MonoBehaviour {
 		if (enemyKat != null) {
 			Vector2 direction = enemyKat.transform.position - this.transform.position;
 			lastRotateTime = Time.time;
-			katMovement.FaceFoward (direction);
+			katMovement.FaceForward (direction);
 		}
 	}
 
@@ -284,7 +284,7 @@ public class EnemyKatAI : MonoBehaviour {
 		Vector2 castDirection = getCastDirection (this.transform.position, enemyKat.transform.position, aimDiscrepancy);
 		float angle = Mathf.Atan2 (castDirection.y, castDirection.x) * Mathf.Rad2Deg;
 		this.transform.parent.rotation = Quaternion.Euler (new Vector3 (0, 0, angle - 90));
-		katMovement.FaceFoward (Quaternion.Euler (new Vector3 (0, 0, angle - 90)));
+		katMovement.FaceForward (Quaternion.Euler (new Vector3 (0, 0, angle - 90)));
 
 		atkScriptsArray[attackNum].Cast (castDirection);
 		canMakeDecision = false;

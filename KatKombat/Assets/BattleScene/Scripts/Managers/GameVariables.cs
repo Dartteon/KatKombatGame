@@ -15,6 +15,7 @@ public class GameVariables {
 		"Shar",
 		"Mao",
 		"Mo",
+		"Sam",
 
 
 	};
@@ -32,6 +33,7 @@ public class GameVariables {
 		"rall",
 		"lia",
 		"mao",
+		"weiss",
 	};
 
 	public static string getRandomName() {
