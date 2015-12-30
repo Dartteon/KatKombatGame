@@ -98,6 +98,13 @@ public class FarmManager : MonoBehaviour {
 //		clickEnabler.transform.parent = spawnedKat.transform;
 		spawnedKat.GetComponent<StatsScript> ().setKatStatsInfo (info);
 		spawnedKat.tag = "Player1";
+		spawnedKat.AddComponent<FarmClickKatScript> ();
+		/*
+		CircleCollider2D newCollider = new CircleCollider2D ();
+		newCollider.isTrigger = true;
+		newCollider.radius = 1.0f;
+		spawnedKat.AddComponent (newCollider);
+		*/
 //		Debug.Log ("Spawning kat " + info.toString ());
 		return spawnedKat;
 //		Debug.Log ("new kat added to scene, total kats : " + katsInfo.Count);

@@ -16,6 +16,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &101666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 404546}
+  - 96: {fileID: 9660502}
+  - 114: {fileID: 11431066}
+  m_Layer: 0
+  m_Name: Trail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &105242
 GameObject:
   m_ObjectHideFlags: 1
@@ -359,6 +376,18 @@ Transform:
   - {fileID: 492028}
   m_Father: {fileID: 489412}
   m_RootOrder: 1
+--- !u!4 &404546
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101666}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: .100000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 482462}
+  m_RootOrder: 8
 --- !u!4 &406416
 Transform:
   m_ObjectHideFlags: 1
@@ -501,6 +530,7 @@ Transform:
   - {fileID: 425990}
   - {fileID: 446678}
   - {fileID: 497994}
+  - {fileID: 404546}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &489412
@@ -599,6 +629,51 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!96 &9660502
+TrailRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101666}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: .300000012
+  m_EndWidth: 0
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 1526726655
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 1124073471
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 754974719
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 268435455
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!114 &11413476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -632,6 +707,17 @@ MonoBehaviour:
   jumpCooldown: 2
   canMove: 1
   lastMoveTime: 0
+--- !u!114 &11431066
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ca43aa1962e8245b40edd1a632a39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11446748
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -537,7 +537,7 @@ MonoBehaviour:
   maxProjectiles: 2
   repelForceMultiplier: 0
   transparency: 1
-  castTime: .800000012
+  castTime: .5
   attackAnim: MeleeAttack
   spawnCentred: 0
   isInterruptable: 0
@@ -667,6 +667,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: mimicOwnerColor
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: castTime
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

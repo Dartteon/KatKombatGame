@@ -60,7 +60,7 @@ public class TournamentManager : MonoBehaviour {
 	}
 
 	private void setStatsHandicap(KatStatsInfo enemyKat) {
-		enemyKat.setLevelHandicap ((5 - difficulty) * 2);
+		enemyKat.setLevelHandicap ((5 - difficulty) * 4);
 	}
 
 	private int getEnemyLevel() {

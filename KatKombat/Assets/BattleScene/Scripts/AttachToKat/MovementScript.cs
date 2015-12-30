@@ -37,11 +37,13 @@ public class MovementScript : MonoBehaviour {
 	}
 
 	void Update () {
-		if (!targetRotation.Equals((transform.rotation))){
-			Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.time*rotateSpeed*Time.timeScale);
-			if(newRotation!=null)
-				this.transform.rotation = newRotation;
-		}
+
+//		if (!targetRotation.Equals((transform.rotation))){
+//			Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.time*rotateSpeed*Time.timeScale);
+//			if(newRotation!=null)
+//				this.transform.rotation = newRotation;
+//		}
+		this.transform.rotation = targetRotation;
 
 		if (!canMove && (Time.time - lastMoveTime >= jumpCooldown)){
 			canMove = true;
@@ -126,6 +128,7 @@ public class MovementScript : MonoBehaviour {
 
 		float angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
 		targetRotation = Quaternion.Euler (new Vector3(0, 0, angle - 90));
+//		this.transform.rotation = targetRotation;
 		//	transform.rotation = Quaternion.Euler (new Vector3(0, 0, angle - 90));
 		//Vector3 dir = Camera.main.ScreenToWorldPoint (Input.mousePosition) - transform.position;
 		//sprite.transform.rotation = Quaternion.Euler (new Vector3(0, 0, angle - 90));

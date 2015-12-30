@@ -44,10 +44,7 @@ MonoBehaviour:
   katAttackVesselPrefab: {fileID: 190522, guid: bf25ce4ee8869614084271a81d41dada,
     type: 2}
   mapPrefabs:
-  - {fileID: 158652, guid: be4a82b733fade743b28627f9a5b3c53, type: 2}
-  - {fileID: 153666, guid: d851f300684288f409904d63556da0f7, type: 2}
-  - {fileID: 110026, guid: 5d1338abfbe6bc944a6e59f69d199a12, type: 2}
-  - {fileID: 112676, guid: c2177b44d9b5d854ca52c6fb55f89d36, type: 2}
+  - {fileID: 150612, guid: bb07f4adbf4ee8744ab362bb9954b22e, type: 2}
   enemyAIModule: {fileID: 140718, guid: 978730254eb1e0741b8c403f52dff8cc, type: 2}
   defeatButtonPrefab: {fileID: 150536, guid: 5629efe7e4131d34ea1a2d9f94210a33, type: 2}
   tournamentEndSignPrefab: {fileID: 103768, guid: 1ffba3f269da8ad4bb53e7fff96f5cc3,
@@ -58,7 +55,27 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: mapPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mapPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 153666, guid: d851f300684288f409904d63556da0f7, type: 2}
+    - target: {fileID: 0}
+      propertyPath: mapPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 110026, guid: 5d1338abfbe6bc944a6e59f69d199a12, type: 2}
+    - target: {fileID: 0}
+      propertyPath: mapPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 112676, guid: c2177b44d9b5d854ca52c6fb55f89d36, type: 2}
+    - target: {fileID: 0}
+      propertyPath: mapPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 150612, guid: bb07f4adbf4ee8744ab362bb9954b22e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 130798}
