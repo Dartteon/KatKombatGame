@@ -84,7 +84,9 @@ public class FarmManager : MonoBehaviour {
 	}
 
 	public GameObject spawnKatInScene(KatStatsInfo info){
-		Vector2 randomPos = new Vector2 (Random.Range(0.0f, 2.0f), Random.Range(0.0f, 2.0f));
+		float loc1 = Random.Range (-4.5f, 4.5f);
+		float loc2 = Random.Range (-4.5f, 4.5f);
+		Vector2 randomPos = new Vector2 (loc1, loc2);
 		Quaternion randomRot = BaronVec.randomRotation ();
 	//	Debug.Log (randomRot.ToString ());
 		GameObject spawnedKat = Instantiate (findKatWithName (info.breed), randomPos, randomRot) as GameObject; 
@@ -188,7 +190,9 @@ public class FarmManager : MonoBehaviour {
 		}
 	}
 	public void spawnEgg(EggInfo eggInfo) {
-		Vector3 randomLoc = new Vector3 (Random.Range (-2f, 2f), Random.Range (-2f, 2f), -.1f);
+		float loc1 = Random.Range (-3f, 3f);
+		float loc2 = Random.Range (-3f, 3f);
+		Vector3 randomLoc = new Vector3 (loc1, loc2, -.1f);
 		GameObject newEgg = Instantiate (eggPrefab, randomLoc, this.transform.rotation) as GameObject;
 		newEgg.GetComponent<EggTypeMatcher> ().matchSpriteToEggType (eggInfo.getEggType ());
 		KatBreed.EggType eggType = eggInfo.getEggType ();

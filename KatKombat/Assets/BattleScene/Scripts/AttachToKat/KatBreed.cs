@@ -6,7 +6,8 @@ public class KatBreed : MonoBehaviour {
 	private static Breed[] breeds = {Breed.Dustfang, Breed.Wildfang, Breed.Roughfang, Breed.Triphire, Breed.Trisard, Breed.Trimerald, 
 		Breed.Voltyr, Breed.Oceanyr, Breed.Lavyr, Breed.Junglyr, Breed.Pyrozard, Breed.Cyrozard, Breed.Wildfang, Breed.Rubyzard, Breed.Wraithzard};
 
-	private static KatBreed.EggType[] possibleEggColors = {KatBreed.EggType.BlueYellowStripe, KatBreed.EggType.PinkDot, KatBreed.EggType.GreyShard, KatBreed.EggType.GreenYellowSpore, KatBreed.EggType.OrangeArcaneCircle,
+	private static KatBreed.EggType[] possibleEggColors = {KatBreed.EggType.BlueYellowStripe, KatBreed.EggType.PinkDot, 
+		KatBreed.EggType.GreyShard, KatBreed.EggType.GreenYellowSpore, 
 		KatBreed.EggType.RedYellowWrap, KatBreed.EggType.SkyBlueDiamond, KatBreed.EggType.RedYellowBoomerang};
 
 	public enum Breed
@@ -61,6 +62,9 @@ public class KatBreed : MonoBehaviour {
 
 		int index = Random.Range (0, possibleEggColors.Length);
 		return possibleEggColors[index];
+	}
+	public static KatBreed.EggType getRare2EggColor() {
+		return KatBreed.EggType.OrangeArcaneCircle;
 	}
 
 	public static Breed getRandomRare2Breed() {

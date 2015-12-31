@@ -207,7 +207,9 @@ public class GamestateBattleManager : MonoBehaviour {
 			GameObject defBtn =	Instantiate (defeatButtonPrefab, camPos, transform.rotation) as GameObject;
 			defBtn.transform.parent = Camera.main.transform;
 			GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>().endRound(false);
-			defBtn.transform.Find("RewardsInfo").Find("Text").GetComponent<Text>().text = GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>().calculateKashRewards() + " Kash";
+			defBtn.transform.Find("RewardsInfo").Find("Text").GetComponent<Text>().text = GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>().calculateKashRewardsInString();
+				//GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>().calculateKashRewards() + " Kash";
+
 			adventureManager.savePlayerFile ();
 			hasGameStarted = false;
 		}
@@ -222,8 +224,8 @@ public class GamestateBattleManager : MonoBehaviour {
 			defBtn.transform.parent = Camera.main.transform;
 			GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>().endRound(false);
 			TournamentManager tm = GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>();
-			defBtn.transform.Find("RewardsInfo").Find("Text").GetComponent<Text>().text = 
-				tm.calculateKashRewards() + " + " + tm.getTournamentEndBonus() + " Kash";
+			defBtn.transform.Find("RewardsInfo").Find("Text").GetComponent<Text>().text = tm.calculateKashRewardsInString();
+//				tm.calculateKashRewards() + " + " + tm.getTournamentEndBonus() + " Kash";
 			adventureManager.savePlayerFile ();
 			hasGameStarted = false;
 		}

@@ -4,6 +4,11 @@ using System.Collections;
 
 public class BuyEggButton : MonoBehaviour, Tappable {
 	private bool isClicked = false;
+	[SerializeField]
+	private int rarity;
+	[SerializeField]
+	private int cost;
+
 
 	void OnMouseDown(){
 		execute ();
@@ -15,18 +20,18 @@ public class BuyEggButton : MonoBehaviour, Tappable {
 		AdventureManager advMngr = GameObject.Find ("AdventureModule").gameObject.GetComponent<AdventureManager> ();
 		if (isClicked) {
 //		advMngr.addCurrency (100);
-			if (advMngr.deductCurrency (100)) {
+			if (advMngr.deductCurrency (cost)) {
 				advMngr.reflectPlayerCurrency ();
 				//		this.transform.parent.Find("KashBox").transform.Find ("TextCanvas").transform.Find("Text").GetComponent<Text>().text = advMngr.getCurrencyAmount().ToString();
-				advMngr.summonNewEgg ();
+				advMngr.summonNewEgg (rarity);
 				advMngr.reloadScene();
 			}
 		
 		} else {
-			if (advMngr.hasSlotForEggOrKat () && advMngr.getCurrencyAmount() >= 100) {
+			if (advMngr.hasSlotForEggOrKat () && advMngr.getCurrencyAmount() >= cost) {
 				isClicked = true;
 				this.transform.Find("DescriptionText").transform.Find("Text").GetComponent<Text>().text = "Confirm";
-			} else if (advMngr.getCurrencyAmount() < 100){
+			} else if (advMngr.getCurrencyAmount() < cost){
 				this.transform.Find("DescriptionText").transform.Find("Text").GetComponent<Text>().text = "No Kash..";
 			} else {
 //				Debug.LogError("2 many eggs");

@@ -169,6 +169,24 @@ public class AdventureManager : MonoBehaviour {
 		savePlayerFile ();
 //		Application.LoadLevel (Application.loadedLevel);
 	}
+	public void summonNewEgg(int rarity){
+		String newEggName = GameVariables.getRandomName();
+		KatStatsInfo newKat;
+		KatBreed.EggType eggColor;
+		if (rarity == 2) {
+			newKat = new KatStatsInfo (KatBreed.getRandomRare2Breed(), katPrefabVessel, newEggName);
+			eggColor = KatBreed.getRare2EggColor();
+		} else {
+			newKat = new KatStatsInfo (KatBreed.getRandomBreed (), katPrefabVessel, newEggName);
+			eggColor = KatBreed.getRandomEggColor();
+		}
+		EggInfo newEgg = EggInfo.getNewEgg (newKat, eggColor);
+		playerDataScript.addEggToInventory (newEgg);
+		newEgg.getKat ().setKommands (Kommands.getRandomStrKommand (), Kommands.getRandomDexKommand (), Kommands.getRandomIntKommand ());
+		farmMngr.spawnEgg (newEgg);
+		eggs = playerDataScript.ownedEggs;
+		savePlayerFile ();
+	}
 
 	public void sellKat(KatStatsInfo kat) {
 		playerDataScript.addCurrency (kat.getLevel () * 15);

@@ -21,7 +21,7 @@ public class MovementScript : MonoBehaviour {
 	private Quaternion targetRotation;
 //	private float rotateSpeed = 1.1f;
 	
-	private float rotateSpeed = 200f;
+	private float rotateSpeed = 0.2f;
 
 	private readonly float walkSpeed = 2.0f;
 
@@ -37,12 +37,12 @@ public class MovementScript : MonoBehaviour {
 	}
 
 	void Update () {
-		/*
-		if (!targetRotation.Equals((transform.rotation))){
-			Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.time*rotateSpeed*Time.timeScale);
-			if(newRotation!=null)
-				this.transform.rotation = newRotation;
-		}*/
+
+//		if (!targetRotation.Equals((transform.rotation))){
+//			Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.time*rotateSpeed*Time.timeScale);
+//			if(newRotation!=null)
+//				this.transform.rotation = newRotation;
+//		}
 //		this.transform.rotation = targetRotation;
 
 		if (!canMove && (Time.time - lastMoveTime >= jumpCooldown)){
@@ -58,6 +58,11 @@ public class MovementScript : MonoBehaviour {
 			}
 
 		}
+	}
+
+	void FixedUpdate() {
+		Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, rotateSpeed);
+		this.transform.rotation = newRotation;
 	}
 	/*
 	public void walkInDirection(Vector2 direction){
@@ -128,7 +133,7 @@ public class MovementScript : MonoBehaviour {
 	public void FaceForward(Vector2 dir){ //turns to Kat to face correct direction
 		float angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
 		targetRotation = Quaternion.Euler (new Vector3 (0, 0, angle - 90));
-		this.transform.rotation = targetRotation;
+//		this.transform.rotation = targetRotation;
 	}
 
 	public void instantFaceForward(Vector2 dir){

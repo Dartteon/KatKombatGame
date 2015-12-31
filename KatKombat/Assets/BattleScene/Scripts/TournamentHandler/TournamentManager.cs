@@ -105,17 +105,32 @@ public class TournamentManager : MonoBehaviour {
 			return 0;
 		if (tournamentType == 0) {
 			int reward = (difficulty+1) * currentStage;
+//			Debug.LogError("Before " + reward);
 			if (currentStage == numMatches){ 
-				Debug.LogError("Extra rewards!");
+//				Debug.LogError("Extra rewards!");
 				reward += getTournamentEndBonus();
 
 			}
-			Debug.Log("Rewards for tournament : " + reward);
+//			Debug.Log("Rewards for tournament : " + reward);
 //			Debug.Log ("Kash gain: " + ((difficulty+1) * currentStage) + currentStage);
 			return reward;
 		} else {
 			return currentStage * 3;
 		}
+	}
+
+	public string calculateKashRewardsInString() {
+		int reward = (difficulty+1) * currentStage;
+		string rewardString = reward.ToString();
+
+		
+		if (currentStage == numMatches){
+			rewardString = rewardString + " + " + getTournamentEndBonus().ToString();
+			
+		}
+
+		rewardString = rewardString + " Kash";
+		return rewardString;
 	}
 
 	public bool hasTournamentEnded() {
