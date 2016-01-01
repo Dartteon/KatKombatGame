@@ -8,15 +8,15 @@ public class OnClickReaction : MonoBehaviour {
 	
 	bool hasSprite = false;
 	Color[] originalColor;
-	Color clickedColor = new Color (.7f,.7f,.7f);
+	Color clickedColor = new Color (.3f,.3f,.3f);
 	SpriteRenderer[] sprite;
 
 	// Use this for initialization
 	void Start () {
 		xScale = this.transform.localScale.x;
 		yScale = this.transform.localScale.y;
-		xPushedScale = 0.8f * xScale;
-		yPushedScale = 0.8f * yScale;
+		xPushedScale = 1.2f * xScale;
+		yPushedScale = 1.2f * yScale;
 		
 		SpriteRenderer[] sprites = transform.GetComponentsInChildren<SpriteRenderer> ();
 		if (sprites.Length != 0) {
