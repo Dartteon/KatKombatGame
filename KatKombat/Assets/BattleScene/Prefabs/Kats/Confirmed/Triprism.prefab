@@ -701,7 +701,7 @@ MonoBehaviour:
   Str: 72
   Dex: 72
   Int: 72
-  col: {r: .992156923, g: .533333361, b: .203921586, a: 1}
+  col: {r: .541176498, g: .772549093, b: .752941251, a: 1}
   isBusy: 0
   statType: 2
   level: 100

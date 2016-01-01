@@ -222,12 +222,14 @@ public class GamestateBattleManager : MonoBehaviour {
 			Vector3 camPos = new Vector3 (Camera.main.transform.position.x, Camera.main.transform.position.y, -9.5f);
 			GameObject defBtn =	Instantiate (tournamentEndSignPrefab, camPos, transform.rotation) as GameObject;
 			defBtn.transform.parent = Camera.main.transform;
-			GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>().endRound(false);
+			GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>().endRound(true);
 			TournamentManager tm = GameObject.Find("TournamentManagerModule").GetComponent<TournamentManager>();
 			defBtn.transform.Find("RewardsInfo").Find("Text").GetComponent<Text>().text = tm.calculateKashRewardsInString();
 //				tm.calculateKashRewards() + " + " + tm.getTournamentEndBonus() + " Kash";
 			adventureManager.savePlayerFile ();
 			hasGameStarted = false;
+			Camera.main.GetComponent<BattleCameraFollowScript> ().disableSceneButtons();
+			Camera.main.GetComponent<BattleCameraFollowScript> ().finishGame();
 		}
 	}
 

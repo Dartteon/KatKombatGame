@@ -159,7 +159,8 @@ public class AdventureManager : MonoBehaviour {
 		String newEggName = GameVariables.getRandomName();
 //		String newKatBreed = katPrefabs [UnityEngine.Random.Range (0, katPrefabs.Length)].name;
 		KatStatsInfo newKat = new KatStatsInfo (KatBreed.getRandomBreed(), katPrefabVessel, newEggName);
-		EggInfo newEgg = EggInfo.getNewEgg (newKat, KatBreed.getRandomEggColor());
+		KatBreed.EggType eggColor = KatBreed.getEggColor (newKat.breed);
+		EggInfo newEgg = EggInfo.getNewEgg (newKat, eggColor);
 		playerDataScript.addEggToInventory (newEgg);
 		newEgg.getKat ().setKommands (Kommands.getRandomStrKommand (), Kommands.getRandomDexKommand (), Kommands.getRandomIntKommand ());
 //		GameObject eggObj = Instantiate (eggPrefabVessel.GetComponent<EggPrefabVessel> ().getEgg (newEgg));
@@ -175,11 +176,10 @@ public class AdventureManager : MonoBehaviour {
 		KatBreed.EggType eggColor;
 		if (rarity == 2) {
 			newKat = new KatStatsInfo (KatBreed.getRandomRare2Breed(), katPrefabVessel, newEggName);
-			eggColor = KatBreed.getRare2EggColor();
 		} else {
 			newKat = new KatStatsInfo (KatBreed.getRandomBreed (), katPrefabVessel, newEggName);
-			eggColor = KatBreed.getRandomEggColor();
 		}
+		eggColor = KatBreed.getEggColor (newKat.breed);
 		EggInfo newEgg = EggInfo.getNewEgg (newKat, eggColor);
 		playerDataScript.addEggToInventory (newEgg);
 		newEgg.getKat ().setKommands (Kommands.getRandomStrKommand (), Kommands.getRandomDexKommand (), Kommands.getRandomIntKommand ());

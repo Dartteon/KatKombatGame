@@ -9,8 +9,8 @@ public class BattleCameraFollowScript : MonoBehaviour {
 	[SerializeField]
 	private GameObject levelUpSignPrefab;
 
-	private float targetZoomSize = 4f;
-	private float currentZoomSize = 4f;
+	private float targetZoomSize = 2f;
+	private float currentZoomSize = 2f;
 	private Vector2 targetPos;
 	private GameObject target;
 	private float panSpeed = 4f;
@@ -30,7 +30,7 @@ public class BattleCameraFollowScript : MonoBehaviour {
 
 	public void attachKat(GameObject kat){
 		target = kat;
-		this.GetComponent<Camera> ().orthographicSize = 4f;
+//		this.GetComponent<Camera> ().orthographicSize = 4f;
 	}
 
 	void Update () {
@@ -54,7 +54,9 @@ public class BattleCameraFollowScript : MonoBehaviour {
 	}
 
 	public void showEnemyVictory(GameObject enemy){
+		target = enemy;
 		targetPos = enemy.transform.position;
+		finishGame ();
 //		this.transform.position = new Vector3(targetPos.x, targetPos.y, -10f);
 	}
 
@@ -62,6 +64,16 @@ public class BattleCameraFollowScript : MonoBehaviour {
 		Vector3 spawnPos = new Vector3 (this.transform.position.x, this.transform.position.y, 0);
 		GameObject vic = Instantiate (victorySignPrefab, spawnPos, this.transform.rotation) as GameObject;
 		vic.transform.parent = this.transform;
-		targetZoomSize = 3f;
+		finishGame ();
+	}
+
+	public void disableSceneButtons () {
+		transform.Find ("SurrenderButton").gameObject.SetActive (false);
+		transform.Find ("StageText").gameObject.SetActive (false);
+	}
+
+	public void finishGame() {
+		targetZoomSize = 4f;
+		disableSceneButtons ();
 	}
 }

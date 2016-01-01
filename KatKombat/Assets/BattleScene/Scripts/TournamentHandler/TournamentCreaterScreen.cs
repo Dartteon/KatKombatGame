@@ -107,10 +107,17 @@ public class TournamentCreaterScreen : MonoBehaviour, OptionsChooserEmployer {
 	}
 
 	public void executeTournament() {
+		searchAndDestroyErrorModules ();
 		Debug.Log ("Executing tournament [Difficulty " + tournamentDifficulty + "] [Type " + tournamentType + "] [" + playerKats[currentKat].toString() + "]");
 		GameObject tournament = Instantiate (tournamentManagerPrefab);
 		tournament.name = "TournamentManagerModule";
 		tournament.GetComponent<TournamentManager> ().initialize (playerKats [currentKat], tournamentDifficulty, tournamentType);
+	}
+
+	void searchAndDestroyErrorModules() {
+		Destroy (GameObject.Find ("TournamentManagerModule"));
+		Destroy (GameObject.Find ("BattleInformationModule"));
+		Destroy (GameObject.Find ("GameStateBattleManager"));
 	}
 
 	void Update() {

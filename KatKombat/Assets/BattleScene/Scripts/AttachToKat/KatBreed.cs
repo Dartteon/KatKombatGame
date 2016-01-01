@@ -66,6 +66,45 @@ public class KatBreed : MonoBehaviour {
 	public static KatBreed.EggType getRare2EggColor() {
 		return KatBreed.EggType.OrangeArcaneCircle;
 	}
+	public static KatBreed.EggType getEggColor (KatBreed.Breed breed){
+		switch (breed) {
+		case Breed.Cyrozard:
+		case Breed.Pyrozard:
+		case Breed.Rubyzard:
+		case Breed.Wraithzard:
+			return KatBreed.EggType.BlueYellowStripe;
+			break;
+
+		case Breed.Junglyr:
+		case Breed.Lavyr:
+		case Breed.Oceanyr:
+		case Breed.Voltyr:
+			return KatBreed.EggType.RedYellowBoomerang;
+			break;
+			
+		case Breed.Dustfang:
+		case Breed.Roughfang:
+		case Breed.Wildfang:
+			return KatBreed.EggType.GreenYellowSpore;
+			break;
+
+		case Breed.Trimerald:
+		case Breed.Trisard:
+		case Breed.Triphire:
+			return KatBreed.EggType.SkyBlueDiamond;
+			break;
+
+		case Breed.Triprism:
+		case Breed.Goldfang:
+			return KatBreed.EggType.OrangeArcaneCircle;
+			break;
+
+		default:
+			return KatBreed.EggType.RedYellowWrap;
+			break;
+
+		}
+	}
 
 	public static Breed getRandomRare2Breed() {
 		Breed[] rare2Breeds = {Breed.Goldfang, Breed.Triprism};

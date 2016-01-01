@@ -667,7 +667,7 @@ MonoBehaviour:
   maxProjectiles: 3
   repelForceMultiplier: 100
   transparency: 1
-  castTime: .300000012
+  castTime: .100000001
   attackAnim: MeleeAttack
   spawnCentred: 0
   isInterruptable: 0
@@ -870,7 +870,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: castTime
-      value: .300000012
+      value: .100000001
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: attackAnim

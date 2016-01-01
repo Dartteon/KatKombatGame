@@ -85,7 +85,7 @@ public class TournamentManager : MonoBehaviour {
 	}
 
 	public void endRound (bool didPlayerWin) {
-		if (didPlayerWin) {
+		if (didPlayerWin && currentStage < numMatches) {
 			currentStage++;
 			getEnemy();
 			startNextStage();
