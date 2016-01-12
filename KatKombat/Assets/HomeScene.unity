@@ -6704,6 +6704,64 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 506757545}
+--- !u!1001 &509691211
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 445786, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: .177333951
+      objectReference: {fileID: 0}
+    - target: {fileID: 445786, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.56488705
+      objectReference: {fileID: 0}
+    - target: {fileID: 445786, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 445786, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 445786, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 445786, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 445786, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 445786, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475512, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: kom1
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475512, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: kom2
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475512, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: kom3
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475512, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: enemyKatBreed
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &511953292
 GameObject:
   m_ObjectHideFlags: 0
@@ -13285,7 +13343,7 @@ Transform:
   - {fileID: 391041800}
   - {fileID: 493046343}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &1062667193
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -129,7 +129,15 @@ public class GamestateBattleManager : MonoBehaviour {
 				attachAttackToKat(playerKat, playerKatInfo);
 				playerKat.tag = "Player1";
 				Camera.main.GetComponent<BattleCameraFollowScript>().attachKat(playerKat);
+
+
+
+				//error here
 				Camera.main.GetComponent<BattleCameraFollowScript>().initialize();
+
+
+
+
 //				StatsScript katStats = playerKat.GetComponent<StatsScript>();
 //				katStats.setStats(playerKat);
 
@@ -151,6 +159,7 @@ public class GamestateBattleManager : MonoBehaviour {
 				Debug.Log("[GameStateBattleManager] Instantiated Enemy Kat " + enemyKat);
 //				Debug.Log(enemyKatInfo.toString());
 			}
+
 
 		} catch (System.NullReferenceException e){
 
@@ -235,6 +244,7 @@ public class GamestateBattleManager : MonoBehaviour {
 
 	void attachAttackToKat(GameObject kat, KatStatsInfo katInfo){
 		List<Kommand> komList = katInfo.getActiveKommands ();
+		Debug.LogError("Attaching Koms to Kat : " + komList[0].ToString() + " " + komList[1].ToString() + " " + komList[2].ToString() + " ");
 		//string[] katAttacks = katInfo.getCommands ();
 		
 		KatAttacksVessel attackPrefabsScript = katAttackVesselPrefab.GetComponent<KatAttacksVessel>();
@@ -262,11 +272,13 @@ public class GamestateBattleManager : MonoBehaviour {
 		enemyAI.transform.parent = enemyKat.transform;
 //		Debug.Log (enemyAI.ToString ());
 		enemyAI.GetComponent<EnemyKatAI> ().enemyKat = playerKat;
-
-		TournamentManager tm = GameObject.Find ("TournamentManagerModule").GetComponent<TournamentManager> ();
-		if (tm != null) {
+		
+		GameObject tmObj = GameObject.Find ("TournamentManagerModule");
+		if (tmObj != null) {
+			TournamentManager tm = tmObj.GetComponent<TournamentManager> ();
 //			Debug.LogError("Aim discrepancy = " + tm.getEnemyAimDiscrepancy());
-			enemyAI.GetComponent<EnemyKatAI> ().aimDiscrepancy = tm.getEnemyAimDiscrepancy();
+			enemyAI.GetComponent<EnemyKatAI> ().aimDiscrepancy = tm.getEnemyAimDiscrepancy ();
+
 		}
 
 		enemyAI.SetActive (true);

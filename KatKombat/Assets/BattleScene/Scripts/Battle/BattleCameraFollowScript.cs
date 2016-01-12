@@ -9,7 +9,7 @@ public class BattleCameraFollowScript : MonoBehaviour {
 	[SerializeField]
 	private GameObject levelUpSignPrefab;
 
-	private float targetZoomSize = 2f;
+	private float targetZoomSize = 3f;
 	private float currentZoomSize = 2f;
 	private Vector2 targetPos;
 	private GameObject target;
@@ -22,9 +22,11 @@ public class BattleCameraFollowScript : MonoBehaviour {
 	public void initialize() {
 		cam = this.GetComponent<Camera> ();
 
-		TournamentManager tm = GameObject.Find ("TournamentManagerModule").GetComponent<TournamentManager> ();
-		if (tm != null) {
-			this.transform.Find("StageText").transform.Find("Text").GetComponent<Text>().text = tm.getStringRepOfStage();
+		GameObject tmObj = GameObject.Find ("TournamentManagerModule");
+		if (tmObj != null) {
+			TournamentManager tm = tmObj.GetComponent<TournamentManager> ();
+			this.transform.Find ("StageText").transform.Find ("Text").GetComponent<Text> ().text = tm.getStringRepOfStage ();
+
 		}
 	}
 

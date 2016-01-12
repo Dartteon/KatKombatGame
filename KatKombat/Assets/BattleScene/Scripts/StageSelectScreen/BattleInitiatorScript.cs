@@ -8,14 +8,14 @@ public class BattleInitiatorScript : MonoBehaviour {
 //	public string enemyKatBreed;
 	public KatBreed.Breed enemyKatBreed;
 	public int enemyKatLevel;
-	public string enemyKatCommand1, enemyKatCommand2, enemyKatCommand3;
+//	public string enemyKatCommand1, enemyKatCommand2, enemyKatCommand3;
 
 	public KommandCode kom1, kom2, kom3;
 	public GameObject katPrefabsVessel;
 
 	private GameObject[] katPrefabs;
 
-	public AdventureManager advManager;
+	private AdventureManager advManager;
 
 	void findAdvManagerInScene(){
 		if (advManager == null) {
@@ -31,6 +31,7 @@ public class BattleInitiatorScript : MonoBehaviour {
 		findAdvManagerInScene ();
 		KatStatsInfo newEnemy = new KatStatsInfo (enemyKatBreed, katPrefabsVessel, "Gary");
 //		newEnemy.setCommands (enemyKatCommand1, enemyKatCommand2, enemyKatCommand3);
+//		Debug.LogError ("Kommands : " + kom1.ToString () + " " + kom2.ToString () + " " + kom3.ToString ());
 		newEnemy.setKommands (kom1, kom2, kom3);
 		newEnemy.setLevel (enemyKatLevel);
 		Debug.Log ("[BattleInitiator] Created Enemy : " + newEnemy.toString ());

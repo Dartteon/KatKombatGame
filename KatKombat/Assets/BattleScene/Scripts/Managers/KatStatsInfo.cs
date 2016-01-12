@@ -133,6 +133,7 @@ public class KatStatsInfo {
 
 	//To be refactored in
 	public void setKommands(Kommand first, Kommand second, Kommand third) {
+		Debug.LogError ("Adding Kommands " + first.ToString () + " " + second.ToString () + " " + third.ToString ());
 		activeKommandList.Clear ();
 		activeKommandList.Add (first);
 		activeKommandList.Add (second);
