@@ -106,4 +106,13 @@ public class StatsScript : MonoBehaviour {
 //		Debug.Log ("Initializing HP Script for " + this.gameObject.name);
 		transform.GetComponent<HealthScript> ().initialize ();
 	}
+
+	public void setFunStats() {
+		Str = 0;
+		Dex = 0;
+		Int = 0;
+		level = 1;
+		transform.GetComponent<HealthScript> ().initialize ();
+		transform.GetComponent<HealthScript> ().setMaxHealth (140);
+	}
 }

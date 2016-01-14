@@ -116,10 +116,14 @@ public class MTControllerCommand : MonoBehaviour, Tappable {
 	}
 
 	void findIconInProjectileAndAssumeSprite(string attackNum){
-		SpriteRenderer atkSpriteR = attachedKat.transform.Find(attackNum).GetComponent<KatProjectileLauncherScript>().projectile.transform.Find("Icon").transform.GetComponent<SpriteRenderer>();
+		GameObject projectile = attachedKat.transform.Find (attackNum).GetComponent<KatProjectileLauncherScript> ().projectile;
+		if (projectile != null) {
+			SpriteRenderer atkSpriteR = attachedKat.transform.Find (attackNum).GetComponent<KatProjectileLauncherScript> ().projectile.transform.Find ("Icon").transform.GetComponent<SpriteRenderer> ();
+			
+			this.transform.Find("Icon").transform.GetComponent<SpriteRenderer>().sprite = atkSpriteR.sprite;
+		}
 //		Debug.Log(atkSpriteR.ToString());
 //		Debug.Log(this.transform.Find("Icon").transform.GetComponent<SpriteRenderer>().sprite.ToString());
-		this.transform.Find("Icon").transform.GetComponent<SpriteRenderer>().sprite = atkSpriteR.sprite;
 	}
 
 	public void handleTap(Vector2 clickPosition, Vector2 worldPos){

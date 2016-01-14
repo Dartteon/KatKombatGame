@@ -186,6 +186,11 @@ public class HealthScript : MonoBehaviour {
 			return false;
 	}
 
+	public void DealPercentageDamage(float percent){
+		int dmg = (int)((percent / 100.0f) * maxHealth);
+		Damage (dmg, 3);
+	}
+
 	public bool Heal(int healAmount){
 		if (!isDead) {
 			healAmount = (int)(healAmount*healMultiplier);
@@ -291,5 +296,9 @@ public class HealthScript : MonoBehaviour {
 		} else
 			return NORMAL_EFFECTIVE;
 			*/
+	}
+
+	public void setMaxHealth(int _health) {
+		maxHealth = _health;
 	}
 }

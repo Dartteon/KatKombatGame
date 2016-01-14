@@ -5,7 +5,7 @@ public class MTMainController : MonoBehaviour {
 	public GameObject attachedKat;
 	private Color katColor;
 	private GameObject movementStick, attack1Stick;
-	MTControllerJoystick angleController;
+	MTControllerFixedJoystick angleController;
 	MTControllerCommand[] commandControllersArray = new MTControllerCommand[3];
 	MTControllerJump jumpController;
 	Manager manager;
@@ -31,16 +31,18 @@ public class MTMainController : MonoBehaviour {
 
 		katColor = attachedKat.GetComponent<StatsScript> ().getColor ();
 		transform.FindChild ("MovementJoystick").gameObject.SendMessage("AttachKat", attachedKat);
-		angleController = transform.FindChild ("MovementJoystick").GetComponent<MTControllerJoystick> ();
+		angleController = transform.FindChild ("MovementJoystick").GetComponent<MTControllerFixedJoystick> ();
 
 		fourCmdButtons.transform.FindChild ("Attack1Joystick").gameObject.SendMessage("AttachKat", attachedKat);
 //		fourCmdButtons.transform.FindChild ("Attack1Joystick").GetComponent<MTControllerCommand> ().AttachKat (attachedKat);
 		commandControllersArray [0] = fourCmdButtons.transform.FindChild ("Attack1Joystick").GetComponent<MTControllerCommand> ();
 
-		fourCmdButtons.transform.FindChild ("Attack2Joystick").gameObject.SendMessage("AttachKat", attachedKat);
+		fourCmdButtons.transform.Find ("Attack2Joystick").gameObject.GetComponent<MTControllerCommand> ().AttachKat (attachedKat);
+//		fourCmdButtons.transform.FindChild ("Attack2Joystick").gameObject.SendMessage("AttachKat", attachedKat);
 		commandControllersArray [1] = fourCmdButtons.transform.FindChild ("Attack2Joystick").GetComponent<MTControllerCommand> ();
 
-		fourCmdButtons.transform.FindChild ("Attack3Joystick").gameObject.SendMessage("AttachKat", attachedKat);
+//		fourCmdButtons.transform.FindChild ("Attack3Joystick").gameObject.SendMessage("AttachKat", attachedKat);
+		fourCmdButtons.transform.Find ("Attack3Joystick").gameObject.GetComponent<MTControllerCommand> ().AttachKat (attachedKat);
 		commandControllersArray [2] = fourCmdButtons.transform.FindChild ("Attack3Joystick").GetComponent<MTControllerCommand> ();
 
 		fourCmdButtons.transform.FindChild ("JumpButton").gameObject.SendMessage("AttachKat", attachedKat);
