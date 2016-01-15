@@ -23,6 +23,7 @@ public class TournamentManager : MonoBehaviour {
 	}
 
 	public void startNextStage() {
+//		Debug.LogError ("Starting next stage" + currentStage);
 		GameObject.Find ("AdventureModule").GetComponent<AdventureManager> ().initiateBattleWithKat (playerKat, currentEnemy);
 	}
 
@@ -85,6 +86,7 @@ public class TournamentManager : MonoBehaviour {
 	}
 
 	public void endRound (bool didPlayerWin) {
+//		Debug.LogError ("Currentstage+");
 		if (didPlayerWin && currentStage < numMatches) {
 			currentStage++;
 			getEnemy();

@@ -2587,7 +2587,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &212379279
 Transform:
   m_ObjectHideFlags: 0
@@ -7101,6 +7101,10 @@ Prefab:
     - target: {fileID: 11475512, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
       propertyPath: enemyKatBreed
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 130818, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ae3cb284d53e98419cd71954cdb9a34, type: 2}

@@ -5,12 +5,14 @@ public class PostBattleNextButton : MonoBehaviour, Tappable {
 	private bool isClicked = false;
 	public void handleTap(Vector2 pos1, Vector2 pos2) {
 		if (!isClicked) execute ();
+		isClicked = true;
 	}
 
+	/*
 	void OnMouseDown() {
 		if (!isClicked) execute ();
 	}
-
+*/
 	void execute() {
 		GameObject tournamentManager = GameObject.Find ("TournamentManagerModule").gameObject;
 		if (tournamentManager != null) {

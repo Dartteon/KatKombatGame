@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 460950}
   - 60: {fileID: 6011372}
+  - 114: {fileID: 11402190}
   m_Layer: 9
   m_Name: Rwall
   m_TagString: Terrain
@@ -56,6 +57,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 454686}
   - 60: {fileID: 6002618}
+  - 114: {fileID: 11475674}
   m_Layer: 9
   m_Name: Lwall
   m_TagString: Terrain
@@ -290,6 +292,32 @@ PolygonCollider2D:
       - {x: 3.7867794, y: -6.51008797}
       - {x: 1.85262823, y: -7.34199095}
       - {x: -.14344202, y: -7.5084815}
+--- !u!114 &11402190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc4dbc16971c79409d2c45ad0f1cec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPercentageDamage: 0
+  damage: 25
+--- !u!114 &11475674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc4dbc16971c79409d2c45ad0f1cec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPercentageDamage: 0
+  damage: 25
 --- !u!212 &21205360
 SpriteRenderer:
   m_ObjectHideFlags: 1

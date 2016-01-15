@@ -23,6 +23,8 @@ public class AdventureManager : MonoBehaviour {
 
 	private PlayerInformation playerDataScript;
 
+	public BattleInformation currentBattleInfo;
+
 	[SerializeField]
 	private GameObject eggPrefabVessel;
 	[SerializeField]
@@ -45,14 +47,15 @@ public class AdventureManager : MonoBehaviour {
 		//find past battle remnant and destroy
 		Destroy (GameObject.Find ("BattleInformationModule"));
 
-		GameObject battleInfo = Instantiate (battleInfoModulePrefab) as GameObject;
-		BattleInformation battleInfoScript = battleInfo.GetComponent<BattleInformation> ();
+//		GameObject battleInfo = Instantiate (battleInfoModulePrefab) as GameObject;
+		currentBattleInfo = new BattleInformation ();
+//		BattleInformation battleInfoScript = battleInfo.GetComponent<BattleInformation> ();
 		Debug.Log ("[AdventureManager Player Kat] " + playrKat.toString ());
 		Debug.Log ("[AdventureManager Spawned Enemy] " + enemy.toString ());
-		battleInfoScript.setKats (playrKat, enemy);
-		battleInfoScript.setMap (getCurrentMap ());
-		battleInfoScript.setKatPrefabVessel(katPrefabVessel);
-		spawnedBattleInfoModule = battleInfo;
+		currentBattleInfo.setKats (playrKat, enemy);
+		currentBattleInfo.setMap (getCurrentMap ());
+		currentBattleInfo.setKatPrefabVessel(katPrefabVessel);
+//		spawnedBattleInfoModule = battleInfo;
 		Application.LoadLevel (battleSceneName);
 
 //		farmMngr = GameObject.Find ("FarmManagerModule").GetComponent<FarmManager> ();
@@ -63,14 +66,16 @@ public class AdventureManager : MonoBehaviour {
 		Destroy (GameObject.Find ("BattleInformationModule"));
 
 		currentFightingKatIndex = 0;
-		GameObject battleInfo = Instantiate (battleInfoModulePrefab) as GameObject;
-		BattleInformation battleInfoScript = battleInfo.GetComponent<BattleInformation> ();
+//		GameObject battleInfo = Instantiate (battleInfoModulePrefab) as GameObject;
+//		BattleInformation battleInfoScript = battleInfo.GetComponent<BattleInformation> ();
+		
+		currentBattleInfo = new BattleInformation ();
 		Debug.Log ("[AdventureManager Player Kat] " + katsInfo [currentFightingKatIndex].toString ());
 		Debug.Log ("[AdventureManager Spawned Enemy] " + enemy.toString ());
-		battleInfoScript.setKats (katsInfo [currentFightingKatIndex], enemy);
-		battleInfoScript.setMap (getCurrentMap ());
-		battleInfoScript.setKatPrefabVessel(katPrefabVessel);
-		spawnedBattleInfoModule = battleInfo;
+		currentBattleInfo.setKats (katsInfo [currentFightingKatIndex], enemy);
+		currentBattleInfo.setMap (getCurrentMap ());
+		currentBattleInfo.setKatPrefabVessel(katPrefabVessel);
+//		spawnedBattleInfoModule = battleInfo;
 		Application.LoadLevel (battleSceneName);
 		
 		farmMngr = GameObject.Find ("FarmManagerModule").GetComponent<FarmManager> ();

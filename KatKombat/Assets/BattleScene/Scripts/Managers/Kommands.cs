@@ -19,7 +19,7 @@ public class Kommands {
 		SplinterBarrage,
 		Tornado,
 		TwinFang,
-
+		FunBasketFurball,
 	}
 
 	public static KommandCode getRandomStrKommand() {

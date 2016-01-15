@@ -162,7 +162,7 @@ public class GeneralProjectileScript : MonoBehaviour {
 		         && !(collidingObj.tag.Equals("Terrain")) 
 		         && (hitOnceOnly && !hasHit)||(!hitOnceOnly)
 		         && (!ownerKat.tag.Equals(collidingObj.tag))  ) {
-			
+
 			bool shouldHit = false;
 			if(hitOnceOnly){
 				shouldHit = checkIfEnemyHitBefore(collidingObj);
@@ -238,7 +238,7 @@ public class GeneralProjectileScript : MonoBehaviour {
 	}
 	protected void repelMelee(Collider2D collidingObj){
 		forceDirection = collidingObj.transform.position - transform.position; //Repel from projectile
-		repelForce = (forceDirection.normalized)*repelForceMultiplier*katStats.Str*strRepelRatio;
+		repelForce = (forceDirection.normalized)*repelForceMultiplier;
 		collidingObj.GetComponent<Rigidbody2D>().AddForce(repelForce);
 	}
 	protected bool IsCrit(){

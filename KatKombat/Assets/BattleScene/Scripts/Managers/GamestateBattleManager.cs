@@ -244,7 +244,7 @@ public class GamestateBattleManager : MonoBehaviour {
 
 	void attachAttackToKat(GameObject kat, KatStatsInfo katInfo){
 		List<Kommand> komList = katInfo.getActiveKommands ();
-		Debug.LogError("Attaching Koms to Kat : " + komList[0].ToString() + " " + komList[1].ToString() + " " + komList[2].ToString() + " ");
+//		Debug.LogError("Attaching Koms to Kat : " + komList[0].ToString() + " " + komList[1].ToString() + " " + komList[2].ToString() + " ");
 		//string[] katAttacks = katInfo.getCommands ();
 		
 		KatAttacksVessel attackPrefabsScript = katAttackVesselPrefab.GetComponent<KatAttacksVessel>();

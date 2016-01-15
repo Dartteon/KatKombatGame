@@ -77,20 +77,23 @@ public class BattleManager : MonoBehaviour {
 
 
 	void Start(){
-		GameObject battleInfo = GameObject.Find ("BattleInformationModule");
-			
-		if (battleInfo != null) {
+//		GameObject battleInfo = GameObject.Find ("BattleInformationModule");
+		GameObject advModule = GameObject.Find ("AdventureModule").gameObject;
+		if (advModule != null) {
+			BattleInformation battleInfoScript = advModule.GetComponent<AdventureManager> ().currentBattleInfo;
+			if (battleInfoScript != null) {
 //			Debug.Log("BattleInfo found. Unpacking!");
-			BattleInformation battleInfoScript = battleInfo.GetComponent<BattleInformation>();
-			KatStatsInfo playerKat = battleInfoScript.playerKat;
-			KatStatsInfo enemykat = battleInfoScript.enemyKat;
-			string mapName = battleInfoScript.mapName;
-			katPrefabVessel = battleInfoScript.katPrefabVessel;
+//				BattleInformation battleInfoScript = battleInfo.GetComponent<BattleInformation> ();
+				KatStatsInfo playerKat = battleInfoScript.playerKat;
+				KatStatsInfo enemykat = battleInfoScript.enemyKat;
+				string mapName = battleInfoScript.mapName;
+				katPrefabVessel = battleInfoScript.katPrefabVessel;
 
-			initialize(playerKat, enemykat, mapIndex);
-		} else {
-			Debug.Log("BattleInformation not found!");
-			startMultiKatBattle();
+				initialize (playerKat, enemykat, mapIndex);
+			} else {
+				Debug.Log ("BattleInformation not found!");
+				startMultiKatBattle ();
+			}
 		}
 	}
 

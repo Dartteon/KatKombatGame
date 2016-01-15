@@ -58,7 +58,7 @@ public class MTControllerFixedJoystick : MonoBehaviour, Tappable {
 	public void handleTap(Vector2 camPos, Vector2 worldPos){
 		recordLastTouch (camPos, worldPos);
 		registerTouch ();
-		Debug.Log ("Tapped");
+//		Debug.Log ("Tapped");
 	}
 	
 	void recordLastTouch(Vector2 camPos, Vector2 worldPos){

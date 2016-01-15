@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class MovementScript : MonoBehaviour {
-	private float force;
+	private float force = 15.0f;
 	private Animator anim;
 //	private float startTime;
 //	private float animDuration = 1.0f;
@@ -82,7 +82,7 @@ public class MovementScript : MonoBehaviour {
 //			if (canMove && katMana.removeMana (jumpCost)) {
 	//		if (canMove) {
 				direction.Normalize();
-				SetForce ();
+//				SetForce ();
 				//direction.Normalize (); //Finds the unit vector in correct direction, then multiplies it by variable "force"
 				direction.x *= force;
 				direction.y *= force;
@@ -158,9 +158,9 @@ public class MovementScript : MonoBehaviour {
 		//sprite.transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (new Vector3 (0, 0, angle - 90)), Time.deltaTime * turnSpeed);
 	}
 
-	public void SetForce(){
+	public void SetForce(int f){
 		//this.force = 3.0f + katStats.getDex ()/12.0f;
-		this.force = 15.0f;
+		this.force = f;
 	}
 
 	public void SetJumpCost(int cost){
@@ -174,4 +174,5 @@ public class MovementScript : MonoBehaviour {
 		direction.y *= 3.6f;
 		this.GetComponent<Rigidbody2D>().AddForce (direction, ForceMode2D.Impulse);
 	}
+
 }

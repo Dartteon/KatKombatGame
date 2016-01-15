@@ -114,5 +114,6 @@ public class StatsScript : MonoBehaviour {
 		level = 1;
 		transform.GetComponent<HealthScript> ().initialize ();
 		transform.GetComponent<HealthScript> ().setMaxHealth (140);
+		transform.GetComponent<MovementScript> ().SetForce (5);
 	}
 }

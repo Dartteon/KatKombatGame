@@ -42,14 +42,17 @@ public class PVPBattleManager : MonoBehaviour {
 		Debug.Log (katPrefabVessel.ToString ());
 		KatStatsInfo katStats1 = new KatStatsInfo (KatBreed.getRandomBreed (), katPrefabVessel, "Player1Kat");
 		KatStatsInfo katStats2 = new KatStatsInfo (KatBreed.getRandomBreed (), katPrefabVessel, "Player2Kat");
-		katStats1.setKommands (Kommands.KommandCode.MightyPaw, Kommands.KommandCode.None, Kommands.KommandCode.None);
-		katStats2.setKommands (Kommands.KommandCode.MightyPaw, Kommands.KommandCode.None, Kommands.KommandCode.None);
+		katStats1.setKommands (Kommands.KommandCode.FunBasketFurball, Kommands.KommandCode.None, Kommands.KommandCode.None);
+		katStats2.setKommands (Kommands.KommandCode.FunBasketFurball, Kommands.KommandCode.None, Kommands.KommandCode.None);
 
 		kat1 = Instantiate (katPrefabVessel.GetComponent<KatPrefabsVesselScript> ().getKatOfBreed (katStats1.breed), spawnLoc_player1.transform.position, spawnLoc_player1.transform.rotation) as GameObject;
 		kat2 = Instantiate (katPrefabVessel.GetComponent<KatPrefabsVesselScript> ().getKatOfBreed (katStats2.breed), spawnLoc_player2.transform.position, spawnLoc_player2.transform.rotation) as GameObject;
-
+		kat1.tag = "Player1";
+		kat2.tag = "Player2";
 //		kat1.GetComponent<StatsScript> ().setStats (katStats1);
 //		kat2.GetComponent<StatsScript> ().setStats (katStats2);
+		kat1.GetComponent<StatsScript> ().setFunStats ();
+		kat2.GetComponent<StatsScript> ().setFunStats ();
 		attachAttackToKat (kat1, katStats1);
 		attachAttackToKat (kat2, katStats2);
 		Camera.main.GetComponent<PVPBattleCameraFollowScript> ().AttachKats (kat1, kat2);

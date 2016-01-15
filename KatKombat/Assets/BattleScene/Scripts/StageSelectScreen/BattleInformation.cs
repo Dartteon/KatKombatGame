@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class BattleInformation : MonoBehaviour {
+public class BattleInformation {
 	public KatStatsInfo playerKat, enemyKat;
 	public string mapName;
 	public GameObject katPrefabVessel { get; private set; }
@@ -23,10 +23,5 @@ public class BattleInformation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-	}
-
-	void Start(){
-		this.name = "BattleInformationModule";
-		DontDestroyOnLoad(transform.gameObject);
 	}
 }

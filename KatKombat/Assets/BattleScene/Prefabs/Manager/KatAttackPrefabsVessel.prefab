@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 151594, guid: 331e2cfd288029849869dd128a652f80, type: 2}
   - {fileID: 188824, guid: f5e7d8367265deb4fb90ecd48c9c91d4, type: 2}
   - {fileID: 194866, guid: 86a2433b81c9b1f4db382c28f4231721, type: 2}
+  - {fileID: 145236, guid: 318abc70a5305754c8cc91d1c0f14948, type: 2}
   attackIconPrefabs:
   - {fileID: 165740, guid: f558760ec9bf94f49a4fe80c459db2c5, type: 2}
   - {fileID: 180072, guid: 1313582a50947814990f291634b64ce3, type: 2}
